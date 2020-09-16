@@ -1,0 +1,9 @@
+.idea/
+.ipynb*
+*.ipynb
+.vscode/
+*.pyc
+dist/
+*.egg-info/
+build/
+docsfiles/_*/

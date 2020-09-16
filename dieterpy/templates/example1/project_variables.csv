@@ -1,0 +1,20 @@
+feature,value,comment
+scenarios_iteration,yes,'yes' iteration_main_file.csv in iterationfiles folder must be configured properly. If 'no' a single run occurs
+skip_input,no,'no' generates input gdx. 'yes' skips import.
+skip_iteration_data_file,no,'yes' and 'no'. Choose 'yes' to skip GDX creation iterable time series data which speeds up initial preparation
+base_year,2030,select year for time-series data file
+end_hour,h8760,for easy and efficient reduction of the set 'h'
+dispatch_only,no,'yes' and 'no'
+network_transfer,yes,'yes' and 'no'
+no_crossover,yes,'yes' or 'no'
+GUSS,no,'yes' or 'no'
+GUSS_parallel,no,'yes' or 'no'
+GUSS_parallel_threads,0,"if zero and GUSS parallel is yes, then the model makes parallel runs using all available cores. When the model is too large, to avoid running out of RAM, you can either choose, to reduce the number of parallel runs or deactivate GUSS parallel"
+data_input_file,data_input.xlsx,"enter a file name. If empty, then import of time-invariant data is skipped"
+time_series_file,time_series.xlsx,enter a file name. If empty then import of time-variant data is skipped
+iteration_data_file,iteration_data.xlsx,enter a file name. Holds time series data for iteration
+gdx_convert_parallel_threads,0,if zero then maximum number of CPU cores in use
+gdx_convert_to_csv,no,'yes' or 'no'. It creates a CSV file for each symbol. Files are hosted in folder 'CSV'.
+gdx_convert_to_pickle,yes,'yes' or 'no'. It creates a pickle file for each run. It contains a dictionary where keys are symbol names and values are symbol's dataframe.
+gdx_convert_to_vaex,no,'yes' or 'no'. It creates an hdf5 file for each run. A vaex dataframe contains all symbols. Files are larger but can be handled out of the RAM.
+report_data,yes,"'yes' or 'no'. Extract symbols for each scenario. Save files in ""report"" folder"

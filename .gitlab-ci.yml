@@ -1,0 +1,13 @@
+image: python:3.7-alpine
+
+pages:
+  stage: deploy
+  script:
+  - pip install -U sphinx
+  - pip install -U sphinx-rtd-theme
+  - sphinx-build -b html ./docsfiles public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master

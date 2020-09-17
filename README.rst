@@ -31,7 +31,7 @@ Authors
 
 The developers are Carlos Gaete-Morales (lead) <cdgaete@gmail.com>, Alexander Roth and Martin Kittel; and with the colaboration of Wolf-Peter Schill and Alexander Zerrahn.
 
-Licence
+License
 -------
 
 DIETERpy is an open source tool which code may be freely used and modified by anyone. The code is licensed under the MIT License and available https://gitlab.com/diw-evu/dieter_public/dieter_py.

@@ -7,7 +7,7 @@ root_dir = os.path.dirname(__file__)
 if root_dir:
     os.chdir(root_dir)
 
-with open(os.path.join(root_dir, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(root_dir, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 for dirpath, dirnames, filenames in os.walk('dieterpy'):
@@ -20,9 +20,9 @@ for dirpath, dirnames, filenames in os.walk('dieterpy'):
 
 setup(
     name='dieterpy',
-    version="0.0.1",
+    version="0.1.0",
     packages=packages,
-    author="Carlos Gaete",
+    author="Carlos Gaete-Morales",
     author_email="cdgaete@gmail.com",
     install_requires=['exceltogdx',
                       'pandas == 1.0.5',
@@ -39,7 +39,7 @@ setup(
     },
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    description='DIETER power system modelling',
+    description='DIETERpy GAMS-Python framework of a power system model DIETER',
     classifiers=[
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',

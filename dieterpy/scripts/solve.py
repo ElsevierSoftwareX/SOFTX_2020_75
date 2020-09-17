@@ -8,6 +8,7 @@ from gams import GamsWorkspace, GamsOptions, DebugLevel, UpdateAction, VarType, 
 
 from dieterpy.scripts.gdx_handler import gdx_get_symb_info, gdx_get_set_coords
 from dieterpy.scripts.util import OutputStream
+from dieterpy.scripts.output_data import get_solver_status
 
 
 def scen_solve(scen_run, base, run, block):
@@ -79,6 +80,9 @@ def scen_solve(scen_run, base, run, block):
     with OutputStream(tee=False, logfile=tmp['stdout_file']) as output_stream:
         job.run(opt, output=output_stream)
 
+    solver_msg = get_solver_status(tmp['stdout_file'])
+    tmp['solver_msg'] = solver_msg
+
     symbs_dict = base['tmp'][block]['runs']['par_var'][run]
     countries = base['tmp'][block]['used_countries']
     # lines = base['tmp'][block]['used_lines']
@@ -97,6 +101,7 @@ def scen_solve(scen_run, base, run, block):
     # if 'country_set' in list(tmp['config'].keys()):
     #     tmp['config']['lines'] = lines
     tmp['config'].update({k:v for k,v in symbs_dict.items()})
+    tmp['config'].update({'solver_msg':solver_msg, 'long_id':tmp['id']})
     tmp['guss_tool'] = base['guss_tool']
     tmp['guss_config'] = ''
     tmp['SETTINGS_DIR_ABS'] = base['SETTINGS_DIR_ABS']
@@ -282,6 +287,9 @@ def guss_parallel(result, queue, queue_lock, print_lock, symbs, base, block):
         with OutputStream(tee=False, logfile=tmp['stdout_file']) as output_stream:
             mi.solve(output=output_stream, mi_opt=mi_opt)
 
+        solver_msg = get_solver_status(tmp['stdout_file'])
+        tmp['solver_msg'] = solver_msg
+
         symbs_dict = base['tmp'][block]['runs']['par_var'][idx]
         countries = base['tmp'][block]['used_countries']
         # lines = base['tmp'][block]['used_lines']
@@ -300,6 +308,7 @@ def guss_parallel(result, queue, queue_lock, print_lock, symbs, base, block):
         # if 'country_set' in list(tmp['config'].keys()):
         #     tmp['config']['lines'] = lines
         tmp['config'].update({k:v for k,v in symbs_dict.items()})
+        tmp['config'].update({'solver_msg':solver_msg, 'long_id':tmp['id']})
         tmp['guss_tool'] = base['guss_tool']
         tmp['guss_config'] = dc
         tmp['SETTINGS_DIR_ABS'] = base['SETTINGS_DIR_ABS']
@@ -416,6 +425,9 @@ def guss_solve(queue, symbs, base, block):
         with OutputStream(tee=False, logfile=tmp['stdout_file']) as output_stream:
             mi.solve(output=output_stream, mi_opt=mi_opt)
 
+        solver_msg = get_solver_status(tmp['stdout_file'])
+        tmp['solver_msg'] = solver_msg
+
         symbs_dict = base['tmp'][block]['runs']['par_var'][idx]
         countries = base['tmp'][block]['used_countries']
         # lines = base['tmp'][block]['used_lines']
@@ -434,6 +446,7 @@ def guss_solve(queue, symbs, base, block):
         # if 'country_set' in list(tmp['config'].keys()):
         #     tmp['config']['lines'] = lines
         tmp['config'].update({k:v for k,v in symbs_dict.items()})
+        tmp['config'].update({'solver_msg':solver_msg, 'long_id':tmp['id']})
         tmp['guss_tool'] = base['guss_tool']
         tmp['guss_config'] = dc
         tmp['SETTINGS_DIR_ABS'] = base['SETTINGS_DIR_ABS']

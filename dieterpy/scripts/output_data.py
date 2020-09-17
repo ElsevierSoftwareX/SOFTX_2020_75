@@ -15,33 +15,29 @@ from dieterpy.scripts.gdx_handler import gdx_get_set_coords, gdx_get_symb_info, 
 
 from dieterpy.config import settings
 
+def get_solver_status(file):
+    pattern = re.compile("LP status", re.IGNORECASE)  # Compile a case-insensitive regex
+    with open(file, 'rt') as myfile:
+        for line in myfile:
+            if pattern.search(line) != None:  # If a match is found
+                return line.rstrip('\n')
+
 def solver_status_summary(method=None, input=None):
-
-    def get_solver_status(file):
-        pattern = re.compile("LP status", re.IGNORECASE)  # Compile a case-insensitive regex
-        with open(file, 'rt') as myfile:
-            for line in myfile:
-                if pattern.search(line) != None:  # If a match is found
-                    return line.rstrip('\n')
-
-    df = pd.read_csv(os.path.join(settings.ITERATION_DIR_ABS, 'iteration_main_file.csv'))
-
+    df = pd.DataFrame()
+    firstones = ['run', 'long_id']
+    lastones = ['System Costs [bn €]', 'solver_msg']
+    ommit = firstones + lastones
     if method == 'direct':
         for run_dc in input['RUNS']:
-            df.loc[(df['run'] == run_dc['run_orig']), 'System Costs [bn €]'] = round(run_dc['system_costs']/1000000000,3)
-            df.loc[(df['run'] == run_dc['run_orig']), 'Solver Status'] = get_solver_status(run_dc['stdout_file'])
-
+            ndf = pd.DataFrame([{'run': run_dc['run_orig']}])
+            for k, v in run_dc['config'].items():
+                ndf[k] = v
+            ndf['System Costs [bn €]'] = round(run_dc['system_costs']*1e-9,4)
+            df = df.append(ndf)
+        df = df.sort_values('run')
+        df = df[firstones + [col for col in df.columns if col not in ommit] + lastones]
+        df.to_csv(os.path.join(input['RESULTS_DIR_ABS'], input['unique'] + '_model_status.csv'), index=False)
     return df
-
-    # elif method == 'list':
-    #
-    # elif method == 'search':
-    #     runname = ntpath.basename(file)[:6]
-    #
-    # else:
-    #     print('Warning: No method has been provided or it does not match "direct", "list", or "search"')
-
-
 
 def read_iteration_symbols(csvpath=None):
     '''

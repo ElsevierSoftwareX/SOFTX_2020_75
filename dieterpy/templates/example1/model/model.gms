@@ -1473,7 +1473,14 @@ $ontext
 $offtext
 )
         =G= phi_min_res * phi_min_res_exog(n) * sum( h , d(n,h) )
-         + sum( h, sum( map_n_sto(n,sto) , STO_IN(n,sto,h) - STO_OUT(n,sto,h) ) )
+         + sum( h, sum( map_n_sto(n,sto) , STO_IN(n,sto,h) - STO_OUT(n,sto,h) )
+         
+%EV_endogenous%$ontext
+            + sum( map_n_ev(n,ev), EV_CHARGE(n,ev,h) - EV_DISCHARGE(n,ev,h) )
+$ontext
+$offtext
+         
+         )
 ;
 
 * RES share constraint (2c): G_RES- and total-generation-based, storage losses covered by RES proportional to (1-phi_min_res)

@@ -232,16 +232,8 @@ def main():
             bar.progress((10 + (70/barmax)*(block+1))/100)
     
     summary_status = solver_status_summary('direct', BASE)
-    summary_status.to_csv(os.path.join(BASE['RESULTS_DIR_ABS'], BASE['unique'] + '_model_status.csv'))
-    BASE['status_report'] = summary_status.to_dict()
-    for dc in BASE['RUNS']:
-        dc['config'].update({'solver_msg':summary_status.loc[(summary_status['run'] == dc['run_orig']), 'Solver Status'].values[0],
-                             'long_id':dc['id']})
-        with open(dc['config_file'],'r') as f:
-            run_file = yaml.load(f, yaml.FullLoader)
-        run_file['config'] = dc['config']
-        with open(dc['config_file'],'w') as f:
-            yaml.dump(run_file, f)
+    print(summary_status)
+    time.sleep(2)
 
     if not pickle_bool:
         with open(os.path.join(BASE['RESULTS_DIR_ABS'], BASE['unique'] + '_scenario_collection.yml'),'w') as f:

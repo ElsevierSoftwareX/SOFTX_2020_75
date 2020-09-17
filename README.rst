@@ -29,7 +29,7 @@ Uninstallation
 Authors
 -------
 
-The developers are Carlos Gaete-Morales (lead) <cdgaete@gmail.com>, Alexander Roth and Martin Kittel; and with the colaboration of Wolf-Peter Schill and Alexander Zerrahn.
+The developers are Carlos Gaete-Morales (lead) <cdgaete@gmail.com>, Alexander Roth and Martin Kittel; and with the collaboration of Wolf-Peter Schill and Alexander Zerrahn.
 
 License
 -------

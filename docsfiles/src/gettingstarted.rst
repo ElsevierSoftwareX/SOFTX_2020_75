@@ -62,13 +62,10 @@ Installation of DIETER
 
 while having activated the "yourenvname" environment install dieter by typing one of the two options.
 
-*directly from PYPI* (`not implemented yet`)::
+*directly from PYPI*::
 
-    pip install dieter
+    pip install dieterpy
 
-*from a public repository*::
-
-    pip install git+https://gitlab.com/diw-evu/dieter_public/DIETER_2.0.0.git
 
 
 Uninstall DIETER

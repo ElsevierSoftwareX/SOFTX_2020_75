@@ -118,23 +118,23 @@ def get_rldc(symbols_dc):
     # Here tech that start with a symbol but is folowed by a number, pandas sort them naturaly in asscending order.
     # We want here, the tech that starts with "patern" be sortered in descending order
 
-    paterns = ['STO_OUT-Sto']  # ['STO_IN-Sto','STO_OUT-Sto']  **1
-    mask = []
-    for _ in range(len(headings)):
-        mask.append(-1)
-    for i, patern in enumerate(paterns):
-        for j, elem in enumerate(headings):
-            if patern in elem:
-                mask[j] = i
+    # paterns = ['STO_OUT-Sto']  # ['STO_IN-Sto','STO_OUT-Sto']  **1
+    # mask = []
+    # for _ in range(len(headings)):
+    #     mask.append(-1)
+    # for i, patern in enumerate(paterns):
+    #     for j, elem in enumerate(headings):
+    #         if patern in elem:
+    #             mask[j] = i
 
-    group = []
-    pairs = sorted(zip(headings, mask), key=lambda x: (x[1]))
-    for i, grp in groupby(pairs, lambda x: x[1]):
-        group.append([item[0] for item in grp])
+    # group = []
+    # pairs = sorted(zip(headings, mask), key=lambda x: (x[1]))
+    # for i, grp in groupby(pairs, lambda x: x[1]):
+    #     group.append([item[0] for item in grp])
 
-    group[1].sort(key=natural_sort_key,reverse=True)
-    # group[2].sort(key=natural_sort_key,reverse=True)  # This is deactivated due to above in "paterns" 'STO_IN-Sto' has been removed **2
-    headings = group[1] + group[0]  #  group[1] + group[2] + group[0] **3
+    # group[1].sort(key=natural_sort_key,reverse=True)
+    # # group[2].sort(key=natural_sort_key,reverse=True)  # This is deactivated due to above in "paterns" 'STO_IN-Sto' has been removed **2
+    # headings = group[1] + group[0]  #  group[1] + group[2] + group[0] **3
 
     # memory collect the roots of tech
     memory = []
@@ -155,10 +155,10 @@ def get_rldc(symbols_dc):
     # here symbols with different names get the same color, for example STO_IN and STO_OUT
 
     for tech, colo in colors_dc.items():  # in this case all tech with this patern has an extension
-        if 'STO_IN-Sto' in tech:
-            ix = tech.split('STO_IN-Sto')[-1]
-            if 'STO_OUT-Sto' + ix in colors_dc:
-                colors_dc['STO_OUT-Sto' + ix] = colo
+        if 'STO_IN-' in tech:
+            ix = tech.split('STO_IN-')[-1]
+            if 'STO_OUT-' + ix in colors_dc:
+                colors_dc['STO_OUT-' + ix] = colo
 
     for tech, colo in colors_dc.items(): # this case not all tech with this patern has an extension
         if 'EV_CHARGE' in tech:

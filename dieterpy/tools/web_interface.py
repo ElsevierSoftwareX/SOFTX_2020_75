@@ -127,9 +127,9 @@ def page_report(state):
 
         st.write('Tech Power Capacity')
 
-        state.options_tech = [tech for tech in state.rldc_info if tech in raw_tech_opt]
-        max_rng = max(list(df['h'].unique()))
-        state.tech_order = st.multiselect("Sort technologies to display", state.options_tech, state.options_tech)
+        # state.options_tech = [tech for tech in state.rldc_info if tech in raw_tech_opt]
+        # max_rng = max(list(df['h'].unique()))
+        # state.tech_order = st.multiselect("Sort technologies to display", state.options_tech, state.options_tech)
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='ra')
         if radio_opt == 'id:x,n:col':
@@ -444,15 +444,13 @@ def update_proj_var(state):
 def get_results(state):
     SH = SymbolsHandler('folder')
     symbols = {}
-    symbol_base = SH.get_data('Z','v')
-    modifiers = symbol_base['loop']
     try:
         symbols['feat_node'] = Symbol('feat_node', 'v', '', {'': 'Binary []'},symbol_handler=SH)
         symbols['features'] = symbols['feat_node'].df['features'].unique().to_list()
     except:
         symbols['features'] = []
 
-    symbols['Z'] = Symbol('Z', 'v', '€', {'€': 'System Cost [€]'}, index = ['id'] + modifiers,symbol_handler=SH)
+    symbols['Z'] = Symbol('Z', 'v', '€', {'€': 'System Cost [€]'}, symbol_handler=SH)
     symbols['Z'].header_name = {'bn €': 'System Cost [bn €]'}
     symbols['Z'].get('conversion_factors').update({'€': {'€': 1, 'bn €':1e-9}})
     # capacity variables
@@ -523,6 +521,8 @@ def get_results(state):
     symbols['T_RES'] = symbols['N_TECH']*symbols['phi_res']
     symbols['agg_techT_RES'] = symbols['T_RES'].dimreduc('tech')
     symbols['RLDC'] = symbols['d'] + (symbols['agg_techT_RES']*-1)
+    symbols['con1a_bal'] = symbols['con1a_bal']*-1
+    symbols['con1a_bal'].name = 'con1a_bal'
     # create flow with nodes
     symbols['Fn'] = symbols['F']*symbols['inc']
     symbols['Fn'].name = 'Flow'
@@ -619,10 +619,10 @@ def make_symbol_df(symbols):
     dfs = {}
     for k, v in symbols.items():
         if k != 'features':
-            dfs[k] = v.df.copy().astype('object').fillna(-1)
+            dfs[k] = v.dfm.copy().astype('object').fillna(-1)
 
     # add custom df
-    dfs['Total Costs'] = symbols['Z'].show('bn €').reset_index().round(2)
+    dfs['Total Costs'] = symbols['Z'].showm('bn €').reset_index().round(2)
 
     df = symbols['G_TECH'].dimreduc('h').df
     df.loc[df['tech'].isin(['pv','ror', 'rsvr', 'wind_off', 'wind_on', 'bio']),'type'] = 'Renewable'

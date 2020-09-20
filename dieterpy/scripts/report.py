@@ -553,10 +553,21 @@ class Symbol(object):
             self.extend_header = extend_header + ' ' + self.get('extend_header')
         return self.convert_dataframe(unit)
 
-    def convert_dataframe(self, unit):
-        df = self.df
+    def showm(self, unit=None, extend_header=None):
+        if unit is None:
+            unit = self.get('unit')
+        if extend_header is not None:
+            self.extend_header = extend_header + ' ' + self.get('extend_header')
+        return self.convert_dataframe(unit,mod=True)
+
+    def convert_dataframe(self, unit,mod=False):
         # TODO: Add new index items, for example actual res_share per scenario
-        df = df.set_index(self.get('preferred_index'))
+        if mod:
+            df = self.dfm
+            df = df.set_index(self.get('preferred_index') + list(self.get('modifiers').keys()))
+        else:
+            df = self.df
+            df = df.set_index(self.get('preferred_index'))
         if unit not in self.get('header_name').keys():
             raise Exception(f"Add first '{unit}' to self.get('header_name')")
         df = df.rename(columns={'value': self.get('extend_header') + self.get('header_name')[unit]})

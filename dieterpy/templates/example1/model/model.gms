@@ -255,13 +255,13 @@ carbon_content(n,tech)     CO2 emissions per fuel unit used [tons per MWh therma
 c_up(n,tech)               Load change costs UP [EUR per MWh]
 c_do(n,tech)               Load change costs DOWN [EUR per MWh]
 c_fix(n,tech)              Annual fixed costs [EUR per MW per year]
-c_vom(n,tech)              Variable O&M costs [EUR per MWh]
+*c_vom(n,tech)              Variable O&M costs [EUR per MWh]
 co2price(n,tech)           CO2 price in [EUR per ton]
 
 *--- Investment ---*
 c_inv_overnight(n,tech)    Investment costs: Overnight [EUR per MW]
 lifetime_tech(n,tech)      Investment costs: technical lifetime [a]
-recovery(n,tech)           Investment costs: Recovery period according to depreciation tables [a]
+*recovery(n,tech)           Investment costs: Recovery period according to depreciation tables [a]
 interest_rate_tech(n,tech) Investment costs: Interest rate [%]
 m_p(n,tech)                Investment: maximum installable capacity per technology [MW]
 m_e(n,tech)                Investment: maximum installable energy [TWh per a]
@@ -274,7 +274,7 @@ grad_per_min(n,tech)       Maximum load change relative to installed capacity [%
 fuelprice(n,tech)          Fuel price conventionals [EUR per MWh thermal]
 
 ***** Renewables *****
-c_cu(n,tech)               Hourly Curtailment costs for renewables [Euro per MW]
+*c_cu(n,tech)               Hourly Curtailment costs for renewables [Euro per MW]
 phi_min_res                Minimum renewables share [0 1]
 phi_min_res_exog(n)        Minimum renewables share per node [0 1]
 
@@ -608,19 +608,19 @@ carbon_content(n,tech) = technology_data(n,tech,'carbon_content') ;
 c_up(n,dis) =technology_data(n,dis,'load change costs up') ;
 c_do(n,dis) = technology_data(n,dis,'load change costs down') ;
 c_fix(n,tech) = technology_data(n,tech,'fixed_costs') ;
-c_vom(n,tech) = technology_data(n,tech,'variable_om') ;
+*c_vom(n,tech) = technology_data(n,tech,'variable_om') ;
 co2price(n,tech) = technology_data(n,tech,'CO2_price') ;
 
 c_inv_overnight(n,tech) = technology_data(n,tech,'oc') ;
 lifetime_tech(n,tech) = technology_data(n,tech,'lifetime') ;
-recovery(n,tech) = technology_data(n,tech,'recovery_period') ;
+*recovery(n,tech) = technology_data(n,tech,'recovery_period') ;
 interest_rate_tech(n,tech) = technology_data(n,tech,'interest_rate') ;
 m_p(n,tech) = technology_data(n,tech,'max_installable') ;
 m_e(n,tech) = technology_data(n,tech,'max_energy') ;
 grad_per_min(n,dis) = technology_data(n,dis,'load change flexibility') ;
 fuelprice(n,tech) = technology_data(n,tech,'fuel costs') ;
 
-c_cu(n,res) = technology_data(n,res,'curtailment_costs') ;
+*c_cu(n,res) = technology_data(n,res,'curtailment_costs') ;
 
 *--- Storage technologies ---*
 c_m_sto(n,sto) = storage_data(n,sto,'mc');
@@ -747,7 +747,8 @@ area_floor(n,bu,ch) = heat_data(n,bu,ch,'area_floor') ;
 
 ***************  CALCULATE DERIVED PARAMETERS  *********************************
 
-c_m(n,tech) = fuelprice(n,tech)/eta(n,tech) + carbon_content(n,tech)/eta(n,tech)*co2price(n,tech) + c_vom(n,tech)   ;
+* CG removed from c_m(n,tech) eq, "+ c_vom(n,tech)" 
+c_m(n,tech) = fuelprice(n,tech)/eta(n,tech) + carbon_content(n,tech)/eta(n,tech)*co2price(n,tech)  ;
 
 c_i(n,tech) = c_inv_overnight(n,tech)*( interest_rate_tech(n,tech) * (1+interest_rate_tech(n,tech))**(lifetime_tech(n,tech)) )
                   / ( (1+interest_rate_tech(n,tech))**(lifetime_tech(n,tech))-1 )       ;
@@ -1167,7 +1168,7 @@ obj..
                    sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )
                  + sum( (h,map_n_tech(n,dis))$(ord(h)>1) , c_up(n,dis)*G_UP(n,dis,h) )
                  + sum( (h,map_n_tech(n,dis)) , c_do(n,dis)*G_DO(n,dis,h) )
-                 + sum( (h,map_n_tech(n,nondis)) , c_cu(n,nondis)*CU(n,nondis,h) )
+*                 + sum( (h,map_n_tech(n,nondis)) , c_cu(n,nondis)*CU(n,nondis,h) )
                  + sum( (h,map_n_sto(n,sto)) , c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
 %DSM%$ontext
                  + sum( (h,map_n_dsm(n,dsm_curt)) , c_m_dsm_cu(n,dsm_curt)*DSM_CU(n,dsm_curt,h) )

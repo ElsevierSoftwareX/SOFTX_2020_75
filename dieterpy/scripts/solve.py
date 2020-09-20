@@ -66,7 +66,7 @@ def scen_solve(scen_run, base, run, block):
     copyfile(os.path.join(tmp['RUN_DIR_ABS'],'cplex.opt'), os.path.join(ws.working_directory, 'cplex.opt'))
 
     tmp['run_orig'] = run
-    tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][run]).zfill(2) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(run).zfill(3)
+    tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][run]).zfill(3) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(run).zfill(3)
     tmp['block'] = block
     tmp['id_dir'] = os.path.join(tmp['RESULTS_DIR_ABS'], tmp['id'])
     tmp['stdout_file'] = os.path.join(tmp['id_dir'], tmp['id'] + '_gams_stdout.txt')
@@ -272,7 +272,7 @@ def guss_parallel(result, queue, queue_lock, print_lock, symbs, base, block):
         dcmodifier = setSymbolsValues(dcmodifier, dc, maingdx)
 
         tmp['run_orig'] = idx
-        tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][idx]).zfill(2) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
+        tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][idx]).zfill(3) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
         # tmp['id'] = base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
         tmp['block'] = block
         tmp['id_dir'] = os.path.join(tmp['RESULTS_DIR_ABS'], tmp['id'])
@@ -410,7 +410,7 @@ def guss_solve(queue, symbs, base, block):
         tmp['RUN_DIR_ABS'] = base['RUN_DIR_ABS']
         tmp['RESULTS_DIR_ABS'] = base['RESULTS_DIR_ABS']
         tmp['run_orig'] = idx
-        tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][idx]).zfill(2) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
+        tmp['id'] = 'Run_' + str(base['tmp'][block]['runs']['run_nr'][idx]).zfill(3) + '_' + base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
         # tmp['id'] = base['unique'] + base['tmp'][block]['str_block'] + '_r' + str(idx).zfill(3)
         tmp['block'] = block
         tmp['id_dir'] = os.path.join(tmp['RESULTS_DIR_ABS'], tmp['id'])

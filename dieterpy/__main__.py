@@ -128,9 +128,9 @@ def main():
 
             Data = CollectScenariosPerSymbol()
             Data.collectinfo()
-            Data.join_all_symbols('v', True)
+            Data.join_all_symbols('v', False)
             try:
-                Data.join_scens_by_symbol('con1a_bal', 'm', True, False)
+                Data.join_scens_by_symbol('con1a_bal', 'm', False, False)
             except:
                 raise Exception('Pickle files do not contain symbol "con1a_bal", include it to /project_files/settings/reporting_symbols.csv, then run "gdxconvert" first to include the missing symbol in the pickle files')
 

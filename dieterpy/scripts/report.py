@@ -149,7 +149,7 @@ class CollectScenariosPerSymbol:
             print('New short names for scenarios. To know the corresponding \
                     scenario names type object.shortscennames')
             for n in enumerate(names):
-                shortname = 'S' + str(n).zfill(2)
+                shortname = 'S' + str(n).zfill(3)
                 shortnames[name] = shortname
                 shortnames[shortname] = name
         return shortnames
@@ -186,6 +186,23 @@ class CollectScenariosPerSymbol:
         return loopitems
 
     @staticmethod
+    def get_modifiers(scen, loopitems):
+        loops = dict()
+        for key, value in loopitems.items():
+            if key in scen['loop'].keys():
+                loops[key] = scen['loop'][key]
+            else:
+                if value == 'category':
+                    loops[key] = 'NaN'
+                elif 'int' in value:
+                    loops[key] = np.nan
+                elif 'float' in value:
+                    loops[key] = np.nan
+                else:
+                    raise Exception('loop must contain int, float or string')
+        return loops
+
+    @staticmethod
     def add_scencols(scen, symbol, symbscen, shortscennames, loopitems, val_col, loopinclude):
         df = symbscen['data']
         scenname = scen['scenario']
@@ -196,19 +213,7 @@ class CollectScenariosPerSymbol:
         df.loc[:,'id'] = shortn
 
         if loopinclude:
-            loops = dict()
-            for key, value in loopitems.items():
-                if key in scen['loop'].keys():
-                    loops[key] = scen['loop'][key]
-                else:
-                    if value == 'category':
-                        loops[key] = 'NaN'
-                    elif 'int' in value:
-                        loops[key] = np.nan
-                    elif 'float' in value:
-                        loops[key] = np.nan
-                    else:
-                        raise Exception('loop must contain int, float or string')
+            loops = self.get_modifiers(scen, loopitems)
             for k in loopitems.keys():
                 df.loc[:, k] = loops[k]
             return df[['id', *list(loopitems.keys()),'symbol', *dims, val_col]].copy()
@@ -265,6 +270,7 @@ class CollectScenariosPerSymbol:
             raise Exception(f'result_col is {result_col}, it must be one of the following: {list(self.convertiontable.keys())}')
 
         symblist = list()
+        modifiers = dict()
         flag = -1
         for ix, scen in enumerate(self.data):
             if symbol in scen.keys():
@@ -277,6 +283,8 @@ class CollectScenariosPerSymbol:
                 if 'h' in scen[symbol]['dims']:
                     dframe = self.ts(dframe)
                 symblist.append(dframe)
+                modifiers[self.shortscennames[scen['scenario']]] = self.get_modifiers(scen, self.loopitems)
+
             else:
                 print(f'   Symbol "{symbol}" is not in {scen["scenario"]}')
         print('   Starting concatenation of dataframes')
@@ -287,6 +295,7 @@ class CollectScenariosPerSymbol:
             symbdict, savefile = dcout[0]
             symbdict['scen'] = self.shortscennames
             symbdict['loop'] = list(self.loopitems.keys())
+            symbdict['modifiers'] = modifiers
 
         else:
             savefile = False
@@ -397,8 +406,8 @@ class Symbol(object):
         self.dims = dims
         self.index = index + ['symbol'] # must be a list
         self.preferred_index = index # must be a list
-        # self.index_rest = None
         self.data = None # represents df
+        self.modifiers = None
         self.symbol_handler = symbol_handler
         self.extend_header = ''
 
@@ -417,6 +426,7 @@ class Symbol(object):
                                     '€/MW':{'€/MW':1},
                                     '€':{'€':1}}
         self.check_value_type()
+        self.get_modifiers()
         # self.get_index_rest()
         # self.id_dict()
 
@@ -494,6 +504,11 @@ class Symbol(object):
         if not self.get('exists_sh'):
             self.data = df
 
+    def get_modifiers(self):
+        if self.get('exists_sh'):
+            loops = self.get('symbol_handler').get_data(self.get('name'), self.get('value_type'))['modifiers']
+            self.modifiers = pd.DataFrame(loops).transpose().to_dict()
+
     @property
     def df(self):
         return self.get_df()
@@ -503,6 +518,13 @@ class Symbol(object):
             return self.get_df()
         else:
             return self._repo[name]
+
+    @property
+    def dfm(self):
+        dfm = self.get_df()
+        for k, v in self.get('modifiers').items():
+            dfm[k] = dfm['id'].map(v)
+        return dfm
 
     def __setattr__(self, name, value):
         if name == 'df':
@@ -564,6 +586,7 @@ class Symbol(object):
                 new_object = Symbol(self.get('name')+'+'+other.get('name'), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df.reset_index()
+                new_object.modifiers = self.get('modifiers')
                 return new_object
             else:
                 flag = True
@@ -578,6 +601,7 @@ class Symbol(object):
             new_object = Symbol("("+self.get('name')+")"+'*'+str(other), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
             new_df.loc[:,'symbol'] = new_object.get('name')
             new_object.df = new_df.reset_index()
+            new_object.modifiers = self.get('modifiers')
             return new_object
         elif isinstance(other, object):
             diffdims = list(set(self.get('dims')).symmetric_difference(set(other.get('dims'))))
@@ -588,6 +612,7 @@ class Symbol(object):
                 new_object = Symbol("("+self.get('name')+")"+'*'+other.get('name'), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df.reset_index()
+                new_object.modifiers = self.get('modifiers')
                 print(f"Warning: After an operation check allways the 'unit' and 'header_name' attributes of the new object {new_object.get('name')} for consistency.")
                 return new_object
             elif lendiff == 1:
@@ -612,6 +637,7 @@ class Symbol(object):
                 new_object = Symbol("("+save[False].get('name')+")"+'*'+save[True].get('name'), 'v', save[False].get('unit')+save[True].get('unit'), save[False].get('header_name'), save[True].get('dims'), 'expression', save[True].get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df.reset_index()
+                new_object.modifiers = self.get('modifiers')
                 print(f"Warning: After an operation check allways the 'unit' and 'header_name' attributes of the new object {new_object.get('name')} for consistency.")
                 return new_object
             elif lendiff > 1:
@@ -621,6 +647,7 @@ class Symbol(object):
                     new_object = Symbol("("+self.get('name')+")"+'*'+ other.get('name'), 'v', self.get('unit')+other.get('unit'), {self.get('unit')+other.get('unit'):self.get('header_name')[self.get('unit')]}, list(set(self.get('dims')+other.get('dims'))), 'expression', self.get('preferred_index'))
                     new_df.loc[:,'symbol'] = new_object.get('name')
                     new_object.df = new_df.reset_index()
+                    new_object.modifiers = self.get('modifiers')
                     return new_object
                 else:
                     raise Exception(f"The difference in dimensions is greater than one: '{diffdims}' and has no common dimensions")
@@ -633,6 +660,7 @@ class Symbol(object):
             new_object = Symbol("("+self.get('name')+")"+'/'+str(other), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
             new_df.loc[:,'symbol'] = new_object.get('name')
             new_object.df = new_df.reset_index()
+            new_object.modifiers = self.get('modifiers')
             return new_object
         elif isinstance(other, object):
             diffdims = list(set(self.get('dims')).symmetric_difference(set(other.get('dims'))))
@@ -643,6 +671,7 @@ class Symbol(object):
                 new_object = Symbol("("+self.get('name')+")"+'/'+other.get('name'), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df.reset_index()
+                new_object.modifiers = self.get('modifiers')
                 print(f"Warning: After an operation check allways the 'unit' and 'header_name' attributes of the new object {new_object.get('name')} for consistency.")
                 return new_object
             elif lendiff == 1:
@@ -667,6 +696,7 @@ class Symbol(object):
                 new_object = Symbol("("+save[False].get('name')+")"+'/'+save[True].get('name'), 'v', save[False].get('unit')+save[True].get('unit'), save[False].get('header_name'), save[True].get('dims'), 'expression', save[True].get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df.reset_index()
+                new_object.modifiers = self.get('modifiers')
                 print(f"Warning: After an operation check allways the 'unit' and 'header_name' attributes of the new object {new_object.get('name')} for consistency.")
                 return new_object
             elif lendiff > 1:
@@ -681,6 +711,7 @@ class Symbol(object):
         new_object = Symbol(f"({self.get('name')}).dimreduc({dim})", 'v', self.get('unit'), self.get('header_name'), new_dims, 'expression', self.get('preferred_index'))
         new_df.loc[:,'symbol'] = new_object.get('name')
         new_object.df = new_df.reset_index()
+        new_object.modifiers = self.get('modifiers')
         return new_object
 
     def concat(self, other):
@@ -691,6 +722,7 @@ class Symbol(object):
                 new_object = Symbol(self.get('name')+'-concat-'+other.get('name'), 'v', self.get('unit'), self.get('header_name'), self.get('dims'), 'expression', self.get('preferred_index'))
                 new_df.loc[:,'symbol'] = new_object.get('name')
                 new_object.df = new_df
+                new_object.modifiers = self.get('modifiers')
                 return new_object
             else:
                 flag = True

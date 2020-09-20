@@ -124,7 +124,13 @@ def page_report(state):
         st.plotly_chart(figsummary,use_container_width=True)
 
     if st.sidebar.checkbox('Tech Capacity'):
+
         st.write('Tech Power Capacity')
+
+        state.options_tech = [tech for tech in state.rldc_info if tech in raw_tech_opt]
+        max_rng = max(list(df['h'].unique()))
+        state.tech_order = st.multiselect("Sort technologies to display", state.options_tech, state.options_tech)
+
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='ra')
         if radio_opt == 'id:x,n:col':
             col = 'n'

@@ -276,8 +276,8 @@ def main():
         paths = [rundc['PKL_path'] for rundc in BASE['RUNS']]
         Data = CollectScenariosPerSymbol(paths=paths)
         Data.collectinfo()
-        Data.join_all_symbols('v', True, False)
-        Data.join_scens_by_symbol('con1a_bal', 'm', True, False)
+        Data.join_all_symbols('v', False, False)
+        Data.join_scens_by_symbol('con1a_bal', 'm', False, False)
         if activate_st:
             show_bar_text.text(f'Reporting files created')
             bar.progress(95/100)

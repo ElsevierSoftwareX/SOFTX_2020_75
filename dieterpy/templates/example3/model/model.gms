@@ -2537,7 +2537,7 @@ $offtext
 **** Scenario file **********************
 *****************************************
 
-%infeasibility%G_INFES(n,h) = 0 ;
+%infeasibility%G_INFES.fx(n,h) = 0 ;
 
 Parameter
 m_exog_p(n,tech)

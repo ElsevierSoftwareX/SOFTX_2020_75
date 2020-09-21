@@ -15,6 +15,25 @@ def color():
     r = lambda: random.randint(0,255)
     return '#%02X%02X%02X' % (r(),r(),r())
 
+def color_code():
+    dc = {}
+    dc['wind_on'] = ['#669aaa', '#518696', '#326776']
+    dc['wind_off'] = ['#215968', '#104c5a', '#0e3947', '#00303d']
+    dc['pv'] = ['#ffffbb', '#ffff97', '#fffb4e', '#ffeb3b']
+    dc['bio'] = ['#c2f08e', '#aee571', '#95cb59']
+    dc['ror'] = ['#00378f', '#002171', '#00125e']
+    dc['rsvr'] = ['#6782e4', '#5472d3', '#2e56b4']
+    dc['nuc'] = ['#ff8180', '#e4696a', '#c34b4f']
+    dc['lig'] = ['#bb8874', '#a67561', '#895a47']
+    dc['hc'] = ['#8c7f76', '#74655c', '#5e5048']
+    dc['oil'] = ['#565753', '#4b4b47', '#3a3b38']
+    dc['other'] = ['#cbdae3', '#b7c7cf', '#a2b0b8']
+    dc['CCGT'] = ['#ff814b', '#ff6a36', '#f95827']
+    dc['OCGT'] = ['#c62200', '#aa0000', '#880000']
+    dc['CU'] = ['#4fa7a1']
+    return dc
+
+
 def get_symb(symbol, dimtojoin=None, factor=1, addstr = ''):
     df = symbol.df.copy()
     if dimtojoin is None:
@@ -146,10 +165,23 @@ def get_rldc(symbols_dc):
                         if item in mem:
                             memory.remove(mem)
                     memory.append(item)
+
     colors_dc = {}
     for tech in memory:
-        colors_dc[tech] = color()
-        # print(tech, colors_dc[tech])
+        flag = False
+        for tech_color in color_code():
+            if tech_color in tech:
+                colors_dc[tech] = color_code()[tech_color][0]
+                flag = True
+                break
+        if not flag:
+            while True:
+                cl = color()
+                if cl in [*v for v in color_code().values()]:
+                    pass
+                else:
+                    break
+            colors_dc[tech] = cl
 
     # SECTION 2
     # here symbols with different names get the same color, for example STO_IN and STO_OUT

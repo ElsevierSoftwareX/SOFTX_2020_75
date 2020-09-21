@@ -13,7 +13,7 @@ import pandas as pd
 from dieterpy.config import settings
 from dieterpy.scripts import runopt
 from dieterpy.scripts.report import SymbolsHandler, Symbol
-from dieterpy.tools.plots import get_rldc, plot_rldc
+from dieterpy.tools.plots import get_rldc, plot_rldc, color_code, color
 
 import contextlib
 from functools import wraps
@@ -150,10 +150,21 @@ def page_report(state):
         df_tech_p = state.dfs['N_TECH'].sort_values('id')
         df_tech_p.loc[:,'value'] = df_tech_p['value']*1e-3  # from MW to GW
 
+        map_color = {}
+        for t in df_tech_p['tech'].unique():
+            f = False
+            for k in color_code():
+                if k in t:
+                    map_color[t] = color_code()[k][0]
+                    f = True
+                    break
+            if not f:
+                map_color[t] = None
+
 
         fig_tech_p = px.bar(df_tech_p, x=x, y="value", color='tech', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Power Capacity [GW]"))
+                                            labels=dict(value="Power Capacity [GW]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_tech_p,use_container_width=True)
 

@@ -1,0 +1,21 @@
+feature,value,comment
+scenarios_iteration,yes,'yes' iteration_main_file.csv in iterationfiles folder must be configured properly. If 'no' a single run occurs
+skip_input,no,"'no' generates input gdx files from excel files. 'yes' skips import, in such case gdx_input folder must contain gdx files"
+skip_iteration_data_file,no,select 'yes' to skip GDX creation of iterable time-series data from excel file
+base_year,2030,select the year for the time-series data. Verify this by accessing the time_series excel file
+end_hour,h336,for testing purposes the model can run from h1 to end_hour. Default value is h8760
+dispatch_only,no,"select 'yes' for dispatch only, in such case the model runs with fixed power and energy capacities, to modify or verify this, check out the data input excel file"
+network_transfer,yes,select 'yes' to include energy transport among nodes
+no_crossover,yes,select 'yes' to avoid crossover. This parameter applies when CPLEX uses the Barrier Optimizer to solve an LP
+infeasibility,no,select 'yes' to activate the infeasibility variable
+GUSS,no,select 'yes' to activate GUSS tool
+GUSS_parallel,no,"select 'yes' to run parallel scenarios with GUSS tool, where every thread compiles only once, it helps speed up the optimization, although for complex problems it may demand large RAM use"
+GUSS_parallel_threads,0,"if zero and GUSS parallel is yes, then the model makes parallel runs using all available cores. When the model is too large, to avoid running out of RAM, you can either choose, to reduce the number of parallel runs or deactivate GUSS parallel"
+data_input_file,data_input.xlsx,"enter a file name. If empty, then import of time-invariant data is skipped"
+time_series_file,time_series.xlsx,enter a file name. If empty then import of time-variant data is skipped
+iteration_data_file,iteration_data.xlsx,enter a file name. Holds time series data for iteration
+gdx_convert_parallel_threads,0,if zero then a maximum number of CPU cores will be in use
+gdx_convert_to_csv,no,select 'yes' to create a CSV file for each symbol. Files are hosted in folder 'CSV'
+gdx_convert_to_pickle,yes,"select 'yes' to create a pickle file for each run. It contains a dictionary where keys are symbol names and values are symbol's pandas dataframe, this pickle file is required for reporting files"
+gdx_convert_to_vaex,no,select 'yes' to creates an hdf5 file for each run. A vaex dataframe contains all symbols. Files are larger but can be handled out of the RAM. Vaex package has to be installed separately
+report_data,yes,select 'yes' to group symbols through scenarios. Files are saved in 'report' folder. These files are used for the web interface to plot the results

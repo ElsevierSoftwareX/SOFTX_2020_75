@@ -27,7 +27,7 @@ def color_code():
     dc['lig'] = ['#bb8874', '#a67561', '#895a47']
     dc['hc'] = ['#8c7f76', '#74655c', '#5e5048']
     dc['oil'] = ['#565753', '#4b4b47', '#3a3b38']
-    dc['other'] = ['#cbdae3', '#b7c7cf', '#a2b0b8']
+    dc['other'] = [ '#a2b0b8','#cbdae3', '#b7c7cf']
     dc['CCGT'] = ['#ff814b', '#ff6a36', '#f95827']
     dc['OCGT'] = ['#c62200', '#aa0000', '#880000']
     dc['CU'] = ['#4fa7a1']
@@ -167,6 +167,9 @@ def get_rldc(symbols_dc):
                     memory.append(item)
 
     colors_dc = {}
+    reserved_colors = []
+    for v in color_code().values():
+        reserved_colors = reserved_colors + v
     for tech in memory:
         flag = False
         for tech_color in color_code():
@@ -177,7 +180,7 @@ def get_rldc(symbols_dc):
         if not flag:
             while True:
                 cl = color()
-                if cl in [*v for v in color_code().values()]:
+                if cl in reserved_colors:
                     pass
                 else:
                     break

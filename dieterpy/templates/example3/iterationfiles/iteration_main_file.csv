@@ -1,0 +1,9 @@
+run,constraint_minRES,constraint_carbon,co2_cap,phi_min_res_exog(n)
+0,rescon_0a,max_overall_CO2,600,0
+1,rescon_0a,max_overall_CO2,400,0
+2,rescon_0a,max_overall_CO2,200,0
+3,rescon_0a,max_overall_CO2,100,0
+4,rescon_0a,max_overall_CO2,50,0
+5,rescon_0a,max_overall_CO2,25,0
+6,rescon_0a,max_overall_CO2,5,0
+7,rescon_0a,max_overall_CO2,1,0

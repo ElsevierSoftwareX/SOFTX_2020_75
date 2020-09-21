@@ -1,9 +1,7 @@
-run,constraint_minRES,constraint_carbon,co2_cap,phi_min_res_exog(n)
-0,rescon_0a,max_overall_CO2,600,0
-1,rescon_0a,max_overall_CO2,400,0
-2,rescon_0a,max_overall_CO2,200,0
-3,rescon_0a,max_overall_CO2,100,0
-4,rescon_0a,max_overall_CO2,50,0
-5,rescon_0a,max_overall_CO2,25,0
-6,rescon_0a,max_overall_CO2,5,0
-7,rescon_0a,max_overall_CO2,1,0
+run,"c_inv_overnight_sto_e(n,'Li-ion')","c_inv_overnight_sto_p(n,'Li-ion')","c_inv_overnight_sto_e(n,'P2G2P')","c_inv_overnight_sto_p(n,'P2G2P')"
+0,200000,150000,1000,3000000
+1,100000,75000,1000,3000000
+2,200000,150000,500,1500000
+3,100000,75000,500,1500000
+4,50000,37500,1000,3000000
+5,50000,37500,500,1500000

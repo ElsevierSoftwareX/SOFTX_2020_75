@@ -189,9 +189,20 @@ def page_report(state):
         df_rsvr_p = state.dfs['N_RSVR_P'].sort_values('id')
         df_rsvr_p.loc[:,'value'] = df_rsvr_p['value']*1e-3  # from MW to GW
 
+        map_color = {}
+        for t in df_rsvr_p['rsvr'].unique():
+            f = False
+            for k in color_code():
+                if k in t:
+                    map_color[t] = color_code()[k][0]
+                    f = True
+                    break
+            if not f:
+                map_color[t] = None
+
         fig_rsvr_p = px.bar(df_rsvr_p, x=x, y="value", color='rsvr', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Power Capacity [GW]"))
+                                            labels=dict(value="Power Capacity [GW]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_rsvr_p,use_container_width=True)
 
@@ -218,7 +229,7 @@ def page_report(state):
 
         fig_rsvr_e = px.bar(df_rsvr_e, x=x, y="value", color='rsvr', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Energy Capacity [GWh]"))
+                                            labels=dict(value="Energy Capacity [GWh]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_rsvr_e,use_container_width=True)
 
@@ -326,9 +337,20 @@ def page_report(state):
         df_gtech_y = state.dfs['agg_hG_TECH'].sort_values('id')
         df_gtech_y.loc[:,'value'] = df_gtech_y['value']*1e-6  # from MWh to TWh
 
+        map_color = {}
+        for t in df_gtech_y['tech'].unique():
+            f = False
+            for k in color_code():
+                if k in t:
+                    map_color[t] = color_code()[k][0]
+                    f = True
+                    break
+            if not f:
+                map_color[t] = None
+
         fig_gtech_y = px.bar(df_gtech_y, x=x, y="value", color='tech', barmode=state.gtech_y_bmode,
                                             facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Energy [TWh]"))
+                                            labels=dict(value="Energy [TWh]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_gtech_y,use_container_width=True)
 

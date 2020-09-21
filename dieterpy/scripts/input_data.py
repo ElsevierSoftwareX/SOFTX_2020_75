@@ -211,7 +211,7 @@ def defineGAMSOptions(opt,glob_feat_dc,convar_dc, gdx_abspaths_dc):
         Updated GAMS options.
     '''
     try:
-        global_options = ['base_year', 'end_hour', 'dispatch_only', 'network_transfer', 'no_crossover']
+        global_options = ['base_year', 'end_hour', 'dispatch_only', 'network_transfer', 'no_crossover', 'infeasibility']
         for k in convar_dc.keys():
             if k in global_options:
                     if (convar_dc[k] == 'yes') or (convar_dc[k] == 'no'):

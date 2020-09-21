@@ -48,6 +48,9 @@ $setglobal net_transfer %py_network_transfer%
 * Set star for no crossover to speed up calculation time by skipping crossover in LP solver
 $setglobal no_crossover %py_no_crossover%
 
+* Set star for infeasibility activation
+$setglobal infeasibility %py_infeasibility%
+
 * automatically imported
 $setglobal feature_set %py_feature_set%
 
@@ -2533,6 +2536,13 @@ $offtext
 *****************************************
 **** Scenario file **********************
 *****************************************
+
+%infeasibility%$ontext
+G_INFES(n,h) = 0 ;
+$ontext
+$offtext
+
+
 
 Parameter
 m_exog_p(n,tech)

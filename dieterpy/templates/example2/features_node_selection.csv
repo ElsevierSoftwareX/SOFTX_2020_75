@@ -1,8 +1,8 @@
 feature,DE,FR,DK,BE,NL,PL,CZ,AT,CH,ES,IT,PT,comment
-dsm,0,0,0,0,0,0,0,0,0,0,0,0,todo long-term: simple vs. comprehensive
-ev_endogenous,1,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate endogenous ev module or '0' to turn it off. required to turn on the EV module
-ev_exogenous,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate exogenous ev module or '0' to turn it off. requires ev_endogenous to be activated
-reserves,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate exogenous reserve module or '0' to turn it off
-prosumage,0,0,0,0,0,0,0,0,0,0,0,0,todo further differentiation
-rsvr_outflow,0,0,0,0,0,0,0,0,0,0,0,0,todo ar: plausibility test before next release
-heat,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate endogenous heat module or '0' to turn it off
+dsm,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate  Demand Side Management (DSM) module or '0' to turn it off.
+ev_endogenous,1,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Endogenous EV module or '0' to turn it off.
+ev_exogenous,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous  EV module or '0' to turn it off. It requires ev_endogenous to be activated.
+reserves,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous Reserve module or '0' to turn it off.
+prosumage,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Prosumage module or '0' to turn it off.
+rsvr_outflow,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous outflow for reservoir module or '0' to turn it off.
+heat,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Endogenous Heating module or '0' to turn it off.

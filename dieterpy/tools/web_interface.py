@@ -118,18 +118,17 @@ def page_report(state):
     fig = plotly_table(df)
     st.plotly_chart(fig,use_container_width=True)
 
+    state.set_ids = [ids for ids in df['id'].unique()]
+    state.selected_ids = st.multiselect("Select the scenarios id", state.set_ids, state.set_ids)
+
     if st.sidebar.checkbox('Energy Balance Table'):
         st.write('Generation, demand, transmission and infeasibility [TWh]')
-        figsummary = plotly_table(state.dfs['Summary'].sort_values('id'))
+        figsummary = plotly_table(state.dfs['Summary'][state.dfs['Summary']['id'].isin(state.selected_ids)].sort_values(['id','n']))
         st.plotly_chart(figsummary,use_container_width=True)
 
-    if st.sidebar.checkbox('Tech Capacity'):
+    if st.sidebar.checkbox('Technology Capacity'):
 
-        st.write('Tech Power Capacity')
-
-        # state.options_tech = [tech for tech in state.rldc_info if tech in raw_tech_opt]
-        # max_rng = max(list(df['h'].unique()))
-        # state.tech_order = st.multiselect("Sort technologies to display", state.options_tech, state.options_tech)
+        st.write('Nodal Power Capacity by Technology')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='ra')
         if radio_opt == 'id:x,n:col':
@@ -147,7 +146,7 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='na')
 
-        df_tech_p = state.dfs['N_TECH'].sort_values('id')
+        df_tech_p = state.dfs['N_TECHt'][state.dfs['N_TECHt']['id'].isin(state.selected_ids)].sort_values(['id','n'])
         df_tech_p.loc[:,'value'] = df_tech_p['value']*1e-3  # from MW to GW
 
         map_color = {}
@@ -161,50 +160,29 @@ def page_report(state):
             if not f:
                 map_color[t] = None
 
-
         fig_tech_p = px.bar(df_tech_p, x=x, y="value", color='tech', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
                                             labels=dict(value="Power Capacity [GW]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_tech_p,use_container_width=True)
 
-    if st.sidebar.checkbox('Reservoir Capacity'):
-        st.write('Reservoir Power Capacity')
-        radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rb')
-        if radio_opt == 'id:x,n:col':
-            col = 'n'
-            row = None
-            x = 'id'
-        elif radio_opt == 'id:x,n:row':
-            col = None
-            row = 'n'
-            x = 'id'
-        elif radio_opt == 'id:row,n:col':
-            col = 'n'
-            row = 'id'
-            x = 'rsvr'
+        st.write('Overall Power Capacity by Technology')
 
-        height = st.number_input('Height', 400, None, 600,50,key='nb')
+        height = st.number_input('Height', 400, None, 600, 50, key='ni')
+        width = st.number_input('Width', 200, None, 400, 50, key='wi')
 
-        df_rsvr_p = state.dfs['N_RSVR_P'].sort_values('id')
-        df_rsvr_p.loc[:,'value'] = df_rsvr_p['value']*1e-3  # from MW to GW
+        df_tech_p_n = tech_order(state.dfs['agg_nN_TECHt'])
+        df_tech_p_n = df_tech_p_n[df_tech_p_n['id'].isin(state.selected_ids)]
+        df_tech_p_n.loc[:,'value'] = df_tech_p_n['value']*1e-3  # from MW to GW
 
-        map_color = {}
-        for t in df_rsvr_p['rsvr'].unique():
-            f = False
-            for k in color_code():
-                if k in t:
-                    map_color[t] = color_code()[k][0]
-                    f = True
-                    break
-            if not f:
-                map_color[t] = None
-
-        fig_rsvr_p = px.bar(df_rsvr_p, x=x, y="value", color='rsvr', barmode='relative',
-                                            facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Power Capacity [GW]"), color_discrete_map=map_color)
+        fig_tech_p_n = px.bar(df_tech_p_n, x='id', y="value", color='tech', barmode='relative',
+                                            facet_row=None, facet_col=None, width=width, height=height,
+                                            labels=dict(value="Power Capacity [GW]", tech="Technology"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
-        st.plotly_chart(fig_rsvr_p,use_container_width=True)
+        st.plotly_chart(fig_tech_p_n,use_container_width=False)
+
+
+    if st.sidebar.checkbox('Reservoir Capacity'):
 
         st.write('Reservoir Energy Capacity')
 
@@ -224,8 +202,19 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='nc')
 
-        df_rsvr_e = state.dfs['N_RSVR_E'].sort_values('id')
+        df_rsvr_e = state.dfs['N_RSVR_E'][state.dfs['N_RSVR_E']['id'].isin(state.selected_ids)].sort_values(['id','n'])
         df_rsvr_e.loc[:,'value'] = df_rsvr_e['value']*1e-3  # from MWh to GWh
+
+        map_color = {}
+        for t in df_rsvr_e['rsvr'].unique():
+            f = False
+            for k in color_code():
+                if k in t:
+                    map_color[t] = color_code()[k][0]
+                    f = True
+                    break
+            if not f:
+                map_color[t] = None
 
         fig_rsvr_e = px.bar(df_rsvr_e, x=x, y="value", color='rsvr', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
@@ -252,7 +241,7 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='nd')
 
-        df_sto_p = state.dfs['N_STO_P'].sort_values('id')
+        df_sto_p = state.dfs['N_STO_P'][state.dfs['N_STO_P']['id'].isin(state.selected_ids)].sort_values(['id','n'])
         df_sto_p.loc[:,'value'] = df_sto_p['value']*1e-3  # from MW to GW
 
         fig_sto_p = px.bar(df_sto_p, x=x, y="value", color='sto', barmode='relative',
@@ -260,6 +249,21 @@ def page_report(state):
                                             labels=dict(value="Power Capacity [GW]"))
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_sto_p,use_container_width=True)
+
+        st.write('Overall Storage Power Capacity')
+
+        height = st.number_input('Height', 400, None, 600, 50, key='nj')
+        width = st.number_input('Width', 200, None, 400, 50, key='wj')
+
+        df_sto_p_n = state.dfs['agg_nN_STO_P']
+        df_sto_p_n = df_sto_p_n[df_sto_p_n['id'].isin(state.selected_ids)]
+        df_sto_p_n.loc[:,'value'] = df_sto_p_n['value']*1e-3  # from MW to GW
+
+        fig_sto_p_n = px.bar(df_sto_p_n, x='id', y="value", color='sto', barmode='relative',
+                                            facet_row=None, facet_col=None, width=width, height=height,
+                                            labels=dict(value="Power Capacity [GW]", sto="Storage"))
+        # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        st.plotly_chart(fig_sto_p_n,use_container_width=False)
 
         st.write('Storage Energy Capacity')
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='re')
@@ -278,7 +282,7 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='ne')
 
-        df_sto_e = state.dfs['N_STO_E'].sort_values('id')
+        df_sto_e = state.dfs['N_STO_E'][state.dfs['N_STO_E']['id'].isin(state.selected_ids)].sort_values(['id','n'])
         df_sto_e.loc[:,'value'] = df_sto_e['value']*1e-3  # from MWh to GWh
 
         fig_sto_e = px.bar(df_sto_e, x=x, y="value", color='sto', barmode='relative',
@@ -286,6 +290,22 @@ def page_report(state):
                                             labels=dict(value="Energy Capacity [GWh]"))
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_sto_e,use_container_width=True)
+
+        st.write('Overall Storage Energy Capacity')
+
+        height = st.number_input('Height', 400, None, 600, 50, key='nk')
+        width = st.number_input('Width', 200, None, 400, 50, key='wk')
+
+        df_sto_e_n = state.dfs['agg_nN_STO_E']
+        df_sto_e_n = df_sto_e_n[df_sto_e_n['id'].isin(state.selected_ids)]
+        df_sto_e_n.loc[:,'value'] = df_sto_e_n['value']*1e-3  # from MWh to GWh
+
+        fig_sto_e_n = px.bar(df_sto_e_n, x='id', y="value", color='sto', barmode='relative',
+                                            facet_row=None, facet_col=None, width=width, height=height,
+                                            labels=dict(value="Energy Capacity [GWh]", sto="Storage"))
+        # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        st.plotly_chart(fig_sto_e_n,use_container_width=False)
+
 
     if st.sidebar.checkbox('Transmission Capacity'):
         st.write('Transmission Power Capacity')
@@ -306,7 +326,7 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='nf')
 
-        df_line_p = state.dfs['NTC'].sort_values('id')
+        df_line_p = state.dfs['NTC'][state.dfs['NTC']['id'].isin(state.selected_ids)].sort_values('id')
 
         fig_line_p = px.bar(df_line_p, x=x, y="value", color='l', barmode='relative',
                                             facet_row=row, facet_col=col, width=None, height=height,
@@ -334,7 +354,9 @@ def page_report(state):
         height = st.number_input('Height', 400, None, 600,50,key='ng')
 
         state.gtech_y_bmode = st.radio('Bar mode', ['relative', 'group'], 0)
-        df_gtech_y = state.dfs['agg_hG_TECH'].sort_values('id')
+
+        df_gtech_y = tech_order(state.dfs['agg_hG_TECHt'])
+        df_gtech_y = df_gtech_y[df_gtech_y['id'].isin(state.selected_ids)]
         df_gtech_y.loc[:,'value'] = df_gtech_y['value']*1e-6  # from MWh to TWh
 
         map_color = {}
@@ -350,9 +372,27 @@ def page_report(state):
 
         fig_gtech_y = px.bar(df_gtech_y, x=x, y="value", color='tech', barmode=state.gtech_y_bmode,
                                             facet_row=row, facet_col=col, width=None, height=height,
-                                            labels=dict(value="Energy [TWh]"), color_discrete_map=map_color)
+                                            labels=dict(value="Electricity Generation [TWh]"), color_discrete_map=map_color)
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_gtech_y,use_container_width=True)
+
+        st.write('Overall Electricity Genearion')
+
+        height = st.number_input('Height', 400, None, 600, 50, key='nl')
+        width = st.number_input('Width', 200, None, 400, 50, key='wl')
+
+        df_gtech_n = tech_order(state.dfs['agg_h_nG_TECH'])
+        infes_zero = (df_gtech_n[df_gtech_n['tech'] == 'infes']['value'] == 0.0).all()
+        if infes_zero:
+            df_gtech_n = df_gtech_n[df_gtech_n['tech'] != 'infes']
+        df_gtech_n = df_gtech_n[df_gtech_n['id'].isin(state.selected_ids)]
+        df_gtech_n.loc[:,'value'] = df_gtech_n['value']*1e-6  # from MWh to TWh
+
+        fig_gtech_n = px.bar(df_gtech_n, x='id', y="value", color='tech', barmode='relative',
+                                            facet_row=None, facet_col=None, width=width, height=height,
+                                            labels=dict(value="Electricity Generation [TWh]", tech="Technology"), color_discrete_map=map_color)
+        # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        st.plotly_chart(fig_gtech_n,use_container_width=False)
 
     if st.sidebar.checkbox('Electricity Import-Export'):
         st.write('Electricity Import-Export')
@@ -374,7 +414,7 @@ def page_report(state):
         height = st.number_input('Height', 400, None, 600,50,key='nh')
 
         # state.gtech_y_bmode = st.radio('Bar mode', ['relative', 'group'], 0)
-        df_flow_y = state.dfs['agg_hFn'].sort_values('id')
+        df_flow_y = state.dfs['agg_hFn'][state.dfs['agg_hFn']['id'].isin(state.selected_ids)].sort_values(['id','n'])
         df_flow_y.loc[:,'value'] = df_flow_y['value']*1e-6  # from MWh to TWh
 
         fig_flow_y = px.bar(df_flow_y, x=x, y="value", color='l', barmode='relative',
@@ -389,8 +429,64 @@ def page_report(state):
         st.write('Residual Load Duration Curve')
         generate_rldc(state)
 
-    state.checkbox_other = st.sidebar.checkbox("Custom Plots", state.checkbox_other, key='show_other')
-    if state.checkbox_other:
+    state.checkbox_others = st.sidebar.checkbox("Other Plots", state.checkbox_others, key='show_other')
+    if state.checkbox_others:
+        st.write('Other plots')
+
+
+        st.write('Storage output')
+
+        radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rm')
+        if radio_opt == 'id:x,n:col':
+            col = 'n'
+            row = None
+            x = 'id'
+        elif radio_opt == 'id:x,n:row':
+            col = None
+            row = 'n'
+            x = 'id'
+        elif radio_opt == 'id:row,n:col':
+            col = 'n'
+            row = 'id'
+            x = 'sto'
+
+        height = st.number_input('Height', 400, None, 600,50,key='nm')
+
+        # state.sto_out_y_bmode = st.radio('Bar mode', ['relative', 'group'], 0)
+
+        df_sto_out_y = state.dfs['agg_hSTO_OUT']
+        df_sto_out_y = df_sto_out_y[df_sto_out_y['id'].isin(state.selected_ids)]
+        df_sto_out_y.loc[:,'value'] = df_sto_out_y['value']*1e-6  # from MWh to TWh
+
+
+        fig_sto_out_y = px.bar(df_sto_out_y, x=x, y="value", color='sto', barmode='relative',
+                                            facet_row=row, facet_col=col, width=None, height=height,
+                                            labels=dict(value="Storage Output [TWh]"))
+        # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        st.plotly_chart(fig_sto_out_y,use_container_width=True)
+
+        # st.write('Overall Electricity Genearion')
+
+        # height = st.number_input('Height', 400, None, 600, 50, key='nl')
+        # width = st.number_input('Width', 200, None, 400, 50, key='wl')
+
+        # df_gtech_n = tech_order(state.dfs['agg_h_nG_TECH'])
+        # infes_zero = (df_gtech_n[df_gtech_n['tech'] == 'infes']['value'] == 0.0).all()
+        # if infes_zero:
+        #     df_gtech_n = df_gtech_n[df_gtech_n['tech'] != 'infes']
+        # df_gtech_n = df_gtech_n[df_gtech_n['id'].isin(state.selected_ids)]
+        # df_gtech_n.loc[:,'value'] = df_gtech_n['value']*1e-6  # from MWh to TWh
+
+        # fig_gtech_n = px.bar(df_gtech_n, x='id', y="value", color='tech', barmode='relative',
+        #                                     facet_row=None, facet_col=None, width=width, height=height,
+        #                                     labels=dict(value="Electricity Generation [TWh]", tech="Technology"), color_discrete_map=map_color)
+        # # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+        # st.plotly_chart(fig_gtech_n,use_container_width=False)
+
+
+
+    state.checkbox_custom = st.sidebar.checkbox("Custom Plots", state.checkbox_custom, key='show_custom')
+    if state.checkbox_custom:
         st.write('Custom plots for data')
         generate_df(state)
 
@@ -572,20 +668,32 @@ def get_results(state):
     symbols['G_TECH'] = symbols['G_TECH'].concat(symbols['G_INFEStech'])
     symbols['G_TECH'].name = 'G_TECH'
     symbols['agg_hG_TECH'] = symbols['G_TECH'].dimreduc('h')
-    # aggregate CU from tech
+    # Aggregate CU from tech
     symbols['agg_techCU'] = symbols['CU'].dimreduc('tech')
     symbols['agg_techCU'].name = 'CU'
-
+    # Calculate storage losses aggregated on h
     symbols['agg_hSTO_IN'] = symbols['STO_IN'].dimreduc('h')
     symbols['agg_h_stoSTO_IN'] = symbols['agg_hSTO_IN'].dimreduc('sto')
     symbols['agg_hSTO_OUT'] = symbols['STO_OUT'].dimreduc('h')
     symbols['agg_h_stoSTO_OUT'] = symbols['agg_hSTO_OUT'].dimreduc('sto')
     symbols['storage_losses'] = (symbols['agg_h_stoSTO_IN'] + (symbols['agg_h_stoSTO_OUT']*-1))
-
+    # Determine total demand = demand + losses 
     symbols['agg_hD'] = symbols['d'].dimreduc('h')
     symbols['total_demand'] = symbols['agg_hD'] + symbols['storage_losses']
     if 'ev_endogenous' in symbols['features']:
         symbols['total_demand'] = symbols['total_demand'] + symbols['ev_demand_losses']
+    # Include rsvr_p to N_TECH
+    symbols['N_RSVR_Pt'] = symbols['N_RSVR_P']*1
+    symbols['N_RSVR_Pt'].df = symbols['N_RSVR_Pt'].df.rename(columns={'rsvr':'tech'})
+    symbols['N_RSVR_Pt'].dims = symbols['N_TECH'].get('dims')
+    symbols['N_TECHt'] = symbols['N_TECH'].concat(symbols['N_RSVR_Pt'])
+    # Aggregate all nodes
+    symbols['agg_nN_TECHt'] = symbols['N_TECHt'].dimreduc('n')
+    symbols['agg_nN_STO_P'] = symbols['N_STO_P'].dimreduc('n')
+    symbols['agg_nN_STO_E'] = symbols['N_STO_E'].dimreduc('n')
+    symbols['agg_h_nG_TECH'] = symbols['agg_hG_TECH'].dimreduc('n')
+    symbols['agg_h_nSTO_OUT'] = symbols['agg_hSTO_OUT'].dimreduc('n')
+
     return symbols
 
 
@@ -652,16 +760,22 @@ def make_symbol_df(symbols):
     dfs = {}
     for k, v in symbols.items():
         if k != 'features':
-            dfs[k] = v.dfm.copy().astype('object').fillna(-1)
+            dfs[k] = v.df.copy().astype('object').fillna(-1)
 
-    # add custom df
+    # Add custom df
+    # Data for the first chart-table
     dfs['Total Costs'] = symbols['Z'].showm('bn €').reset_index().round(2)
 
+    # Data for total generation, including columns with generation type, res & non-res
     df = symbols['G_TECH'].dimreduc('h').df
+    infes_zero = (df[df['tech'] == 'infes']['value'] == 0.0).all()
+    if infes_zero:
+        df = df[df['tech'] != 'infes']
     df.loc[df['tech'].isin(['pv','ror', 'rsvr', 'wind_off', 'wind_on', 'bio']),'type'] = 'Renewable'
     df.loc[df['tech'].isin(['CCGT', 'OCGT', 'hc', 'lig', 'nuc', 'oil', 'other']),'type'] = 'Non-Renewable'
 
     dfs['agg_hG_TECHt'] = df
+    # Data for summary table => Balance
     pt = df.pivot_table(index=['id','n'], columns='type', values='value', aggfunc=sum)
     dfs['share'] = (pt.apply(lambda r: r/r.sum(), axis=1)*100).round(1).stack().reset_index().rename(columns={0:'value'})
 
@@ -706,7 +820,28 @@ def display_state_values(state):
     if st.button("Clear state"):
         state.clear()
 
-
+def tech_order(df):
+    
+    order = ['wind_on',
+            'wind_off',
+            'pv',
+            'ror',
+            'rsvr',
+            'bio',
+            'nuc',
+            'oil',
+            'OCGT',
+            'CCGT',
+            'other',
+            'hc',
+            'lig']
+    for head in df['tech'].unique():
+        if head not in order:
+            order.append(head)
+        
+    t = pd.CategoricalDtype(categories=order, ordered=True)
+    df['tech'] = pd.Series(df['tech'], dtype=t)
+    return df.sort_values(by=['id','tech'], ascending=[True, False]).copy()
 
 def download_button(object_to_download, download_filename, button_text, pickle_it=False):
     """
@@ -806,7 +941,7 @@ def plotly_table(df):
                     fill = dict(color=#unique color for the first column
                                       [['#f8f9fa' if (val % 2) == 0 else '#bee3db' for i, val in enumerate(df['id'].str.extract('(\d+)').astype(int).values)]]),
                     align='right'))])
-    fig.update_layout(height=len(df)*22+40, margin=dict(r=5, l=5, t=5, b=5))
+    fig.update_layout(height=len(df)*25+60, margin=dict(r=5, l=5, t=5, b=5))
     return fig
 
 

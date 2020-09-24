@@ -5,6 +5,18 @@ import pandas as pd
 import random
 import re
 
+SMALL_SIZE = 16
+MEDIUM_SIZE = 18
+BIGGER_SIZE = 18
+
+plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
 
 _nsre = re.compile('([0-9]+)')
 def natural_sort_key(s):
@@ -28,9 +40,13 @@ def color_code():
     dc['hc'] = ['#8c7f76', '#74655c', '#5e5048']
     dc['oil'] = ['#565753', '#4b4b47', '#3a3b38']
     dc['other'] = [ '#a2b0b8','#cbdae3', '#b7c7cf']
-    dc['CCGT'] = ['#ff814b', '#ff6a36', '#f95827']
+    dc['CCGT'] = ['#ff814b' , '#f95827']
     dc['OCGT'] = ['#c62200', '#aa0000', '#880000']
-    dc['CU'] = ['#4fa7a1']
+    dc['CU'] = ['#821a96']
+    dc['Li-ion'] = ['#659bfc']
+    dc['P2G2P'] = ['#f32f5e']
+    dc['PHS'] = ['#6adaad']
+
     return dc
 
 
@@ -287,18 +303,18 @@ def plot_rldc(data, rg0, rg1, scen, country, shadow, ordered_list, ordered_tech_
             y1_lab.append(col)
     if shadow:
         y2 = ch['shadow'].values
-        y2_lab = 'shadow'
+        y2_lab = 'Mg'
 
     fig = plt.figure(figsize=(20,12))
     ax1 = fig.add_subplot(111)
     ax1.stackplot(x, y1, labels=y1_lab, colors=color)
-    ax1.plot(x,y0, label= 'RLDC', color='r')
+    ax1.plot(x,y0, label=y0_lab, color='r')
     if shadow:
         ax2 = ax1.twinx()
-        ax2.plot(x, y2, 'black')
-        ax2.set_ylabel('Marginal price [Eur/MW]')
-    ax1.set_xlabel('Hr')
-    ax1.set_ylabel('Residual Load [MW]')
+        ax2.plot(x, y2, label=y2_lab, color='black')
+        ax2.set_ylabel('Marginal costs [Eur/MW]')
+    ax1.set_xlabel('hours')
+    ax1.set_ylabel('Load [MW]')
 
     fig.legend(loc='upper right')
     return ch, fig

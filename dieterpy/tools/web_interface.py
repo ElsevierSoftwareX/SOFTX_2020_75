@@ -119,7 +119,7 @@ def page_report(state):
     st.plotly_chart(fig,use_container_width=True)
 
     state.set_ids = [ids for ids in df['id'].unique()]
-    state.selected_ids = st.multiselect("Select the scenarios id", state.set_ids, state.set_ids)
+    state.selected_ids = st.multiselect("Select the scenarios to be compared:", state.set_ids, state.set_ids)
 
     if st.sidebar.checkbox('Energy Balance Table'):
         st.write('Generation, demand, transmission and infeasibility [TWh]')
@@ -128,7 +128,7 @@ def page_report(state):
 
     if st.sidebar.checkbox('Technology Capacity'):
 
-        st.write('Nodal Power Capacity by Technology')
+        st.subheader('Power Capacity by Technology')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='ra')
         if radio_opt == 'id:x,n:col':
@@ -147,7 +147,7 @@ def page_report(state):
         height = st.number_input('Height', 400, None, 600,50,key='na')
 
         df_tech_p = tech_order(state.dfs['N_TECHt'])
-        df_tech_p = df_tech_p[df_tech_p['id'].isin(state.selected_ids)].sort_values(['id','n','tech'])
+        df_tech_p = df_tech_p[df_tech_p['id'].isin(state.selected_ids)].sort_values(by=['id','n','tech'], ascending=[True, True, False])
         df_tech_p.loc[:,'value'] = df_tech_p['value']*1e-3  # from MW to GW
 
         map_color = {}
@@ -167,7 +167,7 @@ def page_report(state):
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_tech_p,use_container_width=True)
 
-        st.write('Overall Power Capacity by Technology')
+        st.subheader('Overall Power Capacity by Technology')
 
         height = st.number_input('Height', 400, None, 600, 50, key='ni')
         width = st.number_input('Width', 200, None, 400, 50, key='wi')
@@ -185,7 +185,7 @@ def page_report(state):
 
     if st.sidebar.checkbox('Reservoir Capacity'):
 
-        st.write('Reservoir Energy Capacity')
+        st.subheader('Reservoir Energy Capacity')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rc')
         if radio_opt == 'id:x,n:col':
@@ -224,7 +224,7 @@ def page_report(state):
         st.plotly_chart(fig_rsvr_e,use_container_width=True)
 
     if st.sidebar.checkbox('Storage Capacity'):
-        st.write('Storage Power Capacity')
+        st.subheader('Storage Power Capacity')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rd')
         if radio_opt == 'id:x,n:col':
@@ -251,7 +251,7 @@ def page_report(state):
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_sto_p,use_container_width=True)
 
-        st.write('Overall Storage Power Capacity')
+        st.subheader('Overall Storage Power Capacity')
 
         height = st.number_input('Height', 400, None, 600, 50, key='nj')
         width = st.number_input('Width', 200, None, 400, 50, key='wj')
@@ -266,7 +266,7 @@ def page_report(state):
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_sto_p_n,use_container_width=False)
 
-        st.write('Storage Energy Capacity')
+        st.subheader('Storage Energy Capacity')
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='re')
         if radio_opt == 'id:x,n:col':
             col = 'n'
@@ -292,7 +292,7 @@ def page_report(state):
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_sto_e,use_container_width=True)
 
-        st.write('Overall Storage Energy Capacity')
+        st.subheader('Overall Storage Energy Capacity')
 
         height = st.number_input('Height', 400, None, 600, 50, key='nk')
         width = st.number_input('Width', 200, None, 400, 50, key='wk')
@@ -309,7 +309,7 @@ def page_report(state):
 
 
     if st.sidebar.checkbox('Transmission Capacity'):
-        st.write('Transmission Power Capacity')
+        st.subheader('Transmission Power Capacity')
 
         radio_opt = st.radio('Axis options', ['id:x,l:col', 'id:x,l:row', 'id:row,l:x'],0,key='rf')
         if radio_opt == 'id:x,l:col':
@@ -336,7 +336,7 @@ def page_report(state):
         st.plotly_chart(fig_line_p,use_container_width=True)
 
     if st.sidebar.checkbox('Electricity Generation'):
-        st.write('Electricity generation by technology')
+        st.subheader('Electricity generation by technology')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rg')
         if radio_opt == 'id:x,n:col':
@@ -377,7 +377,7 @@ def page_report(state):
         # fig_tech_p.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
         st.plotly_chart(fig_gtech_y,use_container_width=True)
 
-        st.write('Overall Electricity Genearion')
+        st.subheader('Overall Electricity Genearion by technology')
 
         height = st.number_input('Height', 400, None, 600, 50, key='nl')
         width = st.number_input('Width', 200, None, 400, 50, key='wl')
@@ -396,7 +396,7 @@ def page_report(state):
         st.plotly_chart(fig_gtech_n,use_container_width=False)
 
     if st.sidebar.checkbox('Electricity Import-Export'):
-        st.write('Electricity Import-Export')
+        st.subheader('Electricity Import-Export')
 
         radio_opt = st.radio('Axis options', ['id:x,n:col', 'id:x,n:row', 'id:row,n:col'],0,key='rh')
         if radio_opt == 'id:x,n:col':
@@ -427,12 +427,12 @@ def page_report(state):
 
     state.checkbox_rldc = st.sidebar.checkbox("Residual Load Duration Curve", state.checkbox_rldc, key='show_rldc')
     if state.checkbox_rldc:
-        st.write('Residual Load Duration Curve')
+        st.subheader('Residual Load Duration Curve')
         generate_rldc(state)
 
     state.checkbox_others = st.sidebar.checkbox("Other Plots", state.checkbox_others, key='show_other')
     if state.checkbox_others:
-        st.write('Other plots')
+        st.subheader('Other plots')
 
 
         st.write('Storage output')
@@ -488,7 +488,7 @@ def page_report(state):
 
     state.checkbox_custom = st.sidebar.checkbox("Custom Plots", state.checkbox_custom, key='show_custom')
     if state.checkbox_custom:
-        st.write('Custom plots for data')
+        st.subheader('Custom plots')
         generate_df(state)
 
     # state.checkbox_other = st.sidebar.checkbox("Time-Series Plots", state.checkbox_other, key='show_other')
@@ -678,7 +678,7 @@ def get_results(state):
     symbols['agg_hSTO_OUT'] = symbols['STO_OUT'].dimreduc('h')
     symbols['agg_h_stoSTO_OUT'] = symbols['agg_hSTO_OUT'].dimreduc('sto')
     symbols['storage_losses'] = (symbols['agg_h_stoSTO_IN'] + (symbols['agg_h_stoSTO_OUT']*-1))
-    # Determine total demand = demand + losses 
+    # Determine total demand = demand + losses
     symbols['agg_hD'] = symbols['d'].dimreduc('h')
     symbols['total_demand'] = symbols['agg_hD'] + symbols['storage_losses']
     if 'ev_endogenous' in symbols['features']:
@@ -822,7 +822,7 @@ def display_state_values(state):
         state.clear()
 
 def tech_order(df):
-    
+
     order = ['wind_on',
             'wind_off',
             'pv',
@@ -839,7 +839,7 @@ def tech_order(df):
     for head in df['tech'].unique():
         if head not in order:
             order.append(head)
-        
+
     t = pd.CategoricalDtype(categories=order, ordered=True)
     df['tech'] = pd.Series(df['tech'], dtype=t)
     return df.sort_values(by=['id','tech'], ascending=[True, False]).copy()

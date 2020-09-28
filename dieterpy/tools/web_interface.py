@@ -146,7 +146,8 @@ def page_report(state):
 
         height = st.number_input('Height', 400, None, 600,50,key='na')
 
-        df_tech_p = state.dfs['N_TECHt'][state.dfs['N_TECHt']['id'].isin(state.selected_ids)].sort_values(['id','n'])
+        df_tech_p = tech_order(state.dfs['N_TECHt'])
+        df_tech_p = df_tech_p[df_tech_p['id'].isin(state.selected_ids)].sort_values(['id','n','tech'])
         df_tech_p.loc[:,'value'] = df_tech_p['value']*1e-3  # from MW to GW
 
         map_color = {}

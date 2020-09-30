@@ -1131,7 +1131,7 @@ con13d2_minout_rsvr(n,rsvr,h)
 con13e_resrv_rsvr(n,rsvr,h)      Minimum hourly reservoir outflow in relation to provided negativr reserves
 con13f_maxout_lev(n,rsvr,h)      Maximum hourly reservoir outflow in relation tom installed energy capacity
 con13g_ending(n,rsvr,h)          Reservoir level law of motion ending condition
-con13h_smooth(n,rsvr,h)          Smooth reservoir outflow
+*con13h_smooth(n,rsvr,h)          Smooth reservoir outflow
 con13i_min_level(n,rsvr,h)       Reservoir minimum level
 con13j_min_FLH(n,rsvr)
 
@@ -1953,9 +1953,9 @@ con13g_ending(n,rsvr,h)$(map_n_rsvr(n,rsvr) AND ord(h) = card(h))..
          RSVR_L(n,rsvr,h) =G= phi_rsvr_ini(n,rsvr) * N_RSVR_E(n,rsvr)
 ;
 
-con13h_smooth(n,rsvr,h)$(map_n_rsvr(n,rsvr) AND feat_node('rsvr_outflow',n))..
-         RSVR_OUT(n,rsvr,h) =G= phi_rsvr_min(n) * sum( hh , rsvr_in(n,rsvr,hh)/1000/card(hh)) * N_RSVR_E(n,rsvr)
-;
+*con13h_smooth(n,rsvr,h)$(map_n_rsvr(n,rsvr) AND feat_node('rsvr_outflow',n))..
+*         RSVR_OUT(n,rsvr,h) =G= phi_rsvr_min(n) * sum( hh , rsvr_in(n,rsvr,hh)/1000/card(hh)) * N_RSVR_E(n,rsvr)
+*;
 
 con13i_min_level(n,rsvr,h)$(map_n_rsvr(n,rsvr))..
          RSVR_L(n,rsvr,h) =G= phi_rsvr_lev_min(n,rsvr) * N_RSVR_E(n,rsvr)

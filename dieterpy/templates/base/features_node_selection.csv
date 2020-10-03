@@ -4,5 +4,4 @@ ev_endogenous,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Endogenous EV modul
 ev_exogenous,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous  EV module or '0' to turn it off. It requires ev_endogenous to be activated.
 reserves,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous Reserve module or '0' to turn it off.
 prosumage,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Prosumage module or '0' to turn it off.
-rsvr_outflow,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Exogenous outflow for reservoir module or '0' to turn it off.
 heat,0,0,0,0,0,0,0,0,0,0,0,0,select '1' to activate Endogenous Heating module or '0' to turn it off.

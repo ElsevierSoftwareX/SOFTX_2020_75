@@ -614,8 +614,6 @@ def get_results(state):
         symbols['eta_ev_out'] = Symbol('eta_ev_out', 'v', '', {'': 'Efficincy []'}, symbol_handler=SH)
         if 'ev_exogenous' in symbols['features']:
             pass
-    if 'rsvr_outflow' in symbols['features']:
-        pass
     if 'reserves' in symbols['features']:
         pass
     if 'prosumage' in symbols['features']:
@@ -637,8 +635,6 @@ def get_results(state):
         symbols['ev_demand_losses'] = symbols['agg_h_evEV_CHARGE'] + (symbols['agg_h_evEV_DISCHARGE']*-1)
         if 'ev_exogenous' in symbols['features']:
             pass
-    if 'rsvr_outflow' in symbols['features']:
-        pass
     if 'reserves' in symbols['features']:
         pass
     if 'prosumage' in symbols['features']:

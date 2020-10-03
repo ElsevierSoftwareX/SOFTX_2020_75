@@ -8,7 +8,7 @@ dispatch_only,no,"select 'yes' for dispatch only, in such case the model runs wi
 network_transfer,yes,select 'yes' to include energy transport among nodes
 no_crossover,yes,select 'yes' to avoid crossover. This parameter applies when CPLEX uses the Barrier Optimizer to solve an LP
 infeasibility,no,select 'yes' to activate the infeasibility variable
-GUSS,no,select 'yes' to activate GUSS tool
+GUSS,yes,select 'yes' to activate GUSS tool
 GUSS_parallel,no,"select 'yes' to run parallel scenarios with GUSS tool, where every thread compiles only once, it helps speed up the optimization, although for complex problems it may demand large RAM use"
 GUSS_parallel_threads,0,"if zero and GUSS parallel is yes, then the model makes parallel runs using all available cores. When the model is too large, to avoid running out of RAM, you can either choose, to reduce the number of parallel runs or deactivate GUSS parallel"
 data_input_file,data_input.xlsx,"enter a file name. If empty, then import of time-invariant data is skipped"

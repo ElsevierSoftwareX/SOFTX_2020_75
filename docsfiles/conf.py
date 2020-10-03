@@ -22,7 +22,7 @@ copyright = '2020, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Pet
 author = 'Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.0'
+release = '0.2.0'
 
 
 # -- General configuration ---------------------------------------------------

@@ -1,4 +1,4 @@
-__version__ = (0, 2, 0)
+__version__ = (0, 2, 1)
 
 from dieterpy.scripts import gdx_handler
 from dieterpy.scripts import input_data

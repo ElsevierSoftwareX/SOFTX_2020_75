@@ -245,7 +245,7 @@ def defineGAMSOptions(opt,glob_feat_dc,convar_dc, gdx_abspaths_dc):
 
         # add absolute path of gdx files
         for name, abspath in gdx_abspaths_dc.items():
-            opt.defines[str('py_'+ name)] = abspath
+            opt.defines[str('py_'+ name)] = f'"{abspath}"'
 
         return opt
     except:

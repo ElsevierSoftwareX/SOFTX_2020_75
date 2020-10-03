@@ -73,7 +73,7 @@ Uninstall DIETER
 
 while having activated the "yourenvname" environment, type the following::
 
-    pip uninstall dieter
+    pip uninstall dieterpy
 
 Quick start
 +++++++++++
@@ -91,11 +91,15 @@ in the console activate the "yourenvname" environment. and type::
 
 your console will be located in the root of the disc D then type::
 
-    dieter create_project -n firstproject
+    dieterpy create_project -n firstproject
 
 or::
 
-    dieter create_project --name firstproject
+    dieterpy create_project --name firstproject
+
+Warning
+
+We recommend do not create projects on folders that have white spaces. Some GAMS version does not recognise white spaces in paths (see here https://support.gams.com/platform:spaces_in_directory_or_file_name)
 
 
 After doing this, you will be able to navegate through `D:/firstproject` folder using the windows file explorer. The file and folder tree looks like the following:
@@ -147,7 +151,7 @@ there are two methods to run the model. From here on, bear in mind that the cons
 
 locate the console inside the project folder, make sure the manage.py file is present. and type the following::
 
-    dieter run
+    dieterpy run
 
 Once the optimization has finished, you can analyze the output data.
 
@@ -176,4 +180,5 @@ pending
 
 - GAMS_DIR env path in windows
 - to Write absolute paths in windows, mac, and linux (in windows c:\\folder1\\folder2, mac and linux /home/folder1/folde2)
+- We recommend do not create projects on folders that have white spaces. Some GAMS version does not recognise white spaces in paths (see here https://support.gams.com/platform:spaces_in_directory_or_file_name)
 - run-out of memory for large models (to choose few cores in parallel, or run sequential)

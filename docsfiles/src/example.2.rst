@@ -1,4 +1,4 @@
 Example 2
 ---------
 
-bla blajhjshfjdfsdff efwgfgw
+*Explain example 2 here.*

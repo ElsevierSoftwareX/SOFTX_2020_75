@@ -12,5 +12,6 @@ DIETERpy is a Python-based tool that enables pre- and post-processing of the mod
    :maxdepth: 3
 
    src/gettingstarted
-   scr/examples
+   src/model
+   src/examples
    src/modules

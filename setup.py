@@ -30,7 +30,8 @@ setup(
                       'psutil',
                       'matplotlib',
                       'plotly',
-                      'streamlit'],
+                      'streamlit',
+                      'xlrd == 1.2.0'],
     include_package_data=True,
     entry_points = {
         "console_scripts": [

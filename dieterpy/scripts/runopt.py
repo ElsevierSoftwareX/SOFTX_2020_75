@@ -2,6 +2,7 @@ import os
 import yaml
 import time
 import pandas as pd
+import shutil
 from multiprocessing import Lock, Process, Queue, Manager, cpu_count
 
 from dieterpy.scripts.input_data import getConfigVariables, getGlobalFeatures, generateInputGDX, \
@@ -48,10 +49,11 @@ def main():
     BASE['INPUT_DIR_ABS']     = settings.INPUT_DIR_ABS # absolute path to folder where input_data.xlsx and timeseries.xlsx are hosted
     BASE['SETTINGS_DIR_ABS']  = settings.SETTINGS_DIR_ABS  # absolute path to folder where
     BASE['ITERATION_DIR_ABS'] = settings.ITERATION_DIR_ABS  # absolute path to folder where constraints_list.csv and symbols.csv are hosted
-    BASE['RUN_DIR_ABS']       = settings.RUN_DIR_ABS   # absolute path to folder where gams runs "ws.working_directory"
-    BASE['GDX_INPUT_ABS']     = settings.GDX_INPUT_ABS  # absolute path to folder where inputs gdx files are hosted. 'RUN_DIR_ABS'  is its parent folder
+    BASE['RUN_DIR_ABS']       = settings.RUN_DIR_ABS      # absolute path to folder where gams runs "ws.working_directory"
+    BASE['GDX_INPUT_ABS']     = settings.GDX_INPUT_ABS    # absolute path to folder where inputs gdx files are hosted. 'RUN_DIR_ABS'  is its parent folder
     BASE['RESULTS_DIR_ABS']   = settings.RESULTS_DIR_ABS  # absolute path to folder where model output files are hosted
-    BASE['MODEL_DIR_ABS']     = settings.MODEL_DIR_ABS  # absolute path to folder where model.gms is hosted
+    BASE['MODEL_DIR_ABS']     = settings.MODEL_DIR_ABS    # absolute path to folder where model.gms is hosted
+    BASE['TMP_DIR_ABS']       = settings.TMP_DIR_ABS      # absolute path to the folder for temp files
 
 
     # import control and scenario variables from config folder
@@ -257,7 +259,7 @@ def main():
 
     print('GDX FILES CONVERSION')
     print('::::::::::::::::::::::::::::::::::::::')
-    GDXpostprocessing(method='direct', input=BASE['RUNS'], csv_bool=csv_bool, pickle_bool=pickle_bool, vaex_bool=vaex_bool, cores_data=convert_cores)
+    GDXpostprocessing(method='direct', input=BASE['RUNS'], csv_bool=csv_bool, pickle_bool=pickle_bool, vaex_bool=vaex_bool, cores_data=convert_cores, base=BASE)
     settings.RESULT_CONFIG = BASE
 
     if pickle_bool:
@@ -285,6 +287,10 @@ def main():
         time.sleep(2)
         show_bar_text.text(f'Program finished successfully')
         bar.progress(100/100)
+    
+    # Delete tmp folder
+    shutil.rmtree(BASE['TMP_DIR_ABS'])
+        
     print('::::::::::::::::::::::::::::::::::::::')
     print(':::::::::::::::FINISHED:::::::::::::::')
     return None

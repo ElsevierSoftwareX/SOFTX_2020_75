@@ -24,4 +24,6 @@ RESULTS_DIR_NAME = 'output_data'
 
 REPORT_DIR_NAME = 'report_files'
 
+TMP = 'tmp'
+
 RESULT_CONFIG = dict()

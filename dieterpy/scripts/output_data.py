@@ -6,6 +6,7 @@ import time
 import gzip
 import yaml
 import pickle
+import secrets
 import pandas as pd
 from multiprocessing import Lock, Process, Queue, Manager, cpu_count
 from gams import GamsWorkspace, GamsOptions, DebugLevel
@@ -81,9 +82,21 @@ def get_symb_from_features(feat_ingdx, symbfile):
             symbols_from_features = symbols_from_features + df.loc[df[column].notna(), column].to_list()
     return symbols_from_features
 
-def gams_gdxdiff(gams_dir=None, maingdx=None, scengdx=None, newfile=None):
+def gams_gdxdiff(gams_dir=None, maingdx=None, scengdx=None, newfile=None, base=None):
     start = time.time()
-    ws = GamsWorkspace(system_directory=gams_dir,debug=DebugLevel.KeepFiles)
+    
+    tmp_path        = base['TMP_DIR_ABS']
+    rnd             = secrets.token_hex(8)
+    tmp_path_unique = os.path.join(tmp_path,rnd)
+            
+    # Create tmp folder
+    try:
+        os.makedirs(tmp_path_unique)
+        # print("Directory " , tmp_path_unique ,  " Created ") 
+    except FileExistsError:
+        print("Directory " , tmp_path_unique ,  " already exists")
+    
+    ws = GamsWorkspace(system_directory=gams_dir,debug=DebugLevel.KeepFiles, working_directory = tmp_path_unique)
     jobs = ws.add_job_from_string("execute 'gdxdiff %maingdx% %scengdx% %newfile% > %system.nullfile%'")
     opt = GamsOptions(ws)
     opt.defines['newfile'] = f'"{newfile}"'
@@ -93,9 +106,21 @@ def gams_gdxdiff(gams_dir=None, maingdx=None, scengdx=None, newfile=None):
     # print(f'{scenario_dir} -> {symbname}: Elapsed time {round(time.time() - start, 3)} sec.')
     return None
 
-def gams_gdxdumptocsv(gams_dir, scenario_dir_abspath, gdxfilename, symbname):
+def gams_gdxdumptocsv(gams_dir, scenario_dir_abspath, gdxfilename, symbname, base):
     start = time.time()
-    ws = GamsWorkspace(system_directory=gams_dir)
+    
+    tmp_path        = base['TMP_DIR_ABS']
+    rnd             = secrets.token_hex(8)
+    tmp_path_unique = os.path.join(tmp_path,rnd)
+            
+    # Create tmp folder
+    try:
+        os.makedirs(tmp_path_unique)
+        # print("Directory " , tmp_path_unique ,  " Created ") 
+    except FileExistsError:
+        print("Directory " , tmp_path_unique ,  " already exists")
+        
+    ws = GamsWorkspace(system_directory=gams_dir, working_directory = tmp_path_unique)
     jobs = ws.add_job_from_string("execute 'gdxdump %gdxfile% output=%dir%%syn%.csv symb=%syn% CSVAllFields format=csv EpsOut=0'")
     opt = GamsOptions(ws)
     opt.defines['dir'] = f'"{scenario_dir_abspath}/"'
@@ -105,7 +130,7 @@ def gams_gdxdumptocsv(gams_dir, scenario_dir_abspath, gdxfilename, symbname):
     # print(f'{scenario_dir} -> {symbname}: Elapsed time {round(time.time() - start, 3)} sec.')
     return None
 
-def gams_gdxdumptocsv_parallel(queue, queue_lock, gams_dir, csv_dir, gdxfilelist):
+def gams_gdxdumptocsv_parallel(queue, queue_lock, gams_dir, csv_dir, gdxfilelist, base):
     while True:
         queue_lock.acquire()
         if queue.empty():
@@ -116,7 +141,7 @@ def gams_gdxdumptocsv_parallel(queue, queue_lock, gams_dir, csv_dir, gdxfilelist
         for file in gdxfilelist:
             ret, _ = gdx_get_symb_info(gams_dir=gams_dir, filename=file, symbol=symbname)
             if ret:
-                gams_gdxdumptocsv(gams_dir, csv_dir, file, symbname)
+                gams_gdxdumptocsv(gams_dir, csv_dir, file, symbname, base)
                 break
             else:
                 continue
@@ -256,7 +281,7 @@ def gams_csvtovaex_parallel(L, queue, queue_lock, list_lock, scen_name, block, g
         list_lock.release()
     return None
 
-def GDXpostprocessing(method='direct', input=None, cores_data=0, sysdir=None, csv_bool=True, pickle_bool=True, vaex_bool=True):
+def GDXpostprocessing(method='direct', input=None, cores_data=0, sysdir=None, csv_bool=True, pickle_bool=True, vaex_bool=True, base=None):
     if not any([csv_bool, pickle_bool, vaex_bool]):
         print('All formats are set to False. No conversion required')
     else:
@@ -310,7 +335,7 @@ def GDXpostprocessing(method='direct', input=None, cores_data=0, sysdir=None, cs
                 main_gdx_file = os.path.join(settings.BASE_DIR_ABS, resultdc['checkpoint_gdx'].rpartition(resultdc['BASE_DIR_ABS'])[-1][1:])
                 gdxfilepath = os.path.join(settings.BASE_DIR_ABS, resultdc['diff_gdx'].rpartition(resultdc['BASE_DIR_ABS'])[-1][1:])
                 # merge maingdx with gdx from guss
-                gams_gdxdiff(gams_dir=sysdir, maingdx=main_gdx_file, scengdx=gdxfilepath_tmp, newfile=gdxfilepath)
+                gams_gdxdiff(gams_dir=sysdir, maingdx=main_gdx_file, scengdx=gdxfilepath_tmp, newfile=gdxfilepath, base=base)
             else:
                 gdxfilepath = os.path.join(settings.BASE_DIR_ABS, resultdc['main_gdx'].rpartition(resultdc['BASE_DIR_ABS'])[-1][1:])
                 main_gdx_file = os.path.join(settings.BASE_DIR_ABS, resultdc['main_gdx'].rpartition(resultdc['BASE_DIR_ABS'])[-1][1:])
@@ -339,7 +364,7 @@ def GDXpostprocessing(method='direct', input=None, cores_data=0, sysdir=None, cs
             queue_lock = Lock()
             processes = {}
             for i in range(nr_workers):
-                processes[i] = Process(target=gams_gdxdumptocsv_parallel, args=(queue, queue_lock, sysdir, csv_dir_path, [gdxfilepath, main_gdx_file]))
+                processes[i] = Process(target=gams_gdxdumptocsv_parallel, args=(queue, queue_lock, sysdir, csv_dir_path, [gdxfilepath, main_gdx_file], base))
                 processes[i].start()
             for i in range(nr_workers):
                 processes[i].join()

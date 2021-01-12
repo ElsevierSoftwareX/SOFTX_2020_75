@@ -3,6 +3,8 @@ import time
 import gc
 import yaml
 import itertools
+import secrets
+
 from shutil import copyfile
 from gams import GamsWorkspace, GamsOptions, DebugLevel, UpdateAction, VarType, GamsException, GamsModifier, GamsModelInstanceOpt
 
@@ -211,8 +213,21 @@ def guss_parallel(result, queue, queue_lock, print_lock, symbs, base, block):
 
     cp_file = base['tmp'][block]['cp_file']
     maingdx = base['tmp'][block]['main_gdx_file']
-
-    ws = GamsWorkspace(debug=DebugLevel.KeepFiles)  # system_directory=gams_dir
+	
+    tmp_path        = base['TMP_DIR_ABS']
+    rnd             = secrets.token_hex(8)
+    tmp_path_unique = os.path.join(tmp_path,rnd)
+    tmp['TMP_PATH'] = tmp_path_unique
+        
+    # Create tmp folder
+    try:
+        os.makedirs(tmp_path_unique)
+        # print("Directory " , tmp_path_unique ,  " Created ") 
+    except FileExistsError:
+        print("Directory " , tmp_path_unique ,  " already exists")
+           
+    ws = GamsWorkspace(debug=DebugLevel.KeepFiles, working_directory = tmp_path_unique)  # system_directory=gams_dir
+	
     print('working_directory:', ws.working_directory)
     cp = ws.add_checkpoint(cp_file)
     opt = GamsOptions(ws)

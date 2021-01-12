@@ -93,3 +93,4 @@ class Settings:
         self.GDX_INPUT_ABS = os.path.join(self.BASE_DIR_ABS, self.GDX_INPUT_NAME)
         self.RESULTS_DIR_ABS = os.path.join(self.BASE_DIR_ABS, self.RESULTS_DIR_NAME)
         self.REPORT_DIR_ABS = os.path.join(self.BASE_DIR_ABS, self.REPORT_DIR_NAME)
+        self.TMP_DIR_ABS = os.path.join(self.BASE_DIR_ABS, self.TMP)

@@ -8,7 +8,7 @@ DIETERpy is a Python-based tool that enables pre- and post-processing of the mod
 
 DIETERpy requires an installed version of GAMS in your computer with an appropriate license. It is also recommended to create a dedicated environment to run this package.
 
-The documentation and examples can be accessed through the following link: https://diw-evu.gitlab.io/dieter_public/dieter_py/
+The documentation and examples can be accessed through the following link: https://diw-evu.gitlab.io/dieter_public/dieterpy/
 
 
 
@@ -34,16 +34,16 @@ The developers are Carlos Gaete-Morales (lead) <cdgaete@gmail.com>, Alexander Ro
 License
 -------
 
-DIETERpy is an open source tool which code may be freely used and modified by anyone. The code is licensed under the MIT License and available https://gitlab.com/diw-evu/dieter_public/dieter_py.
+DIETERpy is an open source tool which code may be freely used and modified by anyone. The code is licensed under the MIT License and available https://gitlab.com/diw-evu/dieter_public/dieterpy.
 
 DIETER is an open source model which may be freely used and modified by anyone. The code is licensed under the MIT License. Input data is licensed under the Creative Commons Attribution-ShareAlike 4.0 International Public License and available under http://www.diw.de/dieter.
 
 Links
 -----
 
-Documentation: https://diw-evu.gitlab.io/dieter_public/dieter_py
+Documentation: https://diw-evu.gitlab.io/dieter_public/dieterpy
 
-Source code: https://gitlab.com/diw-evu/dieter_public/dieter_py
+Source code: https://gitlab.com/diw-evu/dieter_public/dieterpy
 
 PyPI releases: https://pypi.org/project/dieterpy
 

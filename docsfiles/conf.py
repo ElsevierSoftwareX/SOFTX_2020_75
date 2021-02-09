@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'DIETERpy'
-copyright = '2020, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
+copyright = '2021, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
 author = 'Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
 
 # The full version, including alpha/beta/rc tags

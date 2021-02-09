@@ -1,6 +1,6 @@
-**************************
+##########################
 DIETERpy: A GAMS-Python framework for DIETER
-**************************
+##########################
 
 .. image:: https://img.shields.io/pypi/v/dieterpy.svg
    :target: https://pypi.python.org/pypi/dieterpy
@@ -14,8 +14,9 @@ The open-source power sector optimization model `"Dispatch and Investment Evalua
 
 .. _DIETERgms: https://gitlab.com/diw-evu/dieter_public/dietergms
 
+***************
 Installation
-------------
+***************
 
 DIETERpy can is distributed on PyPI_ and can installed with ``pip``:
 
@@ -28,29 +29,33 @@ For more information read the full documentation on Installation_.
 .. _PyPI: https://pypi.org/project/dieterpy
 .. _Installation: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/installation
 
-Running the model and Configuration
-------------
+***************
+Running the model and configuration
+***************
 
 Please check out the full documentation on how to run_ and configure_ DIETERpy.
 
 .. _run: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/running
 .. _configure: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/configuration
 
+***************
 Links
-------------
+***************
 
 Documentation: https://diw-evu.gitlab.io/dieter_public/dieterpy
 Source code: https://gitlab.com/diw-evu/dieter_public/dieterpy
 PyPI releases: https://pypi.org/project/dieterpy
 License: http://opensource.org/licenses/MIT
 
+***************
 Authors
-------------
+***************
 
 The developers are `Carlos Gaete-Morales (lead) <mailto:cdgaete@gmail.com>`_, Alexander Roth and Martin Kittel, and Wolf-Peter Schill, in collaboration with Alexander Zerrahn.
 
+***************
 License
-------------
+***************
 
 DIETERpy is an open source tool which code may be freely used and modified by anyone. The code is licensed under the MIT License and available https://gitlab.com/diw-evu/dieter_public/dieterpy.
 

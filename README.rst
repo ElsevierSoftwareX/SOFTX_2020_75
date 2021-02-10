@@ -8,9 +8,9 @@ DIETERpy: A GAMS-Python framework for DIETER
 
 DIETERpy is electricity market model developed by the research group `Transformation of the Energy Economy <https://twitter.com/transenerecon>`_ at `DIW Berlin <https://www.diw.de/en/diw_01.c.604205.en/energy__transportation__environment_department.html>`__ (German Institute of Economic Research).
 
-DIETERpy is a Python-based tool that enables an easy pre- and post-processing of the model data, sophisticated scenario analysis, and visualization of results. The optimization routine of DIETERpy is based on the GAMS-code of DIETERgms.
+The open-source power sector optimization model `"Dispatch and Investment Evaluation Tool with Endogenous Renewables" (DIETER) <https://www.diw.de/de/diw_01.c.599753.de/modelle.html#ab_599749>`__ has been developed to investigate the role of electricity storage and sector coupling options in future scenarios with high shares of renewable energy sources. 
 
-The open-source power sector optimization model `"Dispatch and Investment Evaluation Tool with Endogenous Renewables" (DIETER) <https://www.diw.de/de/diw_01.c.599753.de/modelle.html#ab_599749>`__ has been developed to investigate the role of electricity storage and sector coupling options in future scenarios with high shares of renewable energy sources. DIETER has originally been written entirely in the General Algebraic Modeling System (GAMS) and the GAMS-only version is now maintained as DIETERgms_. 
+DIETERpy is a Python-based tool that enables an easy pre- and post-processing of the model data, sophisticated scenario analysis, and visualization of results. The optimization routine of DIETERpy is based on the General Algebraic Modeling System (GAMS) of DIETER, which is now maintained separately as a GAMS-only version called DIETERgms_.
 
 .. _DIETERgms: https://gitlab.com/diw-evu/dieter_public/dietergms
 

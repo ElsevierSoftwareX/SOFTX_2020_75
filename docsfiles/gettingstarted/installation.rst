@@ -41,9 +41,9 @@ Anaconda offers different ways to create a new environment:
 
 Start the Anaconda Navigator and go on *Environments* and then *create*. Choose a name, tick the box next to *Python* and choose a Python version compatible with your GAMS installation (see box above).
 
-**2. Terminal (or Anaconda Prompt, Powersheel)**
+**2. Console**
 
-Open a terminal (Anaconda Prompt, CMD, PowerSheel) and create a new conda environment with the name *yourenvname* and the exemplary Python version *X.X* with the following command::
+Open a console (Anaconda Prompt, CMD, PowerShell, Windows Terminal) and create a new conda environment with the name *yourenvname* and the exemplary Python version *X.X* with the following command::
 
     $ conda create -n yourenvname python=X.X
 

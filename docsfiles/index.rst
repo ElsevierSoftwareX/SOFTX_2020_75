@@ -3,12 +3,19 @@
 .. toctree::
    :caption: Getting started
    :hidden:
-   :maxdepth: 2
+   :maxdepth: 1
 
    gettingstarted/installation
-   gettingstarted/running
-   gettingstarted/configuration
-   
+   gettingstarted/create_project
+   gettingstarted/run_model
+
+.. toctree::
+   :caption: Configuration
+   :hidden:
+   :maxdepth: 2
+
+   configuration/configuration
+
 .. toctree::
    :caption: Model
    :hidden:
@@ -29,3 +36,10 @@
    :maxdepth: 2
 
    src/modules
+
+.. toctree::
+   :caption: Misc
+   :hidden:
+   :maxdepth: 2
+
+   misc/troubles

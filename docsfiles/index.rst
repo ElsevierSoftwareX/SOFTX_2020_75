@@ -21,7 +21,8 @@
    :hidden:
    :maxdepth: 2
 
-   model/model
+   model/introduction
+   model/equations
 
 .. toctree::
    :caption: Examples

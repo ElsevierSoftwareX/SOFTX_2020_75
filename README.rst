@@ -1,6 +1,6 @@
-##########################
+#############################################
 DIETERpy: A GAMS-Python framework for DIETER
-##########################
+#############################################
 
 .. image:: https://img.shields.io/pypi/v/dieterpy.svg
    :target: https://pypi.python.org/pypi/dieterpy
@@ -29,9 +29,9 @@ For more information read the full documentation on Installation_.
 .. _PyPI: https://pypi.org/project/dieterpy
 .. _Installation: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/installation
 
-***************
+*************************************
 Running the model and configuration
-***************
+*************************************
 
 Please check out the full documentation on how to run_ and configure_ DIETERpy.
 

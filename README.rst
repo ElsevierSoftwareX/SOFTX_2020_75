@@ -43,8 +43,11 @@ Links
 ***************
 
 Documentation: https://diw-evu.gitlab.io/dieter_public/dieterpy
+
 Source code: https://gitlab.com/diw-evu/dieter_public/dieterpy
+
 PyPI releases: https://pypi.org/project/dieterpy
+
 License: http://opensource.org/licenses/MIT
 
 ***************

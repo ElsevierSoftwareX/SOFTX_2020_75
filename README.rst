@@ -3,8 +3,12 @@ DIETERpy: A GAMS-Python framework for DIETER
 #############################################
 
 .. image:: https://img.shields.io/pypi/v/dieterpy.svg
-   :target: https://pypi.python.org/pypi/dieterpy
-   :alt: DIETERpy Version
+   :target: https://pypi.org/project/dieterpy/
+   :alt: DIETERpy Status Badge
+
+.. image:: https://img.shields.io/pypi/pyversions/dieterpy.svg
+   :target: https://pypi.org/project/dieterpy/
+   :alt: DIETERpy Python Versions
 
 DIETERpy is electricity market model developed by the research group `Transformation of the Energy Economy <https://twitter.com/transenerecon>`_ at `DIW Berlin <https://www.diw.de/en/diw_01.c.604205.en/energy__transportation__environment_department.html>`__ (German Institute of Economic Research).
 

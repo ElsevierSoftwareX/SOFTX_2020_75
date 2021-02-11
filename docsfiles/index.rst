@@ -10,19 +10,21 @@
    gettingstarted/run_model
 
 .. toctree::
-   :caption: Configuration
+   :caption: Configurations
    :hidden:
    :maxdepth: 2
 
-   configuration/configuration
+   configuration/config_prog
+   configuration/config_mode
+   configuration/config_data
 
 .. toctree::
    :caption: Model
    :hidden:
    :maxdepth: 2
 
-   model/introduction
-   model/equations
+   model/model_intro
+   model/model_equations
 
 .. toctree::
    :caption: Examples

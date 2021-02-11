@@ -1,5 +1,5 @@
 ******************************
-Create a project
+Creating a project
 ******************************
 
 Before running DIETERpy, you need first to create a new project. "Creating a new project" means setting up a folder structure that DIETERpy is able to read and process. You can either manually download a project from our Gitlab repository or use DIETERpy to create it. For a detailed description of the functionalities of DIETERpy and how to configure the model, please check out the next section configuration_.

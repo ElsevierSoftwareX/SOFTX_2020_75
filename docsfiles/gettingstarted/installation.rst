@@ -1,6 +1,6 @@
-*****************
-Install DIETERpy
-*****************
+************************
+Installing the program
+************************
 
 To run DIETERpy, you need to have a functioning installation of Python and GAMS. 
 

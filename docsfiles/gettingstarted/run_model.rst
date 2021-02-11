@@ -1,6 +1,6 @@
-*************
-Run a model
-*************
+****************
+Running a model
+****************
 
 After having created a project folder (last section), you are ready to run the model. There are several ways to run the model, which are presented shortly here.
 

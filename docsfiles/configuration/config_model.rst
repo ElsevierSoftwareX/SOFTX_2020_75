@@ -1,9 +1,8 @@
-***************
-Configuration
-***************
+.. _model_options:
 
-
-
+********************
+Model options
+********************
 
 .. code-block:: bash
 

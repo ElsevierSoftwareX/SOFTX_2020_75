@@ -41,6 +41,6 @@ manage.py contain the script to run the program or to convert gdx file to csv an
     "reporting_symbols.csv", "list of symbols (parameters, variables and equations) to be considered when converting gdx files to csv or/and pickle files. The symbols are selected for conveting each gdx files depending on the model features used for each scenario (or run, we have to choose which word suit best and be consistent through the document `scenario` or `run`)"
 
 
-As an alternative, you could also download the folder ``base`` (link_) in ``dieterpy/dieterpy/templates`` from our repository_ and place the folder ``basicmodeldata`` within ``base``. Of course, you are free to rename ``base``. This manual procedure equals the command ``$ dieterpy create_project -n firstproject``.
+As an alternative, you could also download the folder ``base`` (LINK) in ``dieterpy/dieterpy/templates`` from our repository (LINK) and place the folder ``basicmodeldata`` within ``base``. Of course, you are free to rename ``base``. This manual procedure equals the command ``$ dieterpy create_project -n firstproject``.
 
 

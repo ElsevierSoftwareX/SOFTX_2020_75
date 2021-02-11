@@ -15,7 +15,7 @@
    :maxdepth: 2
 
    configuration/config_prog
-   configuration/config_mode
+   configuration/config_model
    configuration/config_data
 
 .. toctree::

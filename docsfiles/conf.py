@@ -61,8 +61,16 @@ html_static_path = []
 
 # The following options can be defined in your project’s conf.py file, 
 # using the html_theme_options configuration option.
-
 html_theme_options = {
     'display_version': True,
     'collapse_navigation': True,
     }
+
+# Show "Edit in GitLab" on the right upper corner
+html_context = {
+    "display_gitlab": True, # Integrate Gitlab
+    "gitlab_user": "diw-evu", # Organization or User
+    "gitlab_repo": "dieter_public/dieterpy", # Repo name
+    "gitlab_version": "master", # Version
+    "conf_py_path": "/docsfiles/", # Path in the checkout to the docs root
+}

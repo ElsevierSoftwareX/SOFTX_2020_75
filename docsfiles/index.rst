@@ -1,17 +1,48 @@
-
-DIETERpy: A GAMS-Python framework for DIETER
-============================================
-
-DIETERpy is a Gams-Python framework of DIETER. DIETER is an open-source power sector optimization model that has been developed to investigate the role of electricity storage and sector coupling options in future scenarios with high shares of renewable energy sources. DIETER is fully implemented in the General Algebraic Modeling System (GAMS).
-
-DIETERpy is a Python-based tool that enables pre- and post-processing of the model data, scenario analysis, and visualization of results.
-
+.. include:: ../README.rst
 
 .. toctree::
+   :caption: Getting started
    :hidden:
-   :maxdepth: 3
+   :maxdepth: 1
 
-   src/gettingstarted
-   src/model
-   src/examples
+   gettingstarted/installation
+   gettingstarted/create_project
+   gettingstarted/run_model
+
+.. toctree::
+   :caption: Configurations
+   :hidden:
+   :maxdepth: 2
+
+   configuration/config_prog
+   configuration/config_model
+   configuration/config_data
+
+.. toctree::
+   :caption: Model
+   :hidden:
+   :maxdepth: 2
+
+   model/model_intro
+   model/model_equations
+
+.. toctree::
+   :caption: Examples
+   :hidden:
+   :maxdepth: 2
+
+   examples/examples
+
+.. toctree::
+   :caption: Functions
+   :hidden:
+   :maxdepth: 2
+
    src/modules
+
+.. toctree::
+   :caption: Misc
+   :hidden:
+   :maxdepth: 2
+
+   misc/troubles

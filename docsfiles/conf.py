@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'DIETERpy'
-copyright = '2020, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
+copyright = '2021, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
 author = 'Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn'
 
 # The full version, including alpha/beta/rc tags
@@ -56,4 +56,21 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
+html_static_path = []
+
+# The following options can be defined in your project’s conf.py file, 
+# using the html_theme_options configuration option.
+html_theme_options = {
+    'display_version': True,
+    'collapse_navigation': True,
+    }
+
+# Show "Edit in GitLab" on the right upper corner
+html_context = {
+    "display_gitlab": True, # Integrate Gitlab
+    "gitlab_user": "diw-evu", # Organization or User
+    "gitlab_repo": "dieter_public/dieterpy", # Repo name
+    "gitlab_version": "master", # Version
+    "conf_py_path": "/docsfiles/", # Path in the checkout to the docs root
+}

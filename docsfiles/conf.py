@@ -56,8 +56,7 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
-html_static_path = []
+html_static_path = ['_static']
 
 # The following options can be defined in your project’s conf.py file, 
 # using the html_theme_options configuration option.
@@ -74,3 +73,7 @@ html_context = {
     "gitlab_version": "master", # Version
     "conf_py_path": "/docsfiles/", # Path in the checkout to the docs root
 }
+
+html_css_files = [
+    'custom.css',
+]

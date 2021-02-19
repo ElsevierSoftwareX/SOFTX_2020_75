@@ -15,8 +15,8 @@ You can start the optimization by typing::
 
 Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/output_data`` and ``project_files/report_files``.
 
-Method 2: from Python (advanced)
-=================================
+Method 2: from Python with installation (advanced)
+===================================================
 
 You can also run DIETERpy directly from the Python console. However, you have to provide some additional information in order to run the model successfully. 
 
@@ -35,6 +35,49 @@ Finally, run the model::
 
     >>> runopt.main()
 
-TO BE DOCUMENTED::
+TO BE EXPLAINED::
 
     >>> result_configuration_dict = settings.RESULT_CONFIG
+
+Method 3: from Python without installation (advanced)
+=====================================================
+
+It is also possible to run DIETERpy without installing the package. For that, you need to install the entire repository and ran the following commands from the Python console making sure that you are in the folder of DIETERpy::
+
+    >>> import dieterpy
+    >>> from dieterpy.scripts import runopt
+    >>> from dieterpy.config import settings
+
+Then, you need to create a project *firstproject*, hence a structure of folders, of the following form and place the required files in the right folders.
+
+.. Hint:: Setting up this folder structure and placing the files inside is what is done by the command ``dieterpy create_project`` as explained before.
+
+.. code-block:: bash
+
+    ├── firstproject
+    │   ├── manage.py
+    │   └── project_files
+    │       ├── project_variables.csv
+    │       ├── features_node_selection.csv
+    │       ├── iterationfiles
+    │       │   ├── iteration_main_file.csv
+    │       │   └── iteration_data.xlsx
+    │       ├── basicmodeldata
+    │       │   ├── data_input.xlsx
+    │       │   └── time_series.xlsx
+    │       ├── model
+    │       │   └── model.gms
+    │       └── settings
+    │           ├── constraints_list.csv
+    │           └── reporting_symbols.csv
+
+Then set the correct path so that DIETERpy finds your project folder where *firstproject* is located in::
+
+    >>> settings.PROJECT_DIR_ABS = "<here the absolute path to the project directory as string>"
+    >>> settings.update_changes()
+
+Finally, run the model::
+
+    >>> runopt.main()
+
+.. warning:: It could happen that the last command returns an error because of missing packages. If so, make sure to install the missing packages with PIP or Conda.

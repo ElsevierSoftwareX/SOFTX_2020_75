@@ -6,4 +6,4 @@
 dist/
 *.egg-info/
 build/
-docsfiles/_*/
+docsfiles/_build/

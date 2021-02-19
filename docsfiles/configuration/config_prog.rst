@@ -1,7 +1,7 @@
 .. _prog_options:
 
 **********************
-Program options
+Program
 **********************
 
 Run a model

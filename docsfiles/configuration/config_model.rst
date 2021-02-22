@@ -186,8 +186,7 @@ to be explained (time_series_scen)
 Constrains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-to be explained.
-
+to be explained (such constraint_minRES)
 
 Variables & parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -201,7 +200,7 @@ Let's assume you want to set the generation capacity of solar power in Germany t
 
 In the first run, the PV capacity in Germany could be set freely (yet check possible limits in the ``data_input.xlsx`` file), set to 25 GW in the 2nd, and 50GW in the 3rd run:
 
-.. csv-table:: Example variables
+.. csv-table:: Example iteration file: variables
    :header: "run","country_set", "N_TECH.fx('DE','pv')"
 
    1, , 
@@ -210,7 +209,7 @@ In the first run, the PV capacity in Germany could be set freely (yet check poss
 
 Let's assume that you want to set these limits not only for Germany, but for all countries. Then your sheet has to look like the following. Note that ``'DE'`` has been replace by ``n`` (without ''), so it applies to the entire set ``n``:
 
-.. csv-table:: Example variables
+.. csv-table:: Example iteration file: variables
    :header: "run","country_set", "N_TECH.fx(n,'pv')"
 
    1, , 
@@ -222,7 +221,7 @@ Setting a (lower/upper) limit of variable value
 
 Setting an lower or upper limit for a value of variable follows the same logic as fixing a value. Instead of appending ``.fx``, you append ``.lo`` for lower value and ``.up`` for upper value. Let's assume you want to set an lower limit for the generation capacity of PV in Germany (25 GW and 50 GW) and an upper limit to the generaetion capacity of nuclear power (10 GW and 5 GW). As reference, the first run does not define any limits:
 
-.. csv-table:: Example variables
+.. csv-table:: Example iteration file: variable limits
    :header: "run","country_set", "N_TECH.lo('DE,'pv')", "N_TECH.up('DE,'nuc')"
 
    1, , 
@@ -234,17 +233,25 @@ Setting a value of a parameter
 
 Setting a value of a parameter has the same logic as for a variable, except that you can leave out the suffices ``.fx .lo .up``. Let's assume you want to run a two-country scenario (DE & FR) and you want to set the share of renewable energy (``phi_min_res_exog(n)``) of Germany to 50% in the 1st, and to 75% in the 2nd run. In the 3rd and 4th run these values should apply to both countries. Whenever you leave a cell empty, the default value will be taken:
 
-.. csv-table:: Example variables
-   :header: "run","country_set", "phi_min_res_exog('DE')",  "phi_min_res_exog(n)"
+.. csv-table:: Example iteration file: parameters
+   :header: "run", "country_set", "phi_min_res_exog('DE')", "phi_min_res_exog(n)"
 
    1,"DE,FR",0.50, 
    2,"DE,FR",0.75, 
    3,"DE,FR",    , 0.50
    4,"DE,FR",    , 0.75
 
-In that same logic, you can vary the value of every parameter and variable in the entire model.
+In that same logic, you can vary the value of every parameter and variable in the entire model. Of course, you can also vary several of the above-described options at the same time, as shown in the example below:
 
-Constrains
+.. csv-table:: Example iteration file: several variations
+   :header: "run", "country_set", "time_series_scen", "constraint_minRES", "phi_min_res_exog('DE')", "N_TECH.up('DE','nuc')", "N_TECH.lo(n,'pv')", "NTC.fx('l01')"
+   
+   1,    "DE", "scen1",             ,0.50, 10000,  50000,  5000
+   2, "DE,FR", "scen1",            , 0.75,  5000, 100000, 10000
+   3, "DE,FR",        , "rescon_1b", 0.50, 10000,  50000, 15000
+   4,        ,        , "rescon_1b", 0.75,      , 100000,     0
+
+Constraints
 --------------------------------------------------------------------------------------
 
 ``constraints_list.csv``: explanations will be added
@@ -254,7 +261,3 @@ Reporting
 --------------------------------------------------------------------------------------
 
 ``reporting_symbols.csv``: explanations will be added
-
-
-
-

@@ -4,7 +4,7 @@
 Model
 ********************
 
-Files
+Overview files
 ------
 
 Before running DIETERpy, you are able to change several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below.
@@ -158,7 +158,7 @@ prosumage: Prosumage
 heat: Heat provision
     Add brief description here.
 
-Iteration Main File
+Iteration
 --------------------------------------------------------------------------------------
 ``iteration_main_file.csv``: This file is central to define scenario runs. If only a single run is wished, this file can be left untouched.
 
@@ -167,7 +167,7 @@ The only required column is *run* as well as the respective number of each run (
 Countries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To vary the set of nodes between the different scenario runs, add the column ``country_set`` to the ``iteration_main_file.csv``. The row values of that column define the nodes to be considered for the respective run. No value means that all available nodes are included.
+To vary the set of nodes between the different scenario runs, add the column ``country_set`` to ``iteration_main_file.csv``. The row values of that column define the nodes to be considered for the respective run. No value means that all available nodes are included.
 
 .. csv-table:: Example nodes
    :header: "run","country_set"
@@ -178,15 +178,41 @@ To vary the set of nodes between the different scenario runs, add the column ``c
 
 In this example, the first scenario run uses all available nodes (as provided ``data_input.xlsx``), the second run only Germany (``DE``), the third Germany and France (``"DE,FR"``). You will notice that the optimization time will be drastically lower for the 2nd and 3rd run. However, the model has to be recompiled between all three runs.
 
-Data
+Time series
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-to be explained (time_series_scen)
+To vary time series data between different runs, add the column ``time_series_scen`` to ``iteration_main_file.csv``. When you don't add that column or leave the column ``time_series_scen`` empty, the model will take the default time series. By adding an identifier in the column ``time_series_scen``, you can specify for every run, which data is to be used. You have to make sure that to edit the ``iteration_data_file.xlsx`` file accordingly.
+
+Let's assume that you want to use three different time series scenarios: (1) German demand varied, (2) German capacity factors for PV and onshore wind varied, and (3) German and French demand varied. For this, the sheet *scenario* in the file ``iteration_data_file.xlsx`` has to look like as following:
+
+.. csv-table:: Time series iteration: configuration Excel file
+   :header: "","A","B","C","D","E","F"
+
+   1,"Comments", , , , , 
+   2,          , , , , , 
+   3,"parameter", "d('DE',h)", "phi_res('DE','pv',h)", "phi_res('DE','wind_on',h)", "d('DE',h)", "d('FR',h)"
+   4,"identifier","d(DE,h)","phi_res(DE,pv,h)","phi_res(DE,wind_on,h)","d(DE,h)","d(FR,h)"
+   5,"scenario","scen1","scen2","scen2","scen3","scen3"
+   6,"h1",38067,0,0.2327,38067,56328
+   "...","...","...","...","...","...","..."
+   8765,"h8760",61168,0,0.1824,61168,41618
+
+For further details regarding the configuration of the file ``iteration_data_file.xlsx``, we refer to the section :ref:`data_options`.
+
+The ``iteration_main_file.csv`` has to be configured as following, assuming your first run uses default values:
+
+.. csv-table:: Example iteration file: time series
+   :header: "run","time_series_scen"
+
+   1, 
+   2,"scen1" 
+   3,"scen2"
+   4,"scen3"
 
 Constrains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-to be explained (such constraint_minRES)
+to be explained (such as *constraint_minRES*)
 
 Variables & parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

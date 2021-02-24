@@ -3,10 +3,11 @@ image: iiasa/gams:24.8.5  # python:3.8-slim  python:3.7-alpine
 pages:
   stage: deploy
   script:
-  - python setup.py install
-  - pip install -U sphinx
-  - pip install -U sphinx-rtd-theme
-  - sphinx-build -b html ./docsfiles public
+  - gams
+  # - python setup.py install
+  # - pip install -U sphinx
+  # - pip install -U sphinx-rtd-theme
+  # - sphinx-build -b html ./docsfiles public
   artifacts:
     paths:
     - public

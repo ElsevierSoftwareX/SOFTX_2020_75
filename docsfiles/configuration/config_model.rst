@@ -5,7 +5,7 @@ Model
 ********************
 
 Overview files
-------
+---------------
 
 Before running DIETERpy, you are able to change several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below.
 

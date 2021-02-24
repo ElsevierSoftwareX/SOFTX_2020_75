@@ -1,5 +1,5 @@
-dieterpymaster
-==============
+dieterpy
+========
 
 .. toctree::
    :maxdepth: 4

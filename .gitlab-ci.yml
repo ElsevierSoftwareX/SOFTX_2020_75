@@ -3,7 +3,8 @@ image: iiasa/gams:24.8.5  # python:3.8-slim  python:3.7-alpine
 pages:
   stage: deploy
   script:
-  - ./opt/gams/gams24.8_linux_x64_64_sfx/gams
+  - cd /opt/gams/
+  - ls -la
   # - python setup.py install
   # - pip install -U sphinx
   # - pip install -U sphinx-rtd-theme

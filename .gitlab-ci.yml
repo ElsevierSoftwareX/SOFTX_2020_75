@@ -3,6 +3,7 @@ image: python:3.7-alpine
 pages:
   stage: deploy
   script:
+  - sudo apt-get install python-numpy swig python-dev
   - python setup.py install
   - pip install -U sphinx
   - pip install -U sphinx-rtd-theme

@@ -24,8 +24,8 @@ or::
     dieterpy create_project --name firstproject
 
 
-Example:
-::
+Example::
+
     some example code here
 
 
@@ -63,6 +63,7 @@ Taken from code (delete at the end)
     parser.add_argument('-n','--name', help='Required argument for create_project. A project name must be provided', type=str)
 
 .. code-block::
+
     parser.add_argument('-t','--template', help='Required argument for create_project. Examples can be selected through templates, name of template are example1, example2 ...', type=str)
 
 .. code-block::

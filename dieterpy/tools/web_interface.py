@@ -16,10 +16,10 @@ import streamlit as st
 from streamlit.hashing import _CodeHasher
 import pandas as pd
 
-from ..config import settings
-from ..scripts import runopt
-from ..scripts.report import SymbolsHandler, Symbol
-from .plots import get_rldc, plot_rldc, color_code, color
+from dieterpy import settings
+from dieterpy import runopt
+from dieterpy.scripts.report import SymbolsHandler, Symbol
+from dieterpy.tools.plots import get_rldc, plot_rldc, color_code, color
 
 import contextlib
 from functools import wraps

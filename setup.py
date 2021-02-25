@@ -30,7 +30,7 @@ setup(
         "pandas== 1.0.0",
         "pyyaml == 5.3.1",
         "psutil",
-        "matplotlib",
+        "matplotlib==3.1.3",
         "plotly",
         "six>=1.11.0",
         "python-dateutil==2.6.1",

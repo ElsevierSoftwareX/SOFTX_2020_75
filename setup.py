@@ -32,6 +32,7 @@ setup(
         "psutil",
         "matplotlib",
         "plotly",
+        "python-dateutil==2.6.1",
         "streamlit",
     ],
     include_package_data=True,

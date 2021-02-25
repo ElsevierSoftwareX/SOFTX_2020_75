@@ -85,8 +85,8 @@ DSM
     $ontext
     $offtext
 
-*Reserves*
-
+Reserves
+********
 .. code::   
 
     %reserves%$ontext
@@ -100,7 +100,8 @@ DSM
     $offtext
     %reserves%$ontext
 
-*Endogeneous electric vehicles*
+Endogenous electric vehicles
+****************************
 
 .. code::   
 
@@ -116,7 +117,8 @@ DSM
     $ontext
     $offtext
 
-*Prosumage*
+Prosumage
+*********
 
 .. code::   
 
@@ -135,14 +137,16 @@ DSM
     $ontext
     $offtext
 
-*NTC*
+NTC
+***
 
 .. code::   
 
     + sum( map_l(l) , c_i_ntc(l) * NTC(l)*dist(l) )
 
 
-*Reservoirs*
+Reservoirs
+**********
 
 .. code::   
 
@@ -151,7 +155,8 @@ DSM
     + sum( map_n_rsvr(n,rsvr) , c_i_rsvr_p(n,rsvr) * N_RSVR_P(n,rsvr) )
     + sum( map_n_rsvr(n,rsvr) , c_fix_rsvr(n,rsvr) * N_RSVR_P(n,rsvr) )
   
-*Heat*
+Heat
+****
 
 .. code::   
 
@@ -162,7 +167,8 @@ DSM
     $ontext
     $offtext
 
-*Infeasability*
+Infeasibility
+-------------
 
 .. code::   
 

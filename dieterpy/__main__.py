@@ -80,7 +80,7 @@ def main():
             return create_project(args.name, tmpl)
         else:
             raise Exception(
-                f"Create_project argument must have a project name as --name argument"
+                "Create_project argument must have a project name as --name argument"
             )
     else:
         try:
@@ -109,6 +109,9 @@ def main():
             if args.method:
                 try:
                     from .scripts.output_data import GDXpostprocessing
+
+                    BASE = {}
+                    BASE["TMP_DIR_ABS"] = settings.TMP_DIR_ABS
                 except ImportError:
                     raise
                 if args.method == "global":
@@ -136,7 +139,7 @@ def main():
                         else:
                             print(f'Your answer is "{confirm}". Try with a new ID...')
                             continue
-                        print(f"Do you want to add a new ID? (Y/N):", end="")
+                        print("Do you want to add a new ID? (Y/N):", end="")
                         stop = input()
                         if stop.lower() == "y":
                             pass
@@ -147,7 +150,7 @@ def main():
                         print(f" {path}")
                 else:
                     raise Exception(
-                        f'--method not recognized. It can be "global" or "custom"'
+                        '--method not recognized. It can be "global" or "custom"'
                     )
                 if args.cores:
                     core = int(args.cores)
@@ -172,11 +175,17 @@ def main():
                         )
                 print("\nStarting with gdx conversion...")
                 return GDXpostprocessing(
-                    method=args.method, input=paths_list, cores_data=core, **output_dc
+                    method=args.method,
+                    input=paths_list,
+                    cores_data=core,
+                    vaex_bool=output_dc["vaex_bool"],
+                    pickle_bool=output_dc["pickle_bool"],
+                    csv_bool=output_dc["csv_bool"],
+                    base=BASE,
                 )
             else:
                 raise Exception(
-                    f'--method is a required argument. It can be "global" or "custom"'
+                    '--method is a required argument. It can be "global" or "custom"'
                 )
         elif args.command == "create_report":
 

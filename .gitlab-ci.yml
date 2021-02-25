@@ -8,7 +8,7 @@ pages:
   - apt-get install -y python3.6
   - apt-get install -y python3-pip
   - apt-get install -y python3-matplotlib
-  - apt-get install python-dateutil
+  - apt-get install -y python3-dateutil
   - python3.6 -m pip install pip
   - python3.6 -m pip install --upgrade pip
   - python3.6 -m pip install pipenv

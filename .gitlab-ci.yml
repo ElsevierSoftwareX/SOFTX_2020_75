@@ -7,8 +7,8 @@ pages:
   - ls -la
   - add-apt-repository ppa:deadsnakes/ppa
   - apt-get update
-  - apt-get install python3.6 -y
-  - apt-get install python3-pip
+  - apt-get install -y python3.6
+  - apt-get install -y python3-pip
   - cd /opt/gams/gams24.8_linux_x64_64_sfx/apifiles/Python/api_36/
   - python3 setup.py install
   - cd ~

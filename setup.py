@@ -27,7 +27,7 @@ setup(
         "exceltogdx",
         "numpy == 1.19.5",
         "xlrd == 1.2.0",
-        "pandas== 1.0.5",
+        "pandas== 1.0.0",
         "pyyaml == 5.3.1",
         "psutil",
         "matplotlib",

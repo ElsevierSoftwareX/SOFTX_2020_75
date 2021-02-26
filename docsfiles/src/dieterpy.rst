@@ -1,4 +1,4 @@
-DIETERpy package
+dieterpy package
 ================
 
 Subpackages
@@ -11,3 +11,10 @@ Subpackages
    dieterpy.scripts
    dieterpy.tools
 
+Module contents
+---------------
+
+.. automodule:: dieterpy
+   :members:
+   :undoc-members:
+   :show-inheritance:

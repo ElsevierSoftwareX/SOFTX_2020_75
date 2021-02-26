@@ -1,19 +1,32 @@
-# Snippet taken from PYOMO project
-# citation: Hart, William E., Carl Laird, Jean-Paul Watson,
-# David L. Woodruff, Gabriel A. Hackebeil, Bethany L. Nicholson,
-# and John D. Siirola. Pyomo – Optimization Modeling in Python. Springer, 2017.
+# DIETERpy is electricity market model developed by the research group
+# Transformation of the Energy Economy at DIW Berlin (German Institute of Economic Research)
+# copyright 2021, Carlos Gaete-Morales, Martin Kittel, Alexander Roth,
+# Wolf-Peter Schill, Alexander Zerrahn
+
+# This snippet taken from PYOMO project
+# citation: Hart, William E., Carl Laird, Jean-Paul Watson, David L. Woodruff,
+# Gabriel A. Hackebeil, Bethany L. Nicholson, and John D. Siirola.
+# Pyomo – Optimization Modeling in Python. Springer, 2017.
+"""
+
+"""
+import sys
 
 
 class OutputStream:
     """Output stream object for simultaneously writing to multiple streams.
-    tee=False:
-        If set writing to this stream will write to stdout.
-    logfile=None:
-        Optionally a logfile can be written.
+
+    Returns:
+        [type]: [description]
     """
 
     def __init__(self, tee=False, logfile=None):
-        """Initialize output stream object."""
+        """Initialize output stream object.
+
+        Args:
+            tee (bool, optional): This stream will write to stdout. Defaults to False.
+            logfile ([type], optional): A logfile can be written. Defaults to None.
+        """
         if tee:
             self.tee = sys.stdout
         else:
@@ -24,7 +37,7 @@ class OutputStream:
     def __enter__(self):
         """Enter context of output stream and open logfile if given."""
         if self.logfile is not None:
-            self.logfile_buffer = open(self.logfile, 'a')
+            self.logfile_buffer = open(self.logfile, "a")
         return self
 
     def __exit__(self, *args, **kwargs):

@@ -28,7 +28,7 @@ This command creates a folder structure which looks like the following and has t
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
-    │       ├── basicmodeldata
+    │       ├── data_input
     │       │   ├── data_input.xlsx
     │       │   └── time_series.xlsx
     │       ├── model

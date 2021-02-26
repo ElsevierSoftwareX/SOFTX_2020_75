@@ -17,7 +17,7 @@ Before running DIETERpy, you are able to change several options regarding comput
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
-    │       ├── basicmodeldata
+    │       ├── data_input
     │       │   ├── data_input.xlsx
     │       │   └── time_series.xlsx
     │       ├── model

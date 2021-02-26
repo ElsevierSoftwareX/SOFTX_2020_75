@@ -60,7 +60,7 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
-    │       ├── basicmodeldata
+    │       ├── data_input
     │       │   ├── data_input.xlsx
     │       │   └── time_series.xlsx
     │       ├── model

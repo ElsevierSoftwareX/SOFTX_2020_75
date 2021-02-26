@@ -9,6 +9,6 @@ This section does not explain all equations in detail, but focuses on a few impo
 .. toctree::
    :maxdepth: 1
 
-   eq_objective
-   eq_balance
-   eq_res_share
+   equations/eq_objective
+   equations/eq_balance
+   equations/eq_res_share

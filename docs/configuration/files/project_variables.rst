@@ -13,13 +13,13 @@ skip_iteration_data_file: *yes/no*
     If the ``iteration_data_file.xlsx`` sheet has not been changed between runs, you can use ``yes`` to save time and skip the creation of gdx files from excel files. If data has been changed, make sure to use ``no`` so that changes in the data are imported to the model.
 
 base_year: e.g. *2030*
-    Choose the year of the time series data. Only relevant if several years are provided in the input data. Verify this in ``time_series.xlsx``.
+    Choose the year of the time series data. Only relevant if several years are provided in the input data. Verify this in ``timeseries_input.xlsx``.
 
 end_hour: e.g. *h336*
     For testing purposes, the model can run from h1 to *end_hour*. Default value is ``h8760`` which represents an entire year.
 
 dispatch_only: *yes/no*
-    If you select ``yes``, the model will run in *dispatch only*, which means that power plant and storage capacities are fixed. Verify in the ``data_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
+    If you select ``yes``, the model will run in *dispatch only*, which means that power plant and storage capacities are fixed. Verify in the ``static_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
 
 network_transfer: *yes/no*
     Select ``yes`` to allow for electricity flows between nodes. Select ``no`` to set cross-nodal electricity flows to zero.
@@ -39,10 +39,10 @@ GUSS_parallel: *yes/no*
 GUSS_parallel_threads: choose an integer, e.g. *4*
     This option defines the number of threads used to solve scenario runs in parallel. If ``0`` is chosen and *GUSS parallel* is ``yes``, then all available CPU threads are used. To avoid running out of RAM, you can either choose to reduce the number of threads used (hence smaller number) runs or deactivate the options *GUSS parallel* altogether.
 
-data_input_file: filename e.g. *data_input.xlsx*
+data_input_file: filename e.g. *static_input.xlsx*
     Name of the file (in the folder ``data_input``) that contains the time-invariant data. If empty, the import of data is skipped.
 
-time_series_file: filename e.g. *time_series.xlsx*
+time_series_file: filename e.g. *timeseries_input.xlsx*
     Name of the file (in the folder ``data_input``) that contains the time-varying data. If empty, the import of data is skipped.
 
 iteration_data_file: filename e.g. *iteration_data.xlsx*

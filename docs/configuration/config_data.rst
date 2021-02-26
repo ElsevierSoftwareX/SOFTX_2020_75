@@ -4,11 +4,11 @@
 Data
 ********************
 
-data_input.xlsx
+static_input.xlsx
 ----------------------------------------
 
 
-time_series.xlsx
+timeseries_input.xlsx
 ----------------------------------------
 
 

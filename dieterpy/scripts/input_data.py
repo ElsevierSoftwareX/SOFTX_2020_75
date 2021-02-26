@@ -78,7 +78,7 @@ def generateInputGDX(
     time_series_gdx_abspath = os.path.join(gdx_path, "time_series.gdx")
     if project_vars["skip_input"] == "no":
 
-        # import of data_input.xlsx
+        # import of static_input.xlsx
         if project_vars["data_input_file"]:
             print("Import from " + project_vars["data_input_file"] + " commences.")
             exceltogdx(
@@ -91,7 +91,7 @@ def generateInputGDX(
                     will shoot an error if no input gdx are available."""
             )
 
-        # import of time_series.xlsx
+        # import of timeseries_input.xlsx
         if project_vars["time_series_file"]:
             print("Import from " + project_vars["time_series_file"] + " commences.")
             exceltogdx(
@@ -923,14 +923,14 @@ def getConstraintsdata(path: str) -> pd.DataFrame:
 
 
 def getTopographydata(path: str, project_vars: dict) -> pd.DataFrame:
-    """Get pandas dataframe of 'spatial' sheet name of data_input.xlsx
+    """Get pandas dataframe of 'spatial' sheet name of static_input.xlsx
 
     Args:
-        path (str): Input path to the folder where the 'data_input.xlsx' is hosted.
+        path (str): Input path to the folder where the 'static_input.xlsx' is hosted.
         project_vars (dict): project variables collected from project_variables.csv.
 
     Returns:
-        pd.DataFrame: pandas dataframe of 'spatial' sheet name of data_input.xlsx
+        pd.DataFrame: pandas dataframe of 'spatial' sheet name of static_input.xlsx
     """
     dataframe = pd.read_excel(
         os.path.join(path, project_vars["data_input_file"]),

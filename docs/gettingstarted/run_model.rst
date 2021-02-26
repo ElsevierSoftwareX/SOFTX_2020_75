@@ -13,7 +13,7 @@ You can start the optimization by typing::
 
     dieterpy run
 
-Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/output_data`` and ``project_files/report_files``.
+Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/data_output`` and ``project_files/report_files``.
 
 Method 2: from Python with installation (advanced)
 ===================================================

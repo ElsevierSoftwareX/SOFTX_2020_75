@@ -71,9 +71,9 @@ class CollectScenariosPerSymbol:
     def __init__(self, paths=None, rng=None):
         self.fixed = ["scenario", "loop", "scen_desc", "path"]
         if rng is None and paths is None:
-            self.pkls = glob.glob("project_files/output_data/*/*.pkl.gz")
+            self.pkls = glob.glob("project_files/data_output/*/*.pkl.gz")
         elif paths is None:
-            self.pkls = glob.glob("project_files/output_data/*/*.pkl.gz")[
+            self.pkls = glob.glob("project_files/data_output/*/*.pkl.gz")[
                 rng[0] : rng[1]
             ]
         elif rng is None:

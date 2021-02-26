@@ -400,7 +400,7 @@ def GDXpostprocessing(
         elif method == "global":
             if input is None:
                 raise Exception(
-                    f'Wnen method is {method}, input must be a string path that match glob format. e.g "/user/project1/output_data/*/*_config.yml"'
+                    f'Wnen method is {method}, input must be a string path that match glob format. e.g "/user/project1/data_output/*/*_config.yml"'
                 )
             else:
                 RUNS_list = []

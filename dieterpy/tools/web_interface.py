@@ -659,7 +659,7 @@ def page_report(state):
 
 
 def get_proj_var(state):
-    df = pd.read_csv(os.path.join(settings.BASE_DIR_ABS, "project_variables.csv"))
+    df = pd.read_csv(os.path.join(settings.SETTINGS_DIR_ABS, "project_variables.csv"))
     state.scenarios_iteration = (
         True
         if df[df["feature"] == "scenarios_iteration"]["value"].values[0].lower()
@@ -824,7 +824,7 @@ def edit_proj_var(state):
 
 
 def update_proj_var(state):
-    df = pd.read_csv(os.path.join(settings.BASE_DIR_ABS, "project_variables.csv"))
+    df = pd.read_csv(os.path.join(settings.SETTINGS_DIR_ABS, "project_variables.csv"))
     dfn = df.copy()
     for k in state.__dict__["_state"]["data"].keys():
         for i, row in df.iterrows():
@@ -841,7 +841,7 @@ def update_proj_var(state):
                     dfn.loc[i, "value"] = value
 
     dfn.to_csv(
-        os.path.join(settings.BASE_DIR_ABS, "project_variables.csv"), index=False
+        os.path.join(settings.SETTINGS_DIR_ABS, "project_variables.csv"), index=False
     )
     st.info("Project variables updated!")
 

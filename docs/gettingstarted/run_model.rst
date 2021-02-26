@@ -13,7 +13,7 @@ You can start the optimization by typing::
 
     dieterpy run
 
-Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/output_data`` and ``project_files/report_files``.
+Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/data_output`` and ``project_files/report_files``.
 
 Method 2: from Python with installation (advanced)
 ===================================================
@@ -57,17 +57,17 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     ├── firstproject
     │   ├── manage.py
     │   └── project_files
-    │       ├── project_variables.csv
-    │       ├── features_node_selection.csv
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
-    │       ├── basicmodeldata
+    │       ├── data_input
     │       │   ├── data_input.xlsx
     │       │   └── time_series.xlsx
     │       ├── model
     │       │   └── model.gms
     │       └── settings
+    │           ├── project_variables.csv
+    │           ├── features_node_selection.csv
     │           ├── constraints_list.csv
     │           └── reporting_symbols.csv
 

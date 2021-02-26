@@ -77,7 +77,7 @@ html_context = {
     "gitlab_user": "diw-evu",  # Organization or User
     "gitlab_repo": "dieter_public/dieterpy",  # Repo name
     "gitlab_version": "master",  # Version
-    "conf_py_path": "/docsfiles/",  # Path in the checkout to the docs root
+    "conf_py_path": "/docs/",  # Path in the checkout to the docs root
 }
 
 html_css_files = [

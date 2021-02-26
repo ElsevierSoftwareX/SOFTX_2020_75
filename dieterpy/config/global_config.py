@@ -14,7 +14,7 @@ PROJECT_NAME = ""
 
 BASE_DIR_NAME = "project_files"
 
-INPUT_DIR_NAME = "basicmodeldata"
+INPUT_DIR_NAME = "data_input"
 
 SETTINGS_DIR_NAME = "settings"
 
@@ -26,7 +26,7 @@ RUN_DIR_NAME = "rundir"
 
 GDX_INPUT_NAME = "gdx_input"
 
-RESULTS_DIR_NAME = "output_data"
+RESULTS_DIR_NAME = "data_output"
 
 REPORT_DIR_NAME = "report_files"
 

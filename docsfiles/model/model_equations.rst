@@ -7,7 +7,7 @@ Principal equations
 This section does not explain all equations in detail, but focuses on a few important equations:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    eq_objective
    eq_balance

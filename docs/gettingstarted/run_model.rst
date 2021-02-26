@@ -57,8 +57,6 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     ├── firstproject
     │   ├── manage.py
     │   └── project_files
-    │       ├── project_variables.csv
-    │       ├── features_node_selection.csv
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
@@ -68,6 +66,8 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     │       ├── model
     │       │   └── model.gms
     │       └── settings
+    │           ├── project_variables.csv
+    │           ├── features_node_selection.csv
     │           ├── constraints_list.csv
     │           └── reporting_symbols.csv
 

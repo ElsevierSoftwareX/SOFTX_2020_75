@@ -25,8 +25,6 @@ This command creates a folder structure which looks like the following and has t
     ├── firstproject
     │   ├── manage.py
     │   └── project_files
-    │       ├── project_variables.csv
-    │       ├── features_node_selection.csv
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
@@ -36,6 +34,8 @@ This command creates a folder structure which looks like the following and has t
     │       ├── model
     │       │   └── model.gms
     │       └── settings
+    │           ├── project_variables.csv
+    │           ├── features_node_selection.csv
     │           ├── constraints_list.csv
     │           └── reporting_symbols.csv
 

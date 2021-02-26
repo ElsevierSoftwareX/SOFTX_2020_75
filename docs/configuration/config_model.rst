@@ -14,8 +14,6 @@ Before running DIETERpy, you are able to change several options regarding comput
     ├── firstproject
     │   ├── manage.py
     │   └── project_files
-    │       ├── project_variables.csv
-    │       ├── features_node_selection.csv
     │       ├── iterationfiles
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
@@ -25,6 +23,8 @@ Before running DIETERpy, you are able to change several options regarding comput
     │       ├── model
     │       │   └── model.gms
     │       └── settings
+    │           ├── project_variables.csv
+    │           ├── features_node_selection.csv
     │           ├── constraints_list.csv
     │           └── reporting_symbols.csv
 

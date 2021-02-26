@@ -60,7 +60,7 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     │       ├── project_variables.csv
     │       ├── features_node_selection.csv
     │       ├── iterationfiles
-    │       │   ├── iteration_main_file.csv
+    │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
     │       ├── basicmodeldata
     │       │   ├── data_input.xlsx

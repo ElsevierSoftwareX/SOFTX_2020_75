@@ -17,7 +17,7 @@ Before running DIETERpy, you are able to change several options regarding comput
     │       ├── project_variables.csv
     │       ├── features_node_selection.csv
     │       ├── iterationfiles
-    │       │   ├── iteration_main_file.csv
+    │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
     │       ├── basicmodeldata
     │       │   ├── data_input.xlsx
@@ -40,7 +40,7 @@ Below there is a short description for every file. A more detailed description a
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``features_node_selection.csv``  | yes        | Enables to (de-) activate certain features in certain nodes                                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``iteration_main_file.csv``      | yes        | Stores information on the different scenario runs                                             |
+|``iteration_table.csv``      | yes        | Stores information on the different scenario runs                                             |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``iteration_data.xlsx``          | no         | Data to be changed over several model runs                                                    |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
@@ -61,7 +61,7 @@ Project variables
 ``project_variables.csv``: This file is the main option file. The file has three columns, ``feature``, which holds the variable name, ``value`` the value assigned, and ``comment`` which serves as an explanation. In the following, we present quickly all variables as well as their possible options.
 
 scenarios_iteration: *yes/no*
-    If ``yes``, DIETERpy uses ``iteration_main_file.csv`` to run multiple scenario runs, which has to be configured properly. If ``no``, a single run occurs.
+    If ``yes``, DIETERpy uses ``iteration_table.csv`` to run multiple scenario runs, which has to be configured properly. If ``no``, a single run occurs.
 
 skip_input: *yes/no*
     Generates the necessary input gdx files from the input excel files. If ``yes``, this generation is skipped, and the ``gdx_input folder`` must already contain the correct gdx files. This can be useful to save time if only the model has been changed without the data. If ``no``, input excel files are transformed to input gdx files.
@@ -160,14 +160,14 @@ heat: Heat provision
 
 Iteration
 --------------------------------------------------------------------------------------
-``iteration_main_file.csv``: This file is central to define scenario runs. If only a single run is wished, this file can be left untouched.
+``iteration_table.csv``: This file is central to define scenario runs. If only a single run is wished, this file can be left untouched.
 
 The only required column is *run* as well as the respective number of each run (1, 2, 3, ...). To change data, countries, values, etc. between runs, the column headers of that file have to be changed accordingly which will be explained briefly in the following. 
 
 Countries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To vary the set of nodes between the different scenario runs, add the column ``country_set`` to ``iteration_main_file.csv``. The row values of that column define the nodes to be considered for the respective run. No value means that all available nodes are included.
+To vary the set of nodes between the different scenario runs, add the column ``country_set`` to ``iteration_table.csv``. The row values of that column define the nodes to be considered for the respective run. No value means that all available nodes are included.
 
 .. csv-table:: Example nodes
    :header: "run","country_set"
@@ -181,7 +181,7 @@ In this example, the first scenario run uses all available nodes (as provided ``
 Time series
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To vary time series data between different runs, add the column ``time_series_scen`` to ``iteration_main_file.csv``. When you don't add that column or leave the column ``time_series_scen`` empty, the model will take the default time series. By adding an identifier in the column ``time_series_scen``, you can specify for every run, which data is to be used. You have to make sure that to edit the ``iteration_data_file.xlsx`` file accordingly.
+To vary time series data between different runs, add the column ``time_series_scen`` to ``iteration_table.csv``. When you don't add that column or leave the column ``time_series_scen`` empty, the model will take the default time series. By adding an identifier in the column ``time_series_scen``, you can specify for every run, which data is to be used. You have to make sure that to edit the ``iteration_data_file.xlsx`` file accordingly.
 
 Let's assume that you want to use three different time series scenarios: (1) German demand varied, (2) German capacity factors for PV and onshore wind varied, and (3) German and French demand varied. For this, the sheet *scenario* in the file ``iteration_data_file.xlsx`` has to look like as following:
 
@@ -199,7 +199,7 @@ Let's assume that you want to use three different time series scenarios: (1) Ger
 
 For further details regarding the configuration of the file ``iteration_data_file.xlsx``, we refer to the section :ref:`data_options`.
 
-The ``iteration_main_file.csv`` has to be configured as following, assuming your first run uses default values:
+The ``iteration_table.csv`` has to be configured as following, assuming your first run uses default values:
 
 .. csv-table:: Example iteration file: time series
    :header: "run","time_series_scen"
@@ -217,7 +217,7 @@ to be explained (such as *constraint_minRES*)
 Variables & parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Values of parameter and variables can be set by adding the name of that symbol as a column header to the ``iteration_main_file.csv``. You have to check in the ``model.gms`` file how exactly the symbol is called and defined. In the following, we provide some examples for better understanding.
+Values of parameter and variables can be set by adding the name of that symbol as a column header to the ``iteration_table.csv``. You have to check in the ``model.gms`` file how exactly the symbol is called and defined. In the following, we provide some examples for better understanding.
 
 Setting a value of a variable 
 ***************************************************

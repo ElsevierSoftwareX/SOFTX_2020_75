@@ -1,5 +1,5 @@
 feature,value,comment
-scenarios_iteration,yes,'yes' iteration_main_file.csv in iterationfiles folder must be configured properly. If 'no' a single run occurs
+scenarios_iteration,yes,'yes' iteration_table.csv in iterationfiles folder must be configured properly. If 'no' a single run occurs
 skip_input,no,"'no' generates input gdx files from excel files. 'yes' skips import, in such case gdx_input folder must contain gdx files"
 skip_iteration_data_file,no,select 'yes' to skip GDX creation of iterable time-series data from excel file
 base_year,2030,select the year for the time-series data. Verify this by accessing the time_series excel file

@@ -1,5 +1,5 @@
 In this example, we would like to see the optimal investments for each country when we reduce the annualized investment costs for the two components 'energy' and 'power' for Li-Ion battery. 
-We have to edit two files: iteration_main_file.csv in the folder 'iterationfiles' and features_node_selection.csv.
+We have to edit two files: iteration_table.csv in the folder 'iterationfiles' and features_node_selection.csv.
 
 The main iteration file modifies variables and constraints in the DIETER model.gms and also some default parameters that are included in excel files contained in the 'basicmodeldata' folder. All the remaining parameters, not included in the iteration remain intact as obtained from the excel files.
 

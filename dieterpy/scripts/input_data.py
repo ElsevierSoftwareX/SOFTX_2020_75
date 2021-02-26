@@ -324,7 +324,7 @@ def writeConstraintOpt(
     for constraint in itercon_dc.columns:
         if (
             constraint not in list_constraints
-        ):  # If list_constraints is missing all or some constraints, it means that these constraints were not present in iteration_main_file.csv
+        ):  # If list_constraints is missing all or some constraints, it means that these constraints were not present in iteration_table.csv
             # The first option of the contraint is selected as a default option from constraints_list.csv
             i = 0
             for con in itercon_dc[constraint]:
@@ -376,7 +376,7 @@ def writeConstraintOpt(
             else:
                 string_options = ",".join(itercon_dc[constraint].tolist())
                 raise Exception(
-                    f"{constraint_config} is not in {string_options}. Check for any typo in iteration_main_file.csv and compare with constraints_list.csv"
+                    f"{constraint_config} is not in {string_options}. Check for any typo in iteration_table.csv and compare with constraints_list.csv"
                 )
     return selected_constraints
 
@@ -472,7 +472,7 @@ def genStringOptData(iter_data_dict: dict, key: str) -> str:
 
 
 def genIterationDict(project_vars: dict, path: str) -> tuple:
-    """Function that creates the main iteration dict. First, a pandas DataFrame is imported from iteration_main_file.csv and then converted to a dictionary.
+    """Function that creates the main iteration dict. First, a pandas DataFrame is imported from iteration_table.csv and then converted to a dictionary.
 
     Args:
         project_vars (dict): project variables collected from project_variables.csv.
@@ -485,7 +485,7 @@ def genIterationDict(project_vars: dict, path: str) -> tuple:
         tuple: 2-element tuple containing
 
         - **iteration_main_dict** (*dict*): Main iteration dictionary that hold all relevant information for the different scenario runs. The keys of the dictionary are the block numbers, and every block contains a dictionary with information for each contained scenario.
-        - **list_constraints** (*str*): a list of constraints obtained from iteration_main_file.csv
+        - **list_constraints** (*str*): a list of constraints obtained from iteration_table.csv
     """
     # TODO: This function is too big, we should divide it into two or three parts
     if project_vars["scenarios_iteration"] == "no":
@@ -493,7 +493,7 @@ def genIterationDict(project_vars: dict, path: str) -> tuple:
     elif project_vars["scenarios_iteration"] == "yes":
         ##### MAIN FILE
         # Read main iteration file
-        iteration_main = pd.read_csv(os.path.join(path, "iteration_main_file.csv"))
+        iteration_main = pd.read_csv(os.path.join(path, "iteration_table.csv"))
         # remove from strings leading and trailing whitespaces in columns and cells
         iteration_main = iteration_main.rename(
             columns={k: k.strip() for k in iteration_main.columns}
@@ -763,7 +763,7 @@ def setCountryIteration(
 
 
 def setDataIteration(opt: GamsOptions, block_iter_dc: dict) -> tuple:
-    """collect the key of time_series_scen in iteration_main_file.csv
+    """collect the key of time_series_scen in iteration_table.csv
 
     Args:
         opt (GamsOptions): updated GAMS options.
@@ -775,7 +775,7 @@ def setDataIteration(opt: GamsOptions, block_iter_dc: dict) -> tuple:
         - **opt** (*GamsOptions*): updated GAMS options.
         - **data_scen_key** (*str*): identifier of time-series iteration data for a particular scenario.
     """
-    # if time_series_scen is not in iteration_main_file.csv
+    # if time_series_scen is not in iteration_table.csv
     if "time_series_scen" not in list(block_iter_dc.keys()):
         # Default switch data off
         opt.defines["py_iter_data_switch"] = '""'

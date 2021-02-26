@@ -25,6 +25,7 @@ The function value ``Z`` is made up of several terms.
 
 
 For the following terms, sums are formed as product of a costs parameter and a variable value and run over every hour `h` as well as all countries `n`. The objective function includes:
+
 * the sum of variable costs of conventional power plants (``sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )``), where ``c_m(n,dis)`` is the variable cost parameter of dispatchable technology ``dis`` in country ``n`` and ``G_L(n,dis,h)`` the generation of that technology in that country in hour ``h``. The function `map_n_tech(n, dis)` makes sure that only those country-plant combinations are summed over that are actually included in model and hence reduces the model size.
 * the costs attached to changing the generation of dispatchable power plants (``G_UP`` and ``G_DO``)
 * the costs attached to curtailment ``CU`` (variable) and ``c_cu`` (parameter) for non-dispatchable technologies ``nondis``.

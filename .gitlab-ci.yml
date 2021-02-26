@@ -18,7 +18,7 @@ pages:
   - python3.6 setup.py install
   - python3.6 -m pip install -U sphinx
   - python3.6 -m pip install -U sphinx-rtd-theme
-  - sphinx-build -b html ./docsfiles public
+  - sphinx-build -b html ./docs public
   artifacts:
     paths:
     - public

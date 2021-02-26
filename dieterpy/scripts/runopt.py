@@ -105,15 +105,18 @@ def main():
     ] = settings.TMP_DIR_ABS  # absolute path to the folder for temp files
 
     # import control and scenario variables from config folder
-    convar_dc = getConfigVariables(BASE["BASE_DIR_ABS"])
+    convar_dc = getConfigVariables(BASE["SETTINGS_DIR_ABS"])
 
     # generate input gdx files s.t. control variable skip_import
     active_gf, gdx_abspaths_dc = generateInputGDX(
-        BASE["INPUT_DIR_ABS"], BASE["BASE_DIR_ABS"], BASE["GDX_INPUT_ABS"], convar_dc
+        BASE["INPUT_DIR_ABS"],
+        BASE["SETTINGS_DIR_ABS"],
+        BASE["GDX_INPUT_ABS"],
+        convar_dc,
     )
 
     # get switch values for all global features
-    glob_feat_dc = getGlobalFeatures(BASE["BASE_DIR_ABS"], active_gf)
+    glob_feat_dc = getGlobalFeatures(BASE["SETTINGS_DIR_ABS"], active_gf)
 
     # Read list of constraints
     itercon_dc = getConstraintsdata(BASE["SETTINGS_DIR_ABS"])

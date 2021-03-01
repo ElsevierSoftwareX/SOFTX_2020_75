@@ -27,6 +27,14 @@
    model/model_equations
 
 .. toctree::
+   :caption: Applications
+   :hidden:
+   :maxdepth: 2
+
+   applications/diw
+   applications/external
+
+.. toctree::
    :caption: Examples
    :hidden:
    :maxdepth: 2

@@ -1,4 +1,4 @@
-.. _diw-application:
+.. _application-diw:
 
 =========================
 DIW

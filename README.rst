@@ -60,7 +60,10 @@ The developers are `Carlos Gaete-Morales (lead) <mailto:cdgaete@gmail.com>`_, Al
 Applications
 ***************
 
-DIETER has been used for numerous publications, both by DIW and external researchers. Please consult our :ref:`DIW<applications section>` for a full list of projects and descriptions of the DIETER version used.
+DIETER has been used for numerous publications, both by DIW and external researchers. Please consult our application section for a full list of projects and descriptions of the DIETER version used.
+
+* :ref:`application-diw`
+* :ref:`application-external`
 
 ***************
 License

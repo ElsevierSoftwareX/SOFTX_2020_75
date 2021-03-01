@@ -57,6 +57,12 @@ Authors
 The developers are `Carlos Gaete-Morales (lead) <mailto:cdgaete@gmail.com>`_, Alexander Roth and Martin Kittel, and Wolf-Peter Schill, in collaboration with Alexander Zerrahn.
 
 ***************
+Applications
+***************
+
+Lorem
+
+***************
 License
 ***************
 

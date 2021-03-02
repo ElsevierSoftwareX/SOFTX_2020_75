@@ -1,9 +1,9 @@
 Iteration
 -----------
 
-``iteration_table.csv``: This file is central to define scenario runs. If only a single run is wished, this file can be left untouched.
+``iteration_table.csv``: This file is central to define scenario runs. If only a single run is intended, this file needs no further configuration.
 
-The only required column is *run* as well as the respective number of each run (1, 2, 3, ...). To change data, countries, values, etc. between runs, the column headers of that file have to be changed accordingly which will be explained briefly in the following. 
+The only required column is *run* as well as the respective number of each run (1, 2, 3, ...). To vary data, the selection of countries to be modeled, constraints, etc. between runs, the column headers of that file have configured accordingly, which will be explained briefly in the following. 
 
 Countries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22,9 +22,19 @@ In this example, the first scenario run uses all available nodes (as provided ``
 Time series
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To vary time series data between different runs, add the column ``time_series_scen`` to ``iteration_table.csv``. When you don't add that column or leave the column ``time_series_scen`` empty, the model will take the default time series. By adding an identifier in the column ``time_series_scen``, you can specify for every run, which data is to be used. You have to make sure that to edit the ``iteration_data_file.xlsx`` file accordingly.
+To vary time-variant data between different runs, you have to configure two files. First, add the column ``time_series_scen`` to ``iteration_table.csv``. When you don't add that column or leave the column ``time_series_scen`` empty, the model will take the default time series. By adding an identifier in the column ``time_series_scen``, you can specify for every run, which data is to be used. 
 
-Let's assume that you want to use three different time series scenarios: (1) German demand varied, (2) German capacity factors for PV and onshore wind varied, and (3) German and French demand varied. For this, the sheet *scenario* in the file ``iteration_data_file.xlsx`` has to look like as following:
+Let's assume that you want to use three different time series scenarios: (1) German demand varied (scen1), (2) German capacity factors for PV and onshore wind varied (scen2), and (3) German and French demand varied (scen3). The ``iteration_table.csv`` has to be configured as following, assuming your first run uses default values:
+
+.. csv-table:: Example iteration file: time series
+   :header: "run","time_series_scen"
+
+   1, 
+   2,"scen1" 
+   3,"scen2"
+   4,"scen3"
+
+Edit the ``iteration_data_file.xlsx`` file such that the sheet *scenario* in the file ``iteration_data_file.xlsx`` looks as follows:
 
 .. csv-table:: Time series iteration: configuration Excel file
    :header: "","A","B","C","D","E","F"
@@ -40,20 +50,19 @@ Let's assume that you want to use three different time series scenarios: (1) Ger
 
 For further details regarding the configuration of the file ``iteration_data_file.xlsx``, we refer to the section :ref:`data_options`.
 
-The ``iteration_table.csv`` has to be configured as following, assuming your first run uses default values:
-
-.. csv-table:: Example iteration file: time series
-   :header: "run","time_series_scen"
-
-   1, 
-   2,"scen1" 
-   3,"scen2"
-   4,"scen3"
-
 Constrains
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-to be explained (such as *constraint_minRES*)
+There is a number of alternative constraints available in DIETERpy that (de-)activate carbon policy instruments. Currently available are the following constraint alternatives:
+
+.. csv-table:: Available constraint alternatives
+   :header: "indicator","constraint"
+
+   "rescon_3b","Maximum share of conventional generation in total demand, including storage losses."
+   "max_overall_CO2","There is a cap on the available carbon budget, which can accrue from generation across the entire spatial scope of the model."
+   "max_node_CO2","There is a country-specific cap on the available carbon budget, which can accrue from generation within the region."
+   
+To select the constraints, add the column ``XXX`` to ``iteration_table.csv``. What happens if no column is added? Are other configurations required?
 
 Variables & parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,9 +72,9 @@ Values of parameter and variables can be set by adding the name of that symbol a
 Setting a value of a variable 
 ***************************************************
 
-Let's assume you want to set the generation capacity of solar power in Germany to 25 GW in one run and to 50 GW in another run. First, you need to find the correct symbol for generation capacity in the GAMS model (``N_TECH(n,tech)``), then the identifier for solar power (``pv``), then the identifier for Germany (``DE``). In order to fix a variable to a specific value, you need to append ``.fx`` to the respective symbol name (before the brackets though). Then add the country and technology identifier with '' in the right place within the bracket. As ``N_TECH`` is defined in MV, you need to adjust your values accordingly.
+Let's assume you want to set the generation capacity of solar power in Germany to 25 GW in one run and to 50 GW in another run. First, you need to find the correct symbol for generation capacity in the GAMS model (``N_TECH(n,tech)``), then the identifier for solar power (``pv``), then the identifier for Germany (``DE``). In order to fix a variable to a specific value, you need to append ``.fx`` to the respective symbol name (before the brackets though). Then add the country and technology identifier with '' in the right place within the bracket. As ``N_TECH`` is defined in terms of MW, you need to adjust your values accordingly.
 
-In the first run, the PV capacity in Germany could be set freely (yet check possible limits in the ``static_input.xlsx`` file), set to 25 GW in the 2nd, and 50GW in the 3rd run:
+In the first run, the PV capacity in Germany could be set freely (yet check possible limits in the ``static_input.xlsx`` file), set to 25 GW in the 2nd, and 50 GW in the 3rd run:
 
 .. csv-table:: Example iteration file: variables
    :header: "run","country_set", "N_TECH.fx('DE','pv')"
@@ -86,7 +95,7 @@ Let's assume that you want to set these limits not only for Germany, but for all
 Setting a (lower/upper) limit of variable value
 ***************************************************
 
-Setting an lower or upper limit for a value of variable follows the same logic as fixing a value. Instead of appending ``.fx``, you append ``.lo`` for lower value and ``.up`` for upper value. Let's assume you want to set an lower limit for the generation capacity of PV in Germany (25 GW and 50 GW) and an upper limit to the generaetion capacity of nuclear power (10 GW and 5 GW). As reference, the first run does not define any limits:
+Setting an lower or upper limit for a value of variable follows the same logic as fixing a value. Instead of appending ``.fx``, you append ``.lo`` for lower value and ``.up`` for upper value. Let's assume you want to set an lower limit for the generation capacity of PV in Germany (25 GW and 50 GW) and an upper limit to the generation capacity of nuclear power (10 GW and 5 GW). As reference, the first run does not define any limits:
 
 .. csv-table:: Example iteration file: variable limits
    :header: "run","country_set", "N_TECH.lo('DE,'pv')", "N_TECH.up('DE,'nuc')"

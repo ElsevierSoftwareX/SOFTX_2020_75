@@ -8,7 +8,7 @@ Before running DIETERpy, you need first to create a new project. "Creating a new
 
 In our example, we want to create a new project called *firstproject* and use the console to create the project folder. Thus either open the console in the folder, where you want to create the project folder (e.g. in Windows by right-clicking and shift and choosing *Open Windows Terminal here*), or navigate to the desired folder within the console. Before creating the new project, activate your conda environment as described in the last section.
 
-Once you are in the right folder, type the following command::
+Once you are in the desired folder, type the following command::
 
     dieterpy create_project -n firstproject
 
@@ -18,7 +18,7 @@ or::
 
 .. warning:: We recommend to avoid blank spaces in the path that point to the project. Some GAMS versions do not recognize blanks spaces in paths (as documented `here <https://support.gams.com/platform:spaces_in_directory_or_file_name>`_) and could come back with an error.
 
-This command creates a folder structure which looks like the following and has the following folders and files.
+This command creates a folder and file structure as follows.
 
 .. code-block:: bash
 

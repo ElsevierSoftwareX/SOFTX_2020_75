@@ -7,7 +7,9 @@ Model
 Overview files
 ---------------
 
-Before running DIETERpy, you are able to change several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below.
+Before running DIETERpy, it is possible to configure several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below. This structure is generated automtically as described here_.
+
+.. here: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/create_project.html
 
 .. code-block:: bash
 
@@ -36,23 +38,21 @@ Below there is a short description for every file. A more detailed description a
 +=================================+============+===============================================================================================+
 |``manage.py``                    | yes        | Essential script to run the program or to convert gdx file to csv and other formats           |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``project_variables.csv``        | yes        | Main options file                                                                             |
-+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``features_node_selection.csv``  | yes        | Enables to (de-) activate certain features in certain nodes                                   |
+|``project_variables.csv``        | yes        | Main options file to configure the project                                                    |+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
+|``features_node_selection.csv``  | yes        | Enables (de-)activation of model features for each model node                                 |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``iteration_table.csv``          | yes        | Stores information on the different scenario runs                                             |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``iteration_data.xlsx``          | no         | Data to be changed over several model runs                                                    |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``static_input.xlsx``            | yes        | Contains static (non time-varying) input data for the model                                   |
+|``static_input.xlsx``            | yes        | Contains static (non time-varying) input parameter for the model                              |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``timeseries_input.xlsx``        | yes        | Contains time-varying input data for the model                                                |
+|``timeseries_input.xlsx``        | yes        | Contains time-variant input parameter for the model                                           |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``model.gms``                    | yes        | Contains the model itself (equations etc.), written in GAMS                                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``constraints_list.csv``         | ?          | List of optional constraints that can be chosen in different scenario runs                    |
-+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``reporting_symbols.csv``        | ?          | List of symbols (parameters, variables and equations) to be considered in the data report     |
+|``constraints_list.csv``         | ?          | List of optional contraints that can be selected in different scenario runs                   |+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
+|``reporting_symbols.csv``        | ?          | List of symbols (parameters, variables and equations) to be considered in the result reporting|
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 
 .. toctree::

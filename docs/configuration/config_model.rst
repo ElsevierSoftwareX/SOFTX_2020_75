@@ -4,9 +4,6 @@
 Model
 ********************
 
-Overview files
----------------
-
 Before running DIETERpy, it is possible to configure several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below. This structure is generated automtically as described here_.
 
 .. here: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/create_project.html
@@ -31,14 +28,15 @@ Before running DIETERpy, it is possible to configure several options regarding c
     │           └── reporting_symbols.csv
 
 
-Below there is a short description for every file. A more detailed description as well as further configurations and options are provided further down.
+Below there is a short description for every file. A more detailed description as well as further configurations and options are provided in the respective submenus.
 
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 | File name                       | Mandatory? |  Explanation                                                                                  |
 +=================================+============+===============================================================================================+
 |``manage.py``                    | yes        | Essential script to run the program or to convert gdx file to csv and other formats           |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``project_variables.csv``        | yes        | Main options file to configure the project                                                    |+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
+|``project_variables.csv``        | yes        | Main options file to configure the project                                                    |
++---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``features_node_selection.csv``  | yes        | Enables (de-)activation of model features for each model node                                 |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``iteration_table.csv``          | yes        | Stores information on the different scenario runs                                             |
@@ -51,15 +49,16 @@ Below there is a short description for every file. A more detailed description a
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``model.gms``                    | yes        | Contains the model itself (equations etc.), written in GAMS                                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``constraints_list.csv``         | ?          | List of optional contraints that can be selected in different scenario runs                   |+---------------------------------+------------+-----------------------------------------------------------------------------------------------+
+|``constraints_list.csv``         | ?          | List of optional contraints that can be selected in different scenario runs                   |
++---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``reporting_symbols.csv``        | ?          | List of symbols (parameters, variables and equations) to be considered in the result reporting|
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 
 .. toctree::
    :maxdepth: 1
 
-   files/project_variables
-   files/features_nodes
-   files/iteration.rst
-   files/constraints.rst
-   files/reporting.rst
+   project_variables
+   features_nodes
+   iteration.rst
+   constraints.rst
+   reporting.rst

@@ -57,6 +57,15 @@ Authors
 The developers are `Carlos Gaete-Morales (lead) <mailto:cdgaete@gmail.com>`_, Alexander Roth and Martin Kittel, and Wolf-Peter Schill, in collaboration with Alexander Zerrahn.
 
 ***************
+Applications
+***************
+
+DIETER has been used for numerous publications, both by DIW and external researchers. Please consult our applications section for a full list of projects and descriptions of the DIETER version used.
+
+* :ref:`application-diw`
+* :ref:`application-external`
+
+***************
 License
 ***************
 

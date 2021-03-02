@@ -13,13 +13,13 @@ skip_iteration_data_file: *yes/no*
     If the ``iteration_data_file.xlsx`` sheet has not been changed between runs, you can use ``yes`` to reduce computation time and skip the creation of gdx files from excel files. If data have been changed, make sure to use ``no`` so that changes in the data are imported to the model.
 
 base_year: e.g. *2030*
-    Choose the year of the time series data. Only relevant if several years are provided in the input data. Verify this in ``time_series.xlsx``.
+    Choose the year of the time series data. Only relevant if several years are provided in the input data. Verify this in ``timeseries_input.xlsx``.
 
 end_hour: e.g. *h336*
     For testing purposes, the model can run from h1 to *end_hour*. Default value is ``h8760`` which represents an entire year.
 
 dispatch_only: *yes/no*
-    If you select ``yes``, the model will run as a *dispatch only model*, which prohibits capacity additions and instead fixes power plant and storage capacities. Verify in the ``data_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
+    If you select ``yes``, the model will run in *dispatch only* mode, which means that power plant and storage capacities are fixed. Verify in the ``static_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
 
 network_transfer: *yes/no*
     Select ``yes`` to allow for electricity flows between nodes. Select ``no`` to set cross-nodal electricity flows to zero.

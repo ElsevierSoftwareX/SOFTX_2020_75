@@ -29,8 +29,8 @@ This command creates a folder and file structure as follows.
     │       │   ├── iteration_table.csv
     │       │   └── iteration_data.xlsx
     │       ├── data_input
-    │       │   ├── data_input.xlsx
-    │       │   └── time_series.xlsx
+    │       │   ├── static_input.xlsx
+    │       │   └── timeseries_input.xlsx
     │       ├── model
     │       │   └── model.gms
     │       └── settings

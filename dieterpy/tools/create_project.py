@@ -76,7 +76,10 @@ def create_project(project_name, template):
             destination_file_abspath = os.path.join(
                 cwd, settings.PROJECT_NAME, section, destination_filename
             )
-        elif destination_filename in ["data_input.xlsx", "time_series.xlsx"] or exists:
+        elif (
+            destination_filename in ["static_input.xlsx", "timeseries_input.xlsx"]
+            or exists
+        ):
             destination_file_abspath = os.path.join(
                 cwd,
                 settings.PROJECT_NAME,

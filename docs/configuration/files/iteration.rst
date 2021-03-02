@@ -17,7 +17,7 @@ To vary the set of nodes between the different scenario runs, add the column ``c
    2, "DE"
    3, "DE,FR"
 
-In this example, the first scenario run uses all available nodes (as provided ``data_input.xlsx``), the second run only Germany (``DE``), the third Germany and France (``"DE,FR"``). You will notice that the optimization time will be drastically lower for the 2nd and 3rd run. However, the model has to be recompiled between all three runs.
+In this example, the first scenario run uses all available nodes (as provided ``static_input.xlsx``), the second run only Germany (``DE``), the third Germany and France (``"DE,FR"``). You will notice that the optimization time will be drastically lower for the 2nd and 3rd run. However, the model has to be recompiled between all three runs.
 
 Time series
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,7 +74,7 @@ Setting a value of a variable
 
 Let's assume you want to set the generation capacity of solar power in Germany to 25 GW in one run and to 50 GW in another run. First, you need to find the correct symbol for generation capacity in the GAMS model (``N_TECH(n,tech)``), then the identifier for solar power (``pv``), then the identifier for Germany (``DE``). In order to fix a variable to a specific value, you need to append ``.fx`` to the respective symbol name (before the brackets though). Then add the country and technology identifier with '' in the right place within the bracket. As ``N_TECH`` is defined in terms of MW, you need to adjust your values accordingly.
 
-In the first run, the PV capacity in Germany could be set freely (yet, check possible limits in the ``data_input.xlsx`` file), set to 25 GW in the 2nd, and 50GW in the 3rd run:
+In the first run, the PV capacity in Germany could be set freely (yet check possible limits in the ``static_input.xlsx`` file), set to 25 GW in the 2nd, and 50 GW in the 3rd run:
 
 .. csv-table:: Example iteration file: variables
    :header: "run","country_set", "N_TECH.fx('DE','pv')"

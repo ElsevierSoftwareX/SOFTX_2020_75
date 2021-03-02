@@ -388,19 +388,19 @@ def GDXpostprocessing(
     base=None,
 ):
     if not any([csv_bool, pickle_bool, vaex_bool]):
-        print("All formats are set to False. No conversion required")
+        print("All formats are set to False. No conversion required.")
     else:
         if method == "direct":
             if input is None:
                 raise Exception(
-                    f"Wnen method is {method}, input must be a list of dictionaries. Dictionary is an output of solve functions"
+                    f"When method is {method}, input must be a list of dictionaries. Dictionary is an output of solve functions."
                 )
             else:
                 RUNS_list = input
         elif method == "global":
             if input is None:
                 raise Exception(
-                    f'Wnen method is {method}, input must be a string path that match glob format. e.g "/user/project1/data_output/*/*_config.yml"'
+                    f'When method is {method}, input must be a string path that match glob format. e.g "/user/project1/data_output/*/*_config.yml."'
                 )
             else:
                 RUNS_list = []
@@ -410,7 +410,7 @@ def GDXpostprocessing(
         elif method == "custom":
             if input is None:
                 raise Exception(
-                    f"Wnen method is {method}, input must be a list of strings. Absolute path to the corresponding scenario file *_config.yml"
+                    f"When method is {method}, input must be a list of strings. Absolute path to the corresponding scenario file *_config.yml."
                 )
             else:
                 RUNS_list = []
@@ -424,7 +424,7 @@ def GDXpostprocessing(
             except ImportError:
                 print('vaex is not installed. "pip install vaex"')
                 vaex_bool = False
-                print("vaex_bool has been set to False in scripts.GDXpostprocessing")
+                print("vaex_bool has been set to False in scripts.GDXpostprocessing.")
         else:
             pass
 

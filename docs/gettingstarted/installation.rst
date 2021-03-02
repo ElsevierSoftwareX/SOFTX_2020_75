@@ -43,7 +43,7 @@ Start the Anaconda Navigator and go on *Environments* and then *create*. Choose 
 
 **2. Console**
 
-Open a console (Anaconda Prompt, CMD, PowerShell, Windows Terminal) and create a new conda environment with the name *yourenvname* and the exemplary Python version *X.X* with the following command::
+Open a console (Anaconda Prompt, CMD, PowerShell, Windows Terminal) and create a new conda environment with the name *yourenvname* and the exemplary Python version *X.X* (we recommend 3.6) with the following command::
 
     $ conda create -n yourenvname python=X.X
 
@@ -62,6 +62,8 @@ Installation of the GAMS Python API
 DIETERpy relies on the Python API that is provided by GAMS. Before installing and using DIETERpy, you need first manually install it. 
 
 First, navigate to the correct folder in your GAMS installation such as ``C:/GAMS/win64/26.1/apifiles/Python/api_36``. The last part, ``api_36`` depends on the Python version you have installed in the step above.
+
+	$ cd C:/GAMS/win64/26.1/apifiles/Python/api_36
 
 In that folder, open a console and activate your conda environment which you just have created::
 

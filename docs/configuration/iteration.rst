@@ -50,7 +50,7 @@ Edit the ``iteration_data.xlsx`` file such that the sheet *scenario* looks as fo
 
 For further details regarding the configuration of the file ``iteration_data.xlsx``, we refer to the section :ref:`data_options`.
 
-Constrains
+Constraints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There is a number of alternative constraints available in DIETERpy that (de-)activate carbon policy instruments. Currently, users can choose between different formulations of *renewable energy share* constraints and *CO2 budget* constraints:
@@ -66,7 +66,9 @@ There is a number of alternative constraints available in DIETERpy that (de-)act
    "CO2 budget","constraint_carbon","max_overall_CO2", "There is a cap on the available carbon budget, which applies to the generation across the entire spatial scope of the model."
    "CO2 budget","constraint_carbon","max_node_CO2", "There is a country-specific cap on the available carbon budget, which applies to the generation within each region separately."
    
-To change the constraint in a specific run, add the value from the column *Identifer* to as a column to ``iteration_table.csv`` (hence ``constraint_minRES`` to vary a *RES share* and ``constraint_carbon`` a *CO2 budget*). In that respective column, choose the constraint type of your choice by adding the respective value (such as ``rescon_1b`` for the respective formulation). In case you do not specify anything, DIETERpy will use ``rescon_0a`` as *RES share* and ``max_node_CO2`` as *CO2 budget*.
+To change the constraint in a specific run, add the value from the column *Identifer* to as a column to ``iteration_table.csv`` (hence ``constraint_minRES`` to vary a *RES share* and ``constraint_carbon`` a *CO2 budget*). In that respective column, choose the constraint type of your choice by adding the respective value (such as ``rescon_1b`` for the respective formulation). 
+
+In case you do not specify any iterable constraint, DIETERpy will choose automatically the first values in the respective columns in the file ``constraints_list.csv`` to be considered in the model run: ``rescon_0a`` as *RES share* (``constraint_minRES``) and ``max_node_CO2`` as *CO2 budget* (``constraint_carbon``).
 
 A possible scenario setting, with changing *RES share* and *CO2 budget* formulations between runs, could be defined as follows:
 

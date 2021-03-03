@@ -19,7 +19,7 @@ for dirpath, dirnames, filenames in os.walk("dieterpy"):
 
 setup(
     name="dieterpy",
-    version="0.2.1",
+    version="0.2.2",
     packages=packages,
     author="Carlos Gaete-Morales",
     author_email="cdgaete@gmail.com",

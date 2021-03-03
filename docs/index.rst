@@ -54,3 +54,4 @@
    :maxdepth: 2
 
    misc/troubles
+   misc/team

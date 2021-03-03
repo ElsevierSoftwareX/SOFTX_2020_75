@@ -63,9 +63,11 @@ DIETERpy relies on the Python API that is provided by GAMS. Before installing an
 
 First, navigate to the correct folder in your GAMS installation such as ``C:/GAMS/win64/26.1/apifiles/Python/api_36``. The last part, ``api_36`` depends on the Python version you have installed in the step above.
 
+You can use your console and type::
+
 	$ cd C:/GAMS/win64/26.1/apifiles/Python/api_36
 
-In that folder, open a console and activate your conda environment which you just have created::
+In that folder, activate your conda environment which you just have created::
 
     $ conda activate yourenvname
 

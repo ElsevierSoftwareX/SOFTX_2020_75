@@ -31,7 +31,7 @@ infeasibility: *yes/no*
     Select ``yes`` to activate a slack variable in the energy balance of the model representing an unspecified generator. If demand cannot be met in a certain timestep, this generator will catch the missing generation, thus avoiding infeasibility of the optimization problem. Check the variable when debugging. Select ``no`` to deactivate this variable.
 
 GUSS: *yes/no*
-    Select ``yes`` to activate the "Gather-Update-Solve-Scatter" (GUSS) tool. The GUSS tool uses a `"GAMSCheckpoint" <https://www.gams.com/latest/docs/API_PY_TUTORIAL.html#PY_INIT_CHECKPOINT_RUNNING_JOB>` as a basis for solving several scenario runs. If several scenario runs are sufficiently similar (only single parameter or variable values varied), using the GUSS tool decrease the overall computation time to solve all scenarios because the model has to compiled only once. 
+    Select ``yes`` to activate the "Gather-Update-Solve-Scatter" (GUSS) tool. The GUSS tool uses a `GAMSCheckpoint <https://www.gams.com/latest/docs/API_PY_TUTORIAL.html#PY_INIT_CHECKPOINT_RUNNING_JOB>`__ as a basis for solving several scenario runs. If several scenario runs are sufficiently similar (only single parameter or variable values varied), using the GUSS tool decrease the overall computation time to solve all scenarios because the model has to compiled only once. 
 
 GUSS_parallel: *yes/no*
     If the *GUSS* is activated (see above), selection ``yes`` for this option will solve several scenario runs in parallel. Every scenario run is solved on single CPU thread, yet several scenarios at the same time in parallel. However, be aware that this option demands a high amount of RAM. If insufficient RAM is provided, the optimization can abort.
@@ -46,7 +46,7 @@ timeseries_input_file: filename e.g. *timeseries_input.xlsx*
     Name of the file (in the folder ``data_input``) that contains the time-varying data. If empty, the import of data is skipped.
 
 iteration_data_file: filename e.g. *iteration_data.xlsx*
-    Defines the file name of the file that contains the data for scneario iteration (if data will be varied in different scenario runs). If empty, the import of data is skipped.
+    Defines the file name of the file that contains the data for scenario iteration (if data will be varied in different scenario runs). If empty, the import of data is skipped.
 
 gdx_convert_parallel_threads: choose an integer, e.g. *4*
     Defines the number of CPU threads used to convert the output GDX files to other files. If ``0`` is chosen, the maximum number of CPU threads will be used.

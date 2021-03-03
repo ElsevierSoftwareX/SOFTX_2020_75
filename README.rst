@@ -60,7 +60,7 @@ The developers are `Carlos Gaete-Morales (lead) <mailto:cdgaete@gmail.com>`_, Al
 Applications
 ***************
 
-DIETER has been used for numerous publications, both by DIW and external researchers. Please have a look at our *Applications* section for a full list of DIW_ as well as external_ papers and projects. We provide detailed descriptions and the DIETER version used in the respective project.
+DIETER has been used for numerous publications, both by DIW and external researchers. Please have a look at our *Applications* section of our documentation for a full list of DIW_ as well as external_ papers and projects. There, we provide detailed descriptions and the DIETER version used in the respective projects.
 
 .. _DIW: https://diw-evu.gitlab.io/dieter_public/dieterpy/applications/diw.html
 .. _external: https://diw-evu.gitlab.io/dieter_public/dieterpy/applications/external.html

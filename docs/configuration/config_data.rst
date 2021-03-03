@@ -46,7 +46,7 @@ This files contains hourly time-variant input data organized in spreadsheet form
    "heat_pump","Temperature assumptions."
    "py","Configures data import."
 
-iteration_data_file.xlsx
+iteration_data.xlsx
 ----------------------------------------
 
 Explanations will be added soon.

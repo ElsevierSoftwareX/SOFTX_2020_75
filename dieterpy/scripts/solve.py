@@ -72,8 +72,18 @@ def scen_solve(scen_run, base, run, block):
 
     cp_file = base["tmp"][block]["cp_file"]
 
-    ws = GamsWorkspace()  # system_directory=sysdir, debug=DebugLevel.KeepFiles
+    tmp_path = base["TMP_DIR_ABS"]
+    rnd = secrets.token_hex(8)
+    tmp_path_unique = os.path.join(tmp_path, rnd)
+    tmp["TMP_PATH"] = tmp_path_unique
+    os.makedirs(tmp_path_unique, exist_ok=True)
+
+    ws = GamsWorkspace(
+        debug=DebugLevel.KeepFiles, working_directory=tmp_path_unique
+    )  # system_directory=gams_dir
+
     print("working_directory:", ws.working_directory)
+
     cp = ws.add_checkpoint(cp_file)
     job = ws.add_job_from_string(
         "".join([k + " = " + str(v) + "; " for k, v in scen_run.items()])

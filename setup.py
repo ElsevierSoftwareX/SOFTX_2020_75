@@ -40,7 +40,7 @@ setup(
     description="DIETERpy GAMS-Python framework of a power system model DIETER",
     classifiers=[
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: POSIX",

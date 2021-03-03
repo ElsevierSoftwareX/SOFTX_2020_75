@@ -20,19 +20,19 @@ If a ``0`` is set in the respective cell, that particular module is not activate
 A brief description of the modules below:
 
 dsm: Demand sight management
-    Add brief description here.
+    Explanations will be added soon.
 
 ev_endogenous: Endogenous electric vehicles
-    Add brief description here.
+    Explanations will be added soon.
 
 ev_exogenous: Exogenous electric vehicles
-    Add brief description here.
+    Explanations will be added soon.
 
 reserves: Reserves
-    Add brief description here.
+    Explanations will be added soon.
 
 prosumage: Prosumage
-    Add brief description here.
+    Explanations will be added soon.
 
 heat: Heat provision
-    Add brief description here.
+    Explanations will be added soon.

@@ -1567,6 +1567,7 @@ con5c_max_node_CO2(n)..
 con5c_max_overall_CO2..
          sum( (dis,h,n) , carbon_content(n,dis)/eta(n,dis) * G_L(n,dis,h)$(map_n_tech(n,dis)) ) =L= co2_cap * 1000000
 ;
+
 * ---------------------------------------------------------------------------- *
 ***** DSM constraints - curtailment *****
 * ---------------------------------------------------------------------------- *

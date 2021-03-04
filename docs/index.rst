@@ -25,6 +25,7 @@
 
    model/model_intro
    model/model_equations
+   model/model_symbols
 
 .. toctree::
    :caption: Applications

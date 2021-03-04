@@ -3,10 +3,11 @@ Symbols list
 #############################################
 
 
+All symbols can be obtained from the model :download:`here <../dieterpy/templates/base/model/model.gms>`
 
-.. csv-table:: Variables, domain and units (displayed relevant symbols only, complete list :download:`here <../dieterpy/templates/base/model/model.gms>`)
-   :file: ./data.csv
-   :widths: 100,25
+.. csv-table:: List of parameters including domain and units
+   :file: ./parameters.csv
+   :widths: 50,50,100, 200
    :header-rows: 1
 
 .. csv-table:: Parameters, domain and units

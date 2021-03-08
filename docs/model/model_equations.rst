@@ -4,10 +4,10 @@
 Principal equations
 ******************************
 
-This section does not explain all equations in detail, but focuses on a few important equations:
+This section provides introductory explanations for a few central equations of the power sector model DIETERpy uses. More equations and explanations will be added subsequently.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    equations/eq_objective
    equations/eq_balance

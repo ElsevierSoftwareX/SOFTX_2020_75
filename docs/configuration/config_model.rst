@@ -57,6 +57,6 @@ Below there is a short description for every file. A more detailed description a
 
    project_variables
    features_nodes
-   iteration.rst
    constraints.rst
+   iteration.rst
    reporting.rst

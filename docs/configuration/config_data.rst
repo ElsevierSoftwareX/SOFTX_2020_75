@@ -49,4 +49,8 @@ This files contains hourly time-variant input data organized in spreadsheet form
 iteration_data.xlsx
 ----------------------------------------
 
-Explanations will be added soon.
+*Detailed explanations will be added soon.*
+
+For now, check the `time series iteration`_ section on how to configure the `iteration_data.xlsx` file.
+
+.. _time series iteration: https://diw-evu.gitlab.io/dieter_public/dieterpy/configuration/iteration.html#time-series

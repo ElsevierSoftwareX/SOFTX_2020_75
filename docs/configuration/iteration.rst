@@ -58,11 +58,11 @@ There is a number of alternative constraints available in DIETERpy that (de-)act
 .. csv-table:: Available constraint alternatives
    :header: "Constraint type","Identifer","Constraint","Explanation"
 
-   "RES share", "constraint_minRES","rescon_0a", "Maximum share of conventional generation in total demand, losses are fulfilled with the minRES share"
-   "RES share", "constraint_minRES","rescon_1b", "Maximum share of conventional generation in total demand, losses completely covered by RES"
-   "RES share", "constraint_minRES","rescon_2c", "Maximum share of conventional generation in total generation, losses covered by RES proportional to (1-phi_min_res)"
-   "RES share", "constraint_minRES","rescon_3b", "Maximum share of conventional generation in total demand, losses completely covered by RES"
-   "RES share", "constraint_minRES","rescon_4e", "Maximum share of conventional generation in total demand, losses fulfilled in proportion to RES share"
+   "RES share", "constraint_minRES","rescon_0a", "Maximum share of conventional generation in total demand, losses are fulfilled with the minRES share".
+   "RES share", "constraint_minRES","rescon_1b", "Maximum share of conventional generation in total demand, losses completely covered by RES".
+   "RES share", "constraint_minRES","rescon_2c", "Maximum share of conventional generation in total generation, losses covered by RES proportional to (1-phi_min_res)".
+   "RES share", "constraint_minRES","rescon_3b", "Maximum share of conventional generation in total demand, losses completely covered by RES".
+   "RES share", "constraint_minRES","rescon_4e", "Maximum share of conventional generation in total demand, losses fulfilled in proportion to RES share".
    "CO2 budget","constraint_carbon","max_overall_CO2", "There is a cap on the available carbon budget, which applies to the generation across the entire spatial scope of the model."
    "CO2 budget","constraint_carbon","max_node_CO2", "There is a country-specific cap on the available carbon budget, which applies to the generation within each region separately."
    
@@ -83,7 +83,10 @@ A possible scenario setting, with changing *RES share* and *CO2 budget* formulat
 Variables & parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Values of parameter and variables can be set by adding the name of that symbol as a column header to the ``iteration_table.csv``. You have to check in the ``model.gms`` file how exactly the symbol is called and defined. In the following, we provide some examples for better understanding.
+Values of parameter and variables can be set by adding the name of that symbol as a column header to the ``iteration_table.csv``. You can either check in the  ``model.gms`` file which symbol you want to vary or have a look at the section :ref:`symbols <symbols_list>` where we list all symbols that can be varied. In the following, we provide some examples for a better understanding how variable and parameter iteration works in DIETERpy.
+
+.. warning:: 
+   When varying variable and parameter values, please note that you can only vary those symbols that are actually used in the model (e.g. derived parameters). If you were to try to vary a parameter that is only used as base for another parameter but not used itself in an equation, then our iteration tool would still run (no error returned) but the parameter used in the equation would not be varied.
 
 Setting a value of a variable 
 ***************************************************

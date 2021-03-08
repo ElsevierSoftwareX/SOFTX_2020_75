@@ -6,7 +6,7 @@ Symbols list
 
 All symbols can be obtained from the model :download:`here <../../dieterpy/templates/base/model/model.gms>`.
 
-Sets, subsets and description
+Sets and subsets
 ---------------------------------------------------
 
 .. csv-table:: 
@@ -14,7 +14,7 @@ Sets, subsets and description
    :widths: 50,70,200
    :header-rows: 1
 
-List of parameters including domain and units
+Parameters
 ---------------------------------------------------
 
 .. csv-table:: 
@@ -22,7 +22,7 @@ List of parameters including domain and units
    :widths: 50,50,100,200
    :header-rows: 1
 
-List of variables including domain and units
+Variables
 ---------------------------------------------------
 
 .. csv-table:: 

@@ -11,6 +11,7 @@ Countries
 To vary the set of nodes between the different scenario runs, add the column ``country_set`` to ``iteration_table.csv``. The row values of that column define the nodes to be considered for the respective run. No value means that all available nodes are included.
 
 .. csv-table:: Configuration ``iteration_table.csv``: nodes
+   :widths: 5, 25
    :header: "run","country_set"
 
    1, 
@@ -27,6 +28,7 @@ To vary time-variant data between different runs, you have to configure two file
 Let's assume that you want to use three different time series scenarios: (1) German demand varied (scen1), (2) German capacity factors for PV and onshore wind varied (scen2), and (3) German and French demand varied (scen3). The ``iteration_table.csv`` has to be configured as following, assuming your first run uses default values:
 
 .. csv-table:: Configuration ``iteration_table.csv``: time-variant data
+   :widths: 5, 25
    :header: "run","time_series_scen"
 
    1, 
@@ -58,11 +60,11 @@ There is a number of alternative constraints available in DIETERpy that (de-)act
 .. csv-table:: Available constraint alternatives
    :header: "Constraint type","Identifer","Constraint","Explanation"
 
-   "RES share", "constraint_minRES","rescon_0a", "Maximum share of conventional generation in total demand, losses are fulfilled with the minRES share".
-   "RES share", "constraint_minRES","rescon_1b", "Maximum share of conventional generation in total demand, losses completely covered by RES".
-   "RES share", "constraint_minRES","rescon_2c", "Maximum share of conventional generation in total generation, losses covered by RES proportional to (1-phi_min_res)".
-   "RES share", "constraint_minRES","rescon_3b", "Maximum share of conventional generation in total demand, losses completely covered by RES".
-   "RES share", "constraint_minRES","rescon_4e", "Maximum share of conventional generation in total demand, losses fulfilled in proportion to RES share".
+   "RES share", "constraint_minRES","rescon_0a", "Maximum share of conventional generation in total demand, losses are fulfilled with the minRES share."
+   "RES share", "constraint_minRES","rescon_1b", "Maximum share of conventional generation in total demand, losses completely covered by RES."
+   "RES share", "constraint_minRES","rescon_2c", "Maximum share of conventional generation in total generation, losses covered by RES proportional to (1-phi_min_res)."
+   "RES share", "constraint_minRES","rescon_3b", "Maximum share of conventional generation in total demand, losses completely covered by RES."
+   "RES share", "constraint_minRES","rescon_4e", "Maximum share of conventional generation in total demand, losses fulfilled in proportion to RES share."
    "CO2 budget","constraint_carbon","max_overall_CO2", "There is a cap on the available carbon budget, which applies to the generation across the entire spatial scope of the model."
    "CO2 budget","constraint_carbon","max_node_CO2", "There is a country-specific cap on the available carbon budget, which applies to the generation within each region separately."
    
@@ -73,6 +75,7 @@ In case you do not specify any iterable constraint, DIETERpy will choose automat
 A possible scenario setting, with changing *RES share* and *CO2 budget* formulations between runs, could be defined as follows:
 
 .. csv-table:: Configuration ``iteration_table.csv``: constraints
+   :widths: 5, 15, 15
    :header: "run","constraint_minRES","constraint_carbon"
 
    1,"rescon_1b",
@@ -96,6 +99,7 @@ Let's assume you want to set the generation capacity of solar power in Germany t
 In the first run, the PV capacity in Germany could be set freely (yet check possible limits in the ``static_input.xlsx`` file), set to 25 GW in the 2nd, and 50 GW in the 3rd run:
 
 .. csv-table:: Configuration ``iteration_table.csv``: variables (1)
+   :widths: 5, 15, 15
    :header: "run","country_set", "N_TECH.fx('DE','pv')"
 
    1, , 
@@ -105,6 +109,7 @@ In the first run, the PV capacity in Germany could be set freely (yet check poss
 Let's assume that you want to set these limits not only for Germany, but for all countries. Then your sheet has to look like the following. Note that ``'DE'`` has been replace by ``n`` (without ''), so it applies to the entire set ``n``:
 
 .. csv-table:: Configuration ``iteration_table.csv``: variables (2)
+   :widths: 5, 15, 15
    :header: "run","country_set", "N_TECH.fx(n,'pv')"
 
    1, , 
@@ -117,6 +122,7 @@ Setting a (lower/upper) limit of variable value
 Setting an lower or upper limit for a value of variable follows the same logic as fixing a value. Instead of appending ``.fx``, you append ``.lo`` for lower value and ``.up`` for upper value. Let's assume you want to set an lower limit for the generation capacity of PV in Germany (25 GW and 50 GW) and an upper limit to the generation capacity of nuclear power (10 GW and 5 GW). As reference, the first run does not define any limits:
 
 .. csv-table:: Configuration ``iteration_table.csv``: variable limits
+   :widths: 5, 15, 15, 15
    :header: "run","country_set", "N_TECH.lo('DE,'pv')", "N_TECH.up('DE,'nuc')"
 
    1, , 
@@ -129,6 +135,7 @@ Setting a value of a parameter
 Setting a value of a parameter has the same logic as for a variable, except that you can leave out the suffices ``.fx .lo .up``. Let's assume you want to run a two-country scenario (DE & FR) and you want to set the share of renewable energy (``phi_min_res_exog(n)``) of Germany to 50% in the 1st, and to 75% in the 2nd run. In the 3rd and 4th run these values should apply to both countries. Whenever you leave a cell empty, the default value will be taken:
 
 .. csv-table:: Configuration ``iteration_table.csv``: parameters
+   :widths: 5, 15, 15, 15
    :header: "run", "country_set", "phi_min_res_exog('DE')", "phi_min_res_exog(n)"
 
    1,"DE,FR",0.50, 

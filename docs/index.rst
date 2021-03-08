@@ -10,7 +10,7 @@
    gettingstarted/run_model
 
 .. toctree::
-   :caption: Configurations
+   :caption: User Guide
    :hidden:
    :maxdepth: 2
 
@@ -54,4 +54,4 @@
    :hidden:
    :maxdepth: 2
 
-   misc/troubles
+   misc/contributing

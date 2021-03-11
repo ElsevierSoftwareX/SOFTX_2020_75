@@ -22,6 +22,10 @@ DIETERpy is a Python-based tool that enables an easy pre- and post-processing of
 
 .. _DIETERgms: https://gitlab.com/diw-evu/dieter_public/dietergms
 
+
+.. youtube:: n7L0i5Dc5fM
+   
+
 ***************
 Installation
 ***************

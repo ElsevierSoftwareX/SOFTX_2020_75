@@ -14,7 +14,7 @@ def parser():
     # add positional argument create_project and run
     parser.add_argument(
         "command",
-        help='This argument can be "create_project","run", or "gdxconvert"',
+        help='This argument can be "create_project","run", "gdxconvert", "create_report", or "web"',
         type=str,
     )
     parser.add_argument(
@@ -53,6 +53,12 @@ def parser():
         help='Optional argument for "web". This argument can be "all" or "report"',
         type=str,
     )
+    parser.add_argument(
+        "-tl",
+        "--template_list",
+        help='Optional argument for "create_project". Mutually exclusive argument along with --method. Either of the two must be included',
+        action="store_true",
+    )
 
     args = parser.parse_args()
     return args
@@ -78,9 +84,14 @@ def main():
             else:
                 tmpl = "base"
             return create_project(args.name, tmpl)
+        elif args.template_list:
+            # TODO: look at template folder and create a list of folder names of example
+            print(
+                " 1.   example1: An example project that runs four scenarios. The annualized investment cost of energy and power capacity are modified for Li-ion battery in several european countries."
+            )
         else:
             raise Exception(
-                "Create_project argument must have a project name as --name argument"
+                "Create_project argument must have a project name as --name argument or --template_list"
             )
     else:
         try:
@@ -91,7 +102,7 @@ def main():
                 "available on your PYTHONPATH environment variable? Did you "
                 "forget to activate a virtual environment?"
             ) from exc
-        
+
         from .tools import module_from_file
         from .config import settings
 
@@ -105,6 +116,7 @@ def main():
             ) from exc
         if args.command == "run":
             from .scripts import runopt
+
             print("Running DIETER model\n ")
             return runopt.main()
         elif args.command == "gdxconvert":
@@ -185,19 +197,11 @@ def main():
                     base=BASE,
                 )
             else:
-                raise Exception(
-                    '--method is a required argument. It can be "global" or "custom"'
-                )
+                raise Exception("--method is required arguments.")
         elif args.command == "create_report":
 
-            try:
-                from .scripts.report import CollectScenariosPerSymbol
-            except ImportError as exc:
-                raise ImportError(
-                    "Couldn't import dieterpy. Are you sure it's installed and "
-                    "available on your PYTHONPATH environment variable? Did you "
-                    "forget to activate a virtual environment?"
-                ) from exc
+            from .scripts.report import CollectScenariosPerSymbol
+
             print(
                 "Generating report files:\nCollecting all pickle files that contain the symbols"
             )
@@ -216,8 +220,9 @@ def main():
                 )
 
         elif args.command == "web":
-            
+
             import sys
+
             try:
                 from streamlit import cli as stcli
             except ImportError as exc:
@@ -229,11 +234,15 @@ def main():
                 import matplotlib
             except ImportError as exc:
                 print("plotly or/and matplotlib is/are not installed!")
-                print("These packages are required for visualization within streamlit, please install them:")
+                print(
+                    "These packages are required for visualization within streamlit, please install them:"
+                )
                 print(">> pip install plotly")
                 print(">> pip install matplotlib==3.1.3")
-                raise ImportError("plotly or/and matplotlib is/are not installed!") from exc
-            
+                raise ImportError(
+                    "plotly or/and matplotlib is/are not installed!"
+                ) from exc
+
             if not args.web:
                 sys.argv = [
                     "streamlit",

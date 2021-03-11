@@ -14,8 +14,8 @@
    :hidden:
    :maxdepth: 2
 
-   configuration/config_prog
    configuration/config_model
+   configuration/config_prog
    configuration/config_data
 
 .. toctree::

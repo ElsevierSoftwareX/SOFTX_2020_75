@@ -1,0 +1,11 @@
+Type,Symbol & domain,Description and units
+Costs,"c_m(n,tech)",Marginal production costs for conventional plants [EUR per MWh]
+Costs,"c_i(n,tech)",Annualized investment costs by conventioanl plant [EUR per MW]
+Costs,"c_i_res(n,tech)",Annualized investment costs by renewable plant [EUR per MW]
+Costs,"c_i_sto_e(n,sto)",Annualized investment costs storage energy [EUR per MWh]
+Costs,"c_i_sto_p(n,sto)",Annualized investment costs storage capacity [EUR per MW]
+Costs,"c_i_rsvr_e(n,rsvr)",Annualized investment costs storage energy [EUR per MWh]
+Costs,"c_i_rsvr_p(n,rsvr)",Annualized investment costs storage capacity [EUR per MW]
+Costs,"c_i_dsm_cu(n,dsm)",DSM: Annualized investment costs load curtailment [EUR per MW]
+Costs,"c_i_dsm_shift(n,dsm)",DSM: Annualized investment costs load shifting [EUR per MW]
+Costs,c_i_ntc(l),Investment for net transfer capacity [EUR per MW and km]

@@ -22,6 +22,14 @@ Parameters
    :widths: 50,50,100,200
    :header-rows: 1
 
+Derived parameters
+---------------------------------------------------
+   
+.. csv-table::
+   :file: ./derived_parameters.csv
+   :widths: 50,100,200
+   :header-rows: 1
+
 Variables
 ---------------------------------------------------
 

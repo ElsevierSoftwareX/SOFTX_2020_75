@@ -30,7 +30,7 @@ DIETERpy is a Python-based tool that enables an easy pre- and post-processing of
 Installation
 ***************
 
-DIETERpy can is distributed on PyPI_ and can installed with ``pip``:
+DIETERpy is distributed on PyPI_ and can installed with ``pip``:
 
 .. code-block:: console
 

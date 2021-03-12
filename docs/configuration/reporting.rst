@@ -8,7 +8,7 @@ The file ``reporting_symbols.csv`` has per default the following column headers:
 .. csv-table:: Column headers  ``reporting_symbols.csv``
    :header: "basic","reserves","prosumage","dsm","heat","ev_endogenous","ev_exogenous"
 
-   ,,,,,,,
+   ,,,,,,
 
 If reporting is activated, DIETERpy will consider the symbols noted in the column *basic* and will generate report files for every symbol in that column. In case a special module is activated in the ``features_node_selection.csv`` file, the respective column in ``reporting_symbols.csv`` will also be considered and the symbols of that column will also be reported in addition.
 

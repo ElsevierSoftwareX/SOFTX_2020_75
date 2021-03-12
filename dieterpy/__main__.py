@@ -87,7 +87,7 @@ def main():
         elif args.template_list:
             # TODO: look at template folder and create a list of folder names of example
             print(
-                " 1.   example1: An example project that runs four scenarios. The annualized investment cost of energy and power capacity are modified for Li-ion battery in several european countries."
+                " 1.   example1: This example project runs three scenarios. The annualized investment cost of energy and power capacity are modified for Li-Ion battery for several european countries."
             )
         else:
             raise Exception(

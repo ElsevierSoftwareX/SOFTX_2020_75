@@ -38,7 +38,7 @@
 .. toctree::
    :caption: Examples
    :hidden:
-   :maxdepth: 2
+   :maxdepth: 1
 
    examples/examples
 

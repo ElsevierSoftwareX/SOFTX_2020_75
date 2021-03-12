@@ -3,15 +3,50 @@
 Example 1
 ---------
 
-In this example, we would like to see each country's optimal investments when we reduce the annualized investment costs for the two components 'energy' and 'power' for the Li-Ion battery.
+**Optimal investment and dispatch of generating technologies and storage at different annualized costs for Li-Ion battery**
 
-We have to edit two files: iteration_table.csv in the iterationfiles folder and features_node_selection.csv.
+In this example, we would like to study the efect on country's optimal investments when we reduce the annualized investment costs for the two components 'energy' and 'power' of the Li-Ion battery.
 
-The iteration_table.csv modifies variables and constraints in the DIETER (model.gms) and parameters included in excel files contained in the 'data_input' folder. All the remaining parameters not included in the iteration remain intact as obtained from the excel files.
+To get the template folder:
 
-- We do not include a column heading 'country_set'. Doing this means that we will consider all the countries as included in the excel file.
-- We assume then that the set 'n' contains all the countries.
+.. code-block:: bash
 
-In the features_node_selection.csv, we have to deactivate all the activated features by replacing 1 to 0.
+    $ dieterpy create_project -n <give a name> -t example1
 
-See the project_variables.csv to understand the structure.
+To understand the configuration of the model:
+
+1. Scan the default data for parameters by looking at two excel files on folder `data_input`.
+2. Scan the iteration_table.csv file on folder `iterationfiles`.
+3. Scan the features_node_selection.csv file on folder `settings`.
+4. Scan the project_variables.csv file on folder `settings`.
+5. Scan the reporting_symbols.csv file on folder `settings`.
+
+In this example the most relevant configuration is the `iteration_table.csv` as we vary two parameters ``c_i_sto_e`` and ``c_i_sto_p`` that represent the annualized costs of storage technologies for energy and power capacity. The run 0 can be considered as reference scenario. The annualized costs in run 1 represent a 50% of reference values and the run 2 a 25%.
+
+The parameters domain can be obtained :ref:`here <symbols_list>`. For both parameters, two sets are identified ``n`` and ``sto``. The set of countries is represented by ``n`` and for storage technologies ``sto``. For parameters as well as for variables the domain can be represented by the set it self or only an element of the set. In this example, the parameters have the same value for all countries as ``n`` represents the set, while for sto only an element is assigned ``'Li-Ion'``. Elements of sets must be placed with quotation marks.
+
+After finishing the optimization the results can be visualized by openning the browser interfce. See below some exemplary charts.
+
+.. image:: ./eg1/summary.png
+    :alt: Summary
+    :align: center
+
+.. image:: ./eg1/capacities_overall.png
+    :alt: Overall power capacity and energy capacity
+    :align: center
+
+.. image:: ./eg1/tech_capacity_country.png
+    :alt: Generating technology power capacity by country
+    :align: center
+
+.. image:: ./eg1/tech_generation_overall.png
+    :alt: Overall electricity generatarion by technology
+    :align: center
+
+.. image:: ./eg1/import-export_lines.png
+    :alt: Import and export of electricty through transmission lines
+    :align: center
+
+.. image:: ./eg1/rldc_DE_2.png
+    :alt: Residual load curve by technology for S02 Germany (DE)
+    :align: center

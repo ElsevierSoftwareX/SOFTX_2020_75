@@ -19,13 +19,17 @@ We have used an argument in its two forms ``--name`` or ``-n`` to provide a dire
 There is another argument that can optionaly be provided whenever we want to copy a preset project.
 we call it ``template`` and the argument is ``--template`` or ``-t``. This argument is followed by the name of the desired template. To get the list of available templates you can type instead ``--template_list`` or ``-tl``.
 
-To get the templates' list::
+To get the templates' list:
 
-    dieterpy create_project --template_list
+.. code-block:: bash
 
-To copy a template project::
+    $ dieterpy create_project --template_list
 
-    dieterpy create_project --name firstproject --template example1
+To copy a template project:
+
+.. code-block:: bash
+
+    $ dieterpy create_project --name firstproject --template example1
 
 An example is described :ref:`here <example1>`.
 
@@ -33,9 +37,11 @@ An example is described :ref:`here <example1>`.
 Run a model
 ----------------------
 
-As described in previous :ref:`Model <model_options>` section. After the creation of a project folder and the customization of the model run by altering the configuration files, the optimization can be executed with the function ``run`` as follows::
+As described in previous :ref:`Model <model_options>` section. After the creation of a project folder and the customization of the model run by altering the configuration files, the optimization can be executed with the function ``run`` as follows:
 
-    dieterpy run
+.. code-block:: bash
+
+    $ dieterpy run
 
 The ``run`` function upmost target is run the optimization, but depending on the :ref:`project variables <project_variables>` selected, it would trigger subroutines in the following oder:
 
@@ -64,7 +70,7 @@ Example:
 
 .. code-block:: bash
 
-    dieterpy gdxconvert --method global --output csv-pickle --cores 1
+    $ dieterpy gdxconvert --method global --output csv-pickle --cores 1
 
 In this example we want to convert all scenarios' results from GDX to CSV and Pickle file format, and using only one core for the conversion of every symbol in each GDX file.
 
@@ -86,18 +92,20 @@ Create output report
 
 The function ``create_report`` consists of extracting from each scenario's pickle file a symbol at a time to create a new pickle file per symbol that contains all scenarios' symbol. This function does not have aditional arguments. The function generates an instance of a CollectScenariosPerSymbol class, this class looks through all pickle files in data_output folder. Each new pickle file is saved in a new directory named report_files.
 
-To generate reporting files::
+To generate reporting files:
 
-    dieterpy create_report
+.. code-block:: bash
+
+    $ dieterpy create_report
 
 The default configuration is defined as follow:
 
 .. code-block:: python
 
-    Data = CollectScenariosPerSymbol()
-    Data.collectinfo()
-    Data.join_all_symbols("v", False)
-    Data.join_scens_by_symbol("con1a_bal", "m", False, False)
+    >> Data = CollectScenariosPerSymbol()
+    >> Data.collectinfo()
+    >> Data.join_all_symbols("v", False)
+    >> Data.join_scens_by_symbol("con1a_bal", "m", False, False)
 
 
 From the above code snippet, the collectinfo method looks through all pickle files in the data_output folder to identify symbols in each file. The method join_all_symbols will use the information collected to extract symbol by symbol across all scenarios. The first argument can opt for two alternatives: ``v`` or ``m``. The option ``v`` stands for value for parameters or level for variables and equations, and ``m`` for marginal in variables and equations. We can infer from this piece of code that the function ``create_report`` collects all values or level from all symbols by default. From the equation `con1a_bal` representing the energy balance, the pickle file is generated with marginal values.
@@ -114,7 +122,7 @@ To run the browser interface type as follows:
 
 .. code-block:: bash
 
-    dieterpy web
+    $ dieterpy web
 
 .. warning:: To be able to run a local server the package streamlit must be installed beforehand as well as plotly and matplotlib. This can be done by typing :title:`>> pip install streamlit; pip install plotly; pip install matplotlib==3.1.3`.
 

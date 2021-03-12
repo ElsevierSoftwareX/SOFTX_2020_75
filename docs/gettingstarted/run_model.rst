@@ -11,7 +11,7 @@ Activate the conda environment in which you have installed DIETER. The active pa
 
 You can start the optimization by typing::
 
-    dieterpy run
+    $ dieterpy run
 
 Once the optimization has finished, you can analyze the output data. You find the output (depending on your configuration) in ``project_files/data_output`` and ``project_files/report_files``.
 

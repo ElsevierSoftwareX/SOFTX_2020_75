@@ -12,11 +12,11 @@ In our example, we want to create a new project called *firstproject* and use th
 
 Once you are in the desired folder, type the following command::
 
-    dieterpy create_project -n firstproject
+    $ dieterpy create_project -n firstproject
 
 or::
 
-    dieterpy create_project --name firstproject
+    $ dieterpy create_project --name firstproject
 
 .. warning:: We recommend to avoid blank spaces in the path that point to the project. Some GAMS versions do not recognize blanks spaces in paths and could come back with an error.
 

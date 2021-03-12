@@ -3,7 +3,7 @@ scenarios_iteration,yes,'yes' iteration_table.csv in iterationfiles folder must 
 skip_input,no,"'no' generates input gdx files from excel files. 'yes' skips import, in such case gdx_input folder must contain gdx files"
 skip_iteration_data_file,no,select 'yes' to skip GDX creation of iterable time-series data from excel file
 base_year,2030,select the year for the time-series data. Verify this by accessing the time_series excel file
-end_hour,h336,for testing purposes the model can run from h1 to end_hour. Default value is h8760
+end_hour,h8760,for testing purposes the model can run from h1 to end_hour. Default value is h8760
 dispatch_only,no,"select 'yes' for dispatch only, in such case the model runs with fixed power and energy capacities, to modify or verify this, check out the data input excel file"
 network_transfer,yes,select 'yes' to include energy transport among nodes
 no_crossover,yes,select 'yes' to avoid crossover. This parameter applies when CPLEX uses the Barrier Optimizer to solve an LP

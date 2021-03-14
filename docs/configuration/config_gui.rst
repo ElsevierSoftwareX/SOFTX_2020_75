@@ -53,5 +53,5 @@ Once the data has been loaded, a summary report of the scenarios with the sceena
 
 .. hint:: If the `report_files` folder does not exist or is empty, you can run the create_report_ function in the command line before loading the data. See also this reporting_list_ section to ensure the symbols you want to obtain are in your `report_files` folder.
 
-.. _create_report: ../../html/configuration/config_prog.html#create-output-report
-.. _reporting_list: ../../html/configuration/reporting.html
+.. _create_report: ../configuration/config_prog.html#create-output-report
+.. _reporting_list: ../configuration/reporting.html

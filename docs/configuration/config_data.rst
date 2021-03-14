@@ -56,7 +56,7 @@ iteration_data.xlsx
 
 For now, check the `time series iteration`_ section on how to configure the `iteration_data.xlsx` file.
 
-.. _time series iteration: ../../html/configuration/iteration.html#time-series
+.. _time series iteration: ../configuration/iteration.html#time-series
 
 Output data
 +++++++++++++

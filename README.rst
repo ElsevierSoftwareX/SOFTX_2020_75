@@ -39,7 +39,7 @@ DIETERpy is distributed on PyPI_ and can installed with ``pip``:
 Read the documentation to learn how to properly install_ DIETERpy.
 
 .. _PyPI: https://pypi.org/project/dieterpy
-.. _install: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/installation
+.. _install: https://diw-evu.gitlab.io/dieter_public/dieterpy/gettingstarted/installation.html
 
 *************************************
 Configuration and running the model

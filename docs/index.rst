@@ -17,6 +17,7 @@
    configuration/config_model
    configuration/config_prog
    configuration/config_data
+   configuration/config_gui
 
 .. toctree::
    :caption: Model

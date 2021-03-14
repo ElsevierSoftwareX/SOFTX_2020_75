@@ -4,7 +4,7 @@
 Program
 **********************
 
-In this section we present the comamnd line interface to run our project and make use of useful functions for processing and visualization of results. 
+In this section we present the comamnd line interface (CLI) to run our project and make use of useful functions for processing and visualization of results. 
 The functions are ``create_project``, ``run``, ``gdxconvert``, ``create_report`` and ``web``. To execute all functions we have to call first ``dieterpy`` as shown below.
 
 
@@ -113,10 +113,10 @@ From the above code snippet, the collectinfo method looks through all pickle fil
 The default configuration enables us to generate the required data for visualization by using the browser interface described below.
 
 
-Start browser interface
-------------------------
+Start graphical user interface
+--------------------------------
 
-To run the browser interface for visualization of the results, the report_files folder must contain the pickle files of symbols.
+To run the graphical user interface (GUI) for visualization of the results, the report_files folder must contain the pickle files of symbols.
 
 To run the browser interface type as follows:
 

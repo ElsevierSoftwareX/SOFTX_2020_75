@@ -47,9 +47,9 @@ Below there is a short description for every file. A more detailed description a
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``model.gms``                    | yes        | Contains the model itself (equations etc.), written in GAMS                                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``constraints_list.csv``         | yes         | List of optional contraints that can be selected in different scenario runs                   |
+|``constraints_list.csv``         | yes        | List of optional contraints that can be selected in different scenario runs                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``reporting_symbols.csv``        | yes         | List of symbols (parameters, variables and equations) to be considered in the result reporting|
+|``reporting_symbols.csv``        | yes        | List of symbols (parameters, variables and equations) to be considered in the result reporting|
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 
 .. toctree::

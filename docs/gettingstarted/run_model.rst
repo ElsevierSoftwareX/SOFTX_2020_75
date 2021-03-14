@@ -20,13 +20,17 @@ Method 2: from Python with installation (advanced)
 
 You can also run DIETERpy directly from the Python console. However, you have to provide some additional information in order to run the model successfully. 
 
-Open a Python console (make sure that the correct conda environment is activated) and import the DIETERpy package::
+Open a Python console (make sure that the correct conda environment is activated) and import the DIETERpy package:
+
+.. code-block:: python
 
     >>> import dieterpy
     >>> from dieterpy.scripts import runopt
     >>> from dieterpy.config import settings
 
-Then set the correct path so that DIETERpy finds your project folder::
+Then set the correct path so that DIETERpy finds your project folder:
+
+.. code-block:: python
 
     >>> settings.PROJECT_DIR_ABS = "<here the absolute path to the project directory as string>"
     >>> settings.update_changes()

@@ -14,27 +14,20 @@
    :hidden:
    :maxdepth: 2
 
-   configuration/config_model
    configuration/config_prog
-   configuration/config_data
    configuration/config_gui
+   configuration/config_model
+   configuration/config_data
+   configuration/config_output
 
 .. toctree::
-   :caption: Model
+   :caption: Optimization model
    :hidden:
    :maxdepth: 2
 
    model/model_intro
    model/model_equations
    model/model_symbols
-
-.. toctree::
-   :caption: Applications
-   :hidden:
-   :maxdepth: 2
-
-   applications/diw
-   applications/external
 
 .. toctree::
    :caption: Examples
@@ -44,11 +37,19 @@
    examples/examples
 
 .. toctree::
-   :caption: Functions
+   :caption: API
    :hidden:
    :maxdepth: 2
 
    src/modules
+
+.. toctree::
+   :caption: Applications
+   :hidden:
+   :maxdepth: 2
+
+   applications/diw
+   applications/external
 
 .. toctree::
    :caption: Misc

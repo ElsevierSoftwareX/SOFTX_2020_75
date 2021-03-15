@@ -1,7 +1,7 @@
 .. _data_options:
 
 **********************
-Model data input
+Input data
 **********************
 
 static_input.xlsx

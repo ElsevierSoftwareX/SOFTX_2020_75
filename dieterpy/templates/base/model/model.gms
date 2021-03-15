@@ -1127,8 +1127,8 @@ con13a_rsvrlev_start(n,rsvr,h)   Reservoir level law of motion initial condition
 con13b_rsvrlev(n,rsvr,h)         Reservoir level law of motion
 con13c_rsvrlev_max(n,rsvr,h)     Maximum reservoir energy level
 con13d_maxout_rsvr(n,rsvr,h)     Maximum hourly reservoir outflow in relation to installed power capacity
-con13d2_minout_rsvr(n,rsvr,h)
-con13e_resrv_rsvr(n,rsvr,h)      Minimum hourly reservoir outflow in relation to provided negativr reserves
+con13d2_minout_rsvr(n,rsvr,h)    Minimum hourly reservoir outflow in relation to installed power capacity
+con13e_resrv_rsvr(n,rsvr,h)      Minimum hourly reservoir outflow in relation to provided negative reserves
 con13f_maxout_lev(n,rsvr,h)      Maximum hourly reservoir outflow in relation tom installed energy capacity
 con13g_ending(n,rsvr,h)          Reservoir level law of motion ending condition
 *con13h_smooth(n,rsvr,h)          Smooth reservoir outflow

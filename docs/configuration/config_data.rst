@@ -13,7 +13,7 @@ This files contains time-invariant input data organized in spreadsheet format.
    :header: "sheet","content"
 
    "LICENSE","Information on licensing." 
-   "spatial","Data on the underlying grid infrastructure." 
+   "spatial","Data on the underlying grid infrastructure and static bounds for net transfer capacities limiting electricity exchange." 
    "technologies","Techno-economic assumptions on available generation technologies."
    "storage","Techno-economic assumptions on available storage technologies."
    "reservoir","Techno-economic assumptions on available reservoir technologies."

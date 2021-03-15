@@ -21,7 +21,7 @@
    configuration/config_output
 
 .. toctree::
-   :caption: Optimization model
+   :caption: Economic model
    :hidden:
    :maxdepth: 2
 

@@ -35,18 +35,26 @@ Then set the correct path so that DIETERpy finds your project folder:
     >>> settings.PROJECT_DIR_ABS = "<here the absolute path to the project directory as string>"
     >>> settings.update_changes()
 
-Finally, run the model::
+Run the model:
+
+.. code-block:: python
 
     >>> runopt.main()
 
-TO BE EXPLAINED::
+The runopt.main() function reads the configuration files and executes the optimization. Depending on the caracterisitcs the project and which features we (de-) activated,  the program generates a dictionary object with the location of generated files and also with additional information that is required by other functions. We can store such dictionary in a variable as follows:
+
+.. code-block:: python
 
     >>> result_configuration_dict = settings.RESULT_CONFIG
+
+There are functions that are called on runopt.main(). We can use such functions again in the python interpreter for a customized implementation. Some relevant are, for instance, `GDXpostprocessing` to convert GDX files or the class `CollectScenariosPerSymbol` to create reporting files. See the the functions :ref:`here <tool_api>`.
 
 Method 3: from Python without installation (advanced)
 =====================================================
 
-It is also possible to run DIETERpy without installing the package. For that, you need to install the entire repository and ran the following commands from the Python console making sure that you are in the folder of DIETERpy::
+It is also possible to run DIETERpy without installing the package. For that, you need to install the entire repository and ran the following commands from the Python console making sure that you are in the folder of DIETERpy:
+
+.. code-block:: python
 
     >>> import dieterpy
     >>> from dieterpy.scripts import runopt
@@ -75,12 +83,16 @@ Then, you need to create a project *firstproject*, hence a structure of folders,
     │           ├── constraints_list.csv
     │           └── reporting_symbols.csv
 
-Then set the correct path so that DIETERpy finds your project folder where *firstproject* is located in::
+Then set the correct path so that DIETERpy finds your project folder where *firstproject* is located in:
+
+.. code-block:: python
 
     >>> settings.PROJECT_DIR_ABS = "<here the absolute path to the project directory as string>"
     >>> settings.update_changes()
 
-Finally, run the model::
+Finally, run the model:
+
+.. code-block:: python
 
     >>> runopt.main()
 

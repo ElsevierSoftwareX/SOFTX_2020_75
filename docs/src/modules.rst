@@ -1,5 +1,7 @@
-dieterpy
-========
+.. _tool_api:
+
+dieterpy api
+============
 
 .. toctree::
    :maxdepth: 4

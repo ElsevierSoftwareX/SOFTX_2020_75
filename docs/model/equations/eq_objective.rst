@@ -30,6 +30,8 @@ For the following terms, sums are formed as product of a costs parameter and a v
 * the costs attached to changing the generation of dispatchable power plants (``G_UP`` and ``G_DO``)
 * the costs attached to curtailment ``CU`` (variable) and ``c_cu`` (parameter) for non-dispatchable technologies ``nondis``.
 
+*Further explanations will be added soon.*
+
 DSM
 ****
 

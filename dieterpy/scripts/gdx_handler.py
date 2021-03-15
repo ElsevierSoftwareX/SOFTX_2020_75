@@ -19,6 +19,8 @@ from gdxcc import (
     gdxDataReadStr,
     gdxSymbolGetDomainX,
     gdxSymbolInfoX,
+    gdxClose,
+    gdxFree,
 )
 
 
@@ -51,6 +53,8 @@ def gdx_get_symb_info(gams_dir: str = None, filename: str = None, symbol: str = 
     ret, records, userinfo, description = gdxSymbolInfoX(gdxHandle, symidx)
     ret, gdx_domain = gdxSymbolGetDomainX(gdxHandle, symidx)
     gdxDataReadDone(gdxHandle)
+    gdxClose(gdxHandle)
+    gdxFree(gdxHandle)
     return (
         True,
         {
@@ -93,6 +97,8 @@ def gdx_get_set_coords(
         #  elements is a list. Therefore *elements
         coords.append(*elements)
     gdxDataReadDone(gdxHandle)
+    gdxClose(gdxHandle)
+    gdxFree(gdxHandle)
     return coords
 
 
@@ -121,6 +127,8 @@ def gdx_get_symb_list(gams_dir: str = None, filename: str = None) -> List[str]:
         SymbolInfo = gdxSymbolInfo(gdxHandle, symNr)
         symbols.append(SymbolInfo[1])
     gdxDataReadDone(gdxHandle)
+    gdxClose(gdxHandle)
+    gdxFree(gdxHandle)
     return symbols
 
 
@@ -150,9 +158,13 @@ def gdx_get_symb_recordnr(
     if ret:
         ret, nrRecs = gdxDataReadStrStart(gdxHandle, symidx)
         gdxDataReadDone(gdxHandle)
+        gdxClose(gdxHandle)
+        gdxFree(gdxHandle)
         return True, nrRecs
     else:
         gdxDataReadDone(gdxHandle)
+        gdxClose(gdxHandle)
+        gdxFree(gdxHandle)
         return False, None
 
 
@@ -219,6 +231,8 @@ def gdx_get_summary(gams_dir: str = None, filename: str = None) -> List[dict]:
     try:
         gdxOpenRead(gdxHandle, filename)
     except:
+        gdxClose(gdxHandle)
+        gdxFree(gdxHandle)
         raise Exception(f"File {filename} can not be opened")
     symbols = gdx_get_symb_list(filename=filename)
     sym_list = []
@@ -238,4 +252,6 @@ def gdx_get_summary(gams_dir: str = None, filename: str = None) -> List[dict]:
                 }
             )
     gdxDataReadDone(gdxHandle)
+    gdxClose(gdxHandle)
+    gdxFree(gdxHandle)
     return sym_list

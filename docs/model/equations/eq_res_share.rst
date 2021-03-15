@@ -10,6 +10,8 @@ In this section, we present the formulation *con5a_minRes_0a* of our renewable e
 con5a_minRes_0a
 ----------------------------
 
+*Detailed explanations on every section of the equations will be added soon.*
+
 Energy generation
 ^^^^^^^^^^^^^^^^^^
 

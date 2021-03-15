@@ -3,6 +3,8 @@
 Energy Balance
 ===============
 
+*Detailed explanations on every section of the equations will be added soon.*
+
 Demand
 ------
 

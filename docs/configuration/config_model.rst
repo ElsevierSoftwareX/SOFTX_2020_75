@@ -1,8 +1,8 @@
 .. _model_options:
 
-********************
-Model
-********************
+***********************
+Project configuration
+***********************
 
 Before running DIETERpy, it is possible to configure several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below. This structure is generated automtically as described :ref:`here <start-create-project>`.
 

@@ -1,8 +1,8 @@
 .. _prog_options:
 
-**********************
-Program
-**********************
+************************
+Command line interface
+************************
 
 In this section we present the comamnd line interface (CLI) to run our project and make use of useful functions for processing and visualization of results. 
 The functions are ``create_project``, ``run``, ``gdxconvert``, ``create_report`` and ``web``. To execute all functions we have to call first ``dieterpy`` as shown below.

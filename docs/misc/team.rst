@@ -6,7 +6,7 @@
 Team
 ************************
 
-The best team ever ...
+This is DIETER's core team at DIW Berlin:
 
 Current Developers
 ========================
@@ -17,7 +17,10 @@ Current Developers
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/WSchill.jpg.568394.jpg
       :width: 150
 
-Blablabla
+Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW Berlin and leads the group Transformation of the Energy Economy. Together with Alexander Zerrahn, he is one of the fathers of the DIETER model. He made substantial contributions to the initial model development, different types of model extensions, and various applications.
+
+**Expertise:**
++ A bit of everything
 
 E-Mail: wschill@diw.de
 
@@ -29,7 +32,11 @@ E-Mail: wschill@diw.de
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/CGaete.jpg.574923.jpg
   :width: 150
 
-Blablabla
+Blablabla father of DIETERpy :)
+
+**Expertise:** |br|
++ Python / DIETERpy |br|
++ Electric vehicles
 
 E-Mail: cgaete@diw.de
 
@@ -65,7 +72,7 @@ E-Mail: mkittel@diw.de
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/FStoeckl.jpg.546586.jpg
   :width: 150
 
-Fabian is a research associate at DIW Berlin. He mainly develops and maintains our hydrogen module, including the Hydrogen-for-Mobility, the Power-to-Gas, and the Power-to-Liquid branches. In his current work, Fabian investigates the role of hydrogen as an electricity storage for high shares of renewables.
+Fabian is a research associate at DIW Berlin. He mainly develops and maintains DIETER's hydrogen module, including the Hydrogen-for-Mobility, the Power-to-Gas, and the Power-to-Liquid branches. He used the model to explore the efficiency-flexibility trade-off between different hydrogen supply chains, and to investigate the role of hydrogen for long-term electricity storage in settings with very high shares of renewables.
 
 **Expertise:** |br|
 + Hydrogen |br|
@@ -84,18 +91,8 @@ Past Developers
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/AZerrahn.jpg.546210.jpg
   :width: 150
 
-Blablabla
+Alexander was a research associate at DIW Berlin until December 2020 and is, together with Wolf-Peter Schill, one of the fathers of the DIETER model. He made substantial contributions to the initial model development and various model applications.
 
-E-Mail: a.zerrahn@oeko.de
+E-Mail: azerrahn@diw.de
 
 |
-
-*Andreas Bloess*
-""""""""""""""""""
-
-.. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/avatar.png.565091.png
-  :width: 150
-
-Blablabla
-
-E-Mail: fstoeckl@diw.de

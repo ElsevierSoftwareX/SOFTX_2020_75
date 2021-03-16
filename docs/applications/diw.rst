@@ -33,5 +33,4 @@ Another paper introduced a module with residential power-to-heat options and an 
 
 A hydrogen module was introduced and applied to explore the trade-off between energy efficiency and temporal flexibility of various green hydrogen supply chains:
 
-* Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and
-power sector benets. *arXiv preprint* https://arxiv.org/abs/2005.03464
+* Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and power sector benefits. *arXiv preprint* https://arxiv.org/abs/2005.03464

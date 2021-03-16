@@ -24,8 +24,6 @@ Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW
 
 E-Mail: wschill@diw.de
 
-|
-
 *Carlos Gaete Morales*
 """"""""""""""""""
 

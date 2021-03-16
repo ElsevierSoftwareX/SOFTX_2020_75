@@ -56,10 +56,5 @@
    :hidden:
    :maxdepth: 2
 
-<<<<<<< docs/index.rst
-   misc/troubles
    misc/team
    misc/contributing
-=======
-   misc/contributing
->>>>>>> docs/index.rst

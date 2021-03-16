@@ -7,6 +7,7 @@ Model applications by DIW Berlin researchers
 Applications of the DIETER model have been published in a growing number of peer-reviewed articles. Many of these applications were co-authored by DIW Berlin researchers, as the model was initially developed at DIW.
 
 Two companion articles introduce the basic model version and investigate optimal electrical storage capacity in long-run scenarios with very high shares of renewable energy sources:
+
 * Zerrahn & Schill (2017): Long-run power storage requirements for high shares of renewables: review and a new model, *Renewable and Sustainable Energy Reviews*, 79, 1518-1534. https://doi.org/10.1016/j.rser.2016.11.098
 * Schill & Zerrahn (2018): Long-run power storage requirements for high shares of renewables: Results and sensitivities, *Renewable and Sustainable Energy Reviews*, 83, 156-171. https://doi.org/10.1016/j.rser.2017.05.205
 

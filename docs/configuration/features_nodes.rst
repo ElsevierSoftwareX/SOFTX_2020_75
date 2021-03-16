@@ -3,7 +3,7 @@ Features in nodes
 
 ``features_node_selection.csv``: In this file, you can switch on and off different modules for specific nodes (i.e., countries).
 
-The file looks as folls (the comment column is not shown).
+The file looks as following (the comment column is not shown).
 
 .. csv-table:: features_node_selection.csv
    :header: "feature","DE","FR","DK","BE","NL","PL","CZ","AT","CH","ES","IT","PT"

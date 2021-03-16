@@ -19,4 +19,5 @@ For more information on how to get a list of examples and on the arguments :ref:
    :hidden:
    :maxdepth: 1
 
-   example.1
+   example1
+   example2

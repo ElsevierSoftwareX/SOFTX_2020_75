@@ -87,7 +87,10 @@ def main():
         elif args.template_list:
             # TODO: look at template folder and create a list of folder names of example
             print(
-                " 1.   example1: This example project runs three scenarios. The annualized investment cost of energy and power capacity are modified for Li-Ion battery for several european countries."
+                " 1.   example1: This example project runs three scenarios. Optimal investment and dispatch of generating technologies and storage at different annualized costs for Li-Ion battery: scenarios modelling by changing parameter values."
+            )
+            print(
+                " 2.   example2: This example project runs four scenarios. Optimal investment between two interconnected countries: scenarios modelling by selecting a subset of countries."
             )
         else:
             raise Exception(
@@ -228,6 +231,8 @@ def main():
             except ImportError as exc:
                 print("Streamlit is not installed!")
                 print(">> pip install streamlit")
+                print("")
+                print("")
                 raise ImportError("Streamlit is not installed") from exc
             try:
                 import plotly
@@ -239,6 +244,8 @@ def main():
                 )
                 print(">> pip install plotly")
                 print(">> pip install matplotlib==3.1.3")
+                print("")
+                print("")
                 raise ImportError(
                     "plotly or/and matplotlib is/are not installed!"
                 ) from exc

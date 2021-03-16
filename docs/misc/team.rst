@@ -19,7 +19,7 @@ Current Developers
 
 Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW Berlin and leads the group Transformation of the Energy Economy. Together with Alexander Zerrahn, he is one of the fathers of the DIETER model. He made substantial contributions to the initial model development, different types of model extensions, and various applications.
 
-**Expertise:**
+**Expertise:** |br|
 + A bit of everything
 
 E-Mail: wschill@diw.de

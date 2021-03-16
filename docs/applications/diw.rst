@@ -22,3 +22,6 @@ Download: `arXiv <https://arxiv.org/abs/2005.03464>`_ |br| Model version: `1.4 <
 
 Download: `arXiv <https://arxiv.org/abs/2005.03464>`_ |br| Model version: `1.4 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/releases/1.4.0>`_
 
+------------------
+
+*Further papers will be added soon.*

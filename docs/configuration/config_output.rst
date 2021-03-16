@@ -1,7 +1,7 @@
 .. _data_output:
 
 ******************
-Model data output
+Output data
 ******************
 
 *This section is still under development.*

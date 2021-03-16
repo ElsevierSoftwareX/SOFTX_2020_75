@@ -3,7 +3,7 @@
 Example 1
 ---------
 
-**Optimal investment and dispatch of generating technologies and storage at different annualized costs for Li-Ion battery**
+**Optimal investment and dispatch of generating technologies and storage at different annualized costs for Li-Ion battery: scenarios modelling by changing parameter values**
 
 In this example, we would like to study the effect on the countries' optimal investments when we reduce the annualized investment costs for the two components 'energy' and 'power' of the Li-Ion battery. This example is intended to describe how to create several scenarios by modifying parameters values (annualized investment costs). Even though we do not include model features in this example, such as heating or electric vehicles, the model takes into account 12 European countries with 8760 hours; this makes the entire process to run for about 5 hours on a laptop with an AMD A12 processor, 16 GB RAM and 256 GB SSD.
 

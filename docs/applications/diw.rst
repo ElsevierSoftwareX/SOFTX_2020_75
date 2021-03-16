@@ -16,12 +16,4 @@ Download: `arXiv <https://arxiv.org/abs/2005.03464>`_ |br| Model version: `1.4 <
 
 ------------------
 
-**Another paper** |br| Fabian Stöckl, Wolf-Peter Schill, Alexander Zerrahn
-
-*Abstract:* |br| Green hydrogen can help to decarbonize transportation, but its power sector interactions are not well understood. It may contribute to integrating variable renewable energy sourc
-
-Download: `arXiv <https://arxiv.org/abs/2005.03464>`_ |br| Model version: `1.4 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/releases/1.4.0>`_
-
-------------------
-
 *Further papers will be added soon.*

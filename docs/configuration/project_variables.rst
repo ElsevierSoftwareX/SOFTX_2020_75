@@ -1,3 +1,5 @@
+.. _project_variables:
+
 Project variables 
 -------------------
 
@@ -19,10 +21,10 @@ end_hour: e.g. *h336*
     For testing purposes, the model can run from h1 to *end_hour*. Default value is ``h8760`` which represents an entire year.
 
 dispatch_only: *yes/no*
-    If you select ``yes``, the model will run in *dispatch only* mode, which means that power plant and storage capacities are fixed. Verify in the ``static_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
+    If you select ``yes``, the model will run in *dispatch only* mode, which means that power plant, storage and transmission capacities are fixed. Verify in the ``static_input.xlsx`` sheet that fixed values are provided. To run DIETERpy as an *investment and dispatch model*, select ``no``.
 
 network_transfer: *yes/no*
-    Select ``yes`` to allow for electricity flows between nodes. Select ``no`` to set cross-nodal electricity flows to zero.
+    Select ``yes`` to allow for electricity flows between nodes. Select ``no`` to set cross-nodal electricity flows to zero. If the model is run in the *dispatch only* mode, net tranfer capacities are fixed according to the column ``fixed_capacities_ntc`` on sheet ``spatial`` in ``static_input.xlsx``. If *investment and dispatch* mode is active, net transfer capacities have a static upper and lower bound defined by the column ``max_installable`` and ``min_installable`` on sheet ``spatial`` in ``static_input.xlsx``, respectively.
 
 no_crossover: *yes/no*
     Select ``yes`` to switch off *crossover* of the solver CPLEX. This settings is relevant when CPLEX uses the *Barrier Optimizer* to solve an LP.

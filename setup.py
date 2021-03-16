@@ -19,7 +19,7 @@ for dirpath, dirnames, filenames in os.walk("dieterpy"):
 
 setup(
     name="dieterpy",
-    version="0.2.1",
+    version="0.3.0",
     packages=packages,
     author="Carlos Gaete-Morales",
     author_email="cdgaete@gmail.com",
@@ -30,11 +30,8 @@ setup(
         "pandas== 1.0.0",
         "pyyaml == 5.3.1",
         "psutil",
-        "matplotlib==3.1.3",
-        "plotly",
         "six>=1.11.0",
         "python-dateutil==2.6.1",
-        "streamlit",
     ],
     include_package_data=True,
     entry_points={"console_scripts": ["dieterpy = dieterpy.__main__:main",],},
@@ -43,14 +40,13 @@ setup(
     description="DIETERpy GAMS-Python framework of a power system model DIETER",
     classifiers=[
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: POSIX",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering",
     ],
 )

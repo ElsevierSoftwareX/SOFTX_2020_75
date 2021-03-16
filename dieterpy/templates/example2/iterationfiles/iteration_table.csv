@@ -1,0 +1,5 @@
+run,country_set,"phi_min_res('DE')","phi_min_res('FR')"
+0,"DE,FR",0.5,0.4
+1,"DE,FR",0.6,0.5
+2,"DE,FR",0.7,0.6
+3,"DE,FR",0.8,0.7

@@ -14,7 +14,7 @@ def parser():
     # add positional argument create_project and run
     parser.add_argument(
         "command",
-        help='This argument can be "create_project","run", or "gdxconvert"',
+        help='This argument can be "create_project","run", "gdxconvert", "create_report", or "web"',
         type=str,
     )
     parser.add_argument(
@@ -53,6 +53,12 @@ def parser():
         help='Optional argument for "web". This argument can be "all" or "report"',
         type=str,
     )
+    parser.add_argument(
+        "-tl",
+        "--template_list",
+        help='Optional argument for "create_project". Mutually exclusive argument along with --method. Either of the two must be included',
+        action="store_true",
+    )
 
     args = parser.parse_args()
     return args
@@ -78,42 +84,52 @@ def main():
             else:
                 tmpl = "base"
             return create_project(args.name, tmpl)
+        elif args.template_list:
+            # TODO: look at template folder and create a list of folder names of example
+            print(
+                " 1.   example1: This example project runs three scenarios. Optimal investment and dispatch of generating technologies and storage at different annualized costs for Li-Ion battery: scenarios modelling by changing parameter values."
+            )
+            print(
+                " 2.   example2: This example project runs four scenarios. Optimal investment between two interconnected countries: scenarios modelling by selecting a subset of countries."
+            )
         else:
             raise Exception(
-                "Create_project argument must have a project name as --name argument"
+                "Create_project argument must have a project name as --name argument or --template_list"
             )
     else:
         try:
-            from .tools import module_from_file
-            from .config import settings
+            import dieterpy
+        except ImportError as exc:
+            raise ImportError(
+                "Couldn't import dieterpy. Are you sure it's installed and "
+                "available on your PYTHONPATH environment variable? Did you "
+                "forget to activate a virtual environment?"
+            ) from exc
 
+        from .tools import module_from_file
+        from .config import settings
+
+        try:
             manage = module_from_file("manage", "manage.py")
             settings.PROJECT_DIR_ABS = manage.PROJECT_DIR_ABS
             settings.update_changes()
         except ImportError as exc:
             raise ImportError(
-                "Couldn't import manage.py. Are you sure it's in current working dir?"
+                "Couldn't import manage.py. Are you sure you it is in current working directory?"
             ) from exc
         if args.command == "run":
-            try:
-                from .scripts import runopt
-            except ImportError as exc:
-                raise ImportError(
-                    "Couldn't import dieterpy. Are you sure it's installed and "
-                    "available on your PYTHONPATH environment variable? Did you "
-                    "forget to activate a virtual environment?"
-                ) from exc
+            from .scripts import runopt
+
             print("Running DIETER model\n ")
             return runopt.main()
         elif args.command == "gdxconvert":
             if args.method:
-                try:
-                    from .scripts.output_data import GDXpostprocessing
 
-                    BASE = {}
-                    BASE["TMP_DIR_ABS"] = settings.TMP_DIR_ABS
-                except ImportError:
-                    raise
+                from .scripts.output_data import GDXpostprocessing
+
+                BASE = {}
+                BASE["TMP_DIR_ABS"] = settings.TMP_DIR_ABS
+
                 if args.method == "global":
                     paths_list = os.path.join(
                         settings.RESULTS_DIR_ABS, "*", "*_config.yml"
@@ -162,7 +178,7 @@ def main():
                         raise Exception(
                             "output formats requested must not have whitespaces. The possible options are vaex-pickle-csv"
                         )
-                    ls = args.output.split("-")
+                    ls = args.output.lower().split("-")
                     if "vaex" not in ls:
                         output_dc["vaex_bool"] = False
                     if "pickle" not in ls:
@@ -171,7 +187,7 @@ def main():
                         output_dc["csv_bool"] = False
                     if not any(output_dc.values()):
                         raise Exception(
-                            f'--output "{args.output}" not recognized. Valid options are "vaex" "pickle" "csv" separated by hyphens (-) for more than one option'
+                            f'--output="{args.output}" not recognized. Valid options are "vaex" "pickle" "csv" separated by hyphens (-) for more than one option'
                         )
                 print("\nStarting with gdx conversion...")
                 return GDXpostprocessing(
@@ -184,19 +200,11 @@ def main():
                     base=BASE,
                 )
             else:
-                raise Exception(
-                    '--method is a required argument. It can be "global" or "custom"'
-                )
+                raise Exception("--method is required arguments.")
         elif args.command == "create_report":
 
-            try:
-                from .scripts.report import CollectScenariosPerSymbol
-            except ImportError as exc:
-                raise ImportError(
-                    "Couldn't import dieterpy. Are you sure it's installed and "
-                    "available on your PYTHONPATH environment variable? Did you "
-                    "forget to activate a virtual environment?"
-                ) from exc
+            from .scripts.report import CollectScenariosPerSymbol
+
             print(
                 "Generating report files:\nCollecting all pickle files that contain the symbols"
             )
@@ -215,12 +223,33 @@ def main():
                 )
 
         elif args.command == "web":
+
+            import sys
+
             try:
-                import sys
                 from streamlit import cli as stcli
-                import dieterpy
             except ImportError as exc:
+                print("Streamlit is not installed!")
+                print(">> pip install streamlit")
+                print("")
+                print("")
                 raise ImportError("Streamlit is not installed") from exc
+            try:
+                import plotly
+                import matplotlib
+            except ImportError as exc:
+                print("plotly or/and matplotlib is/are not installed!")
+                print(
+                    "These packages are required for visualization within streamlit, please install them:"
+                )
+                print(">> pip install plotly")
+                print(">> pip install matplotlib==3.1.3")
+                print("")
+                print("")
+                raise ImportError(
+                    "plotly or/and matplotlib is/are not installed!"
+                ) from exc
+
             if not args.web:
                 sys.argv = [
                     "streamlit",

@@ -1,8 +1,8 @@
 .. _model_options:
 
-********************
-Model
-********************
+***********************
+Project configuration
+***********************
 
 Before running DIETERpy, it is possible to configure several options regarding computational aspects as well as the size and features of the model. DIETERpy requires a specific folder structure in order to run properly which you see below. This structure is generated automtically as described :ref:`here <start-create-project>`.
 
@@ -47,9 +47,9 @@ Below there is a short description for every file. A more detailed description a
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 |``model.gms``                    | yes        | Contains the model itself (equations etc.), written in GAMS                                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``constraints_list.csv``         | ?          | List of optional contraints that can be selected in different scenario runs                   |
+|``constraints_list.csv``         | yes        | List of optional contraints that can be selected in different scenario runs                   |
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
-|``reporting_symbols.csv``        | ?          | List of symbols (parameters, variables and equations) to be considered in the result reporting|
+|``reporting_symbols.csv``        | yes        | List of symbols (parameters, variables and equations) to be considered in the result reporting|
 +---------------------------------+------------+-----------------------------------------------------------------------------------------------+
 
 .. toctree::
@@ -57,6 +57,6 @@ Below there is a short description for every file. A more detailed description a
 
    project_variables
    features_nodes
-   iteration.rst
    constraints.rst
+   iteration.rst
    reporting.rst

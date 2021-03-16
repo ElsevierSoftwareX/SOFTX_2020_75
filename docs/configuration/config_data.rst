@@ -1,8 +1,8 @@
 .. _data_options:
 
-********************
-Data
-********************
+**********************
+Input data
+**********************
 
 static_input.xlsx
 ----------------------------------------
@@ -13,7 +13,7 @@ This files contains time-invariant input data organized in spreadsheet format.
    :header: "sheet","content"
 
    "LICENSE","Information on licensing." 
-   "spatial","Data on the underlying grid infrastructure." 
+   "spatial","Data on the underlying grid infrastructure and static bounds for net transfer capacities limiting electricity exchange." 
    "technologies","Techno-economic assumptions on available generation technologies."
    "storage","Techno-economic assumptions on available storage technologies."
    "reservoir","Techno-economic assumptions on available reservoir technologies."
@@ -46,7 +46,11 @@ This files contains hourly time-variant input data organized in spreadsheet form
    "heat_pump","Temperature assumptions."
    "py","Configures data import."
 
-iteration_data_file.xlsx
+iteration_data.xlsx
 ----------------------------------------
 
-Explanations will be added soon.
+*Detailed explanations will be added soon.*
+
+For now, check the `time series iteration`_ section on how to configure the `iteration_data.xlsx` file.
+
+.. _time series iteration: ../configuration/iteration.html#time-series

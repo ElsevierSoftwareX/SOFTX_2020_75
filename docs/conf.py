@@ -23,7 +23,7 @@ copyright = "2021, Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Pet
 author = "Carlos Gaete-Morales, Martin Kittel, Alexander Roth, Wolf-Peter Schill, Alexander Zerrahn"
 
 # The full version, including alpha/beta/rc tags
-release = "0.2.1"
+release = "0.2.3"
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,6 +36,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",
+    "sphinxcontrib.yt",
 ]
 
 napoleon_google_docstring = True

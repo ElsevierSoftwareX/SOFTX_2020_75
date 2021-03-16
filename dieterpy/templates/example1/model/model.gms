@@ -278,8 +278,7 @@ fuelprice(n,tech)          Fuel price conventionals [EUR per MWh thermal]
 
 ***** Renewables *****
 *c_cu(n,tech)               Hourly Curtailment costs for renewables [Euro per MW]
-phi_min_res                Minimum renewables share [0 1]
-phi_min_res_exog(n)        Minimum renewables share per node [0 1]
+phi_min_res(n)                Minimum renewables share [0 1]
 
 
 ***** CO2 *****
@@ -1127,8 +1126,8 @@ con13a_rsvrlev_start(n,rsvr,h)   Reservoir level law of motion initial condition
 con13b_rsvrlev(n,rsvr,h)         Reservoir level law of motion
 con13c_rsvrlev_max(n,rsvr,h)     Maximum reservoir energy level
 con13d_maxout_rsvr(n,rsvr,h)     Maximum hourly reservoir outflow in relation to installed power capacity
-con13d2_minout_rsvr(n,rsvr,h)
-con13e_resrv_rsvr(n,rsvr,h)      Minimum hourly reservoir outflow in relation to provided negativr reserves
+con13d2_minout_rsvr(n,rsvr,h)    Minimum hourly reservoir outflow in relation to installed power capacity
+con13e_resrv_rsvr(n,rsvr,h)      Minimum hourly reservoir outflow in relation to provided negative reserves
 con13f_maxout_lev(n,rsvr,h)      Maximum hourly reservoir outflow in relation tom installed energy capacity
 con13g_ending(n,rsvr,h)          Reservoir level law of motion ending condition
 *con13h_smooth(n,rsvr,h)          Smooth reservoir outflow
@@ -1453,7 +1452,7 @@ $ontext
 $offtext
 
         )
-        =G= phi_min_res * phi_min_res_exog(n) * sum( h ,
+        =G= phi_min_res(n) * sum( h ,
         + d(n,h)
         + sum( map_n_sto(n,sto) , STO_IN(n,sto,h) - STO_OUT(n,sto,h))
 %EV_endogenous%$ontext
@@ -1476,7 +1475,7 @@ $offtext
 $ontext
 $offtext
 )
-        =G= phi_min_res * phi_min_res_exog(n) * sum( h , d(n,h) )
+        =G= phi_min_res(n) * sum( h , d(n,h) )
          + sum( h, sum( map_n_sto(n,sto) , STO_IN(n,sto,h) - STO_OUT(n,sto,h) )
          
 %EV_endogenous%$ontext
@@ -1500,7 +1499,7 @@ $offtext
 $ontext
 $offtext
         )
-        =G= phi_min_res * phi_min_res_exog(n) * sum( h ,
+        =G= phi_min_res(n) * sum( h ,
         sum( map_n_tech(n,dis) , G_L(n,dis,h)) + sum( map_n_tech(n,nondis) , G_RES(n,nondis,h)) + sum( map_n_rsvr(n,rsvr) , RSVR_OUT(n,rsvr,h))
 %reserves%$ontext
         - sum( reserves_do , ( sum( map_n_tech(n,nondis) , RP_NONDIS(n,reserves_do,nondis,h)) + sum( map_n_rsvr(n,rsvr) , RP_RSVR(n,reserves_do,rsvr,h))) * phi_reserves_call(n,reserves_do,h))
@@ -1512,7 +1511,7 @@ $offtext
 $ontext
 $offtext
          )
-         + (1 - phi_min_res * phi_min_res_exog(n)) * sum( (sto,h), STO_IN(n,sto,h) - STO_OUT(n,sto,h) )
+         + (1 - phi_min_res(n)) * sum( (sto,h), STO_IN(n,sto,h) - STO_OUT(n,sto,h) )
 ;
 
 
@@ -1529,7 +1528,7 @@ $offtext
 *$ontext
 *$offtext
         )
-        =L= (1-phi_min_res * phi_min_res_exog(n)) * sum( h, d(n,h) )
+        =L= (1-phi_min_res(n)) * sum( h, d(n,h) )
 ;
 
 con5a_minRes_4e(n)..
@@ -1545,7 +1544,7 @@ $offtext
 $ontext
 $offtext
         )
-        =L= (1-phi_min_res * phi_min_res_exog(n)) * sum( h ,
+        =L= (1-phi_min_res(n)) * sum( h ,
         + d(n,h)
         + sum( map_n_sto(n,sto) , STO_IN(n,sto,h) - STO_OUT(n,sto,h))
 %EV_endogenous%$ontext
@@ -1567,6 +1566,7 @@ con5c_max_node_CO2(n)..
 con5c_max_overall_CO2..
          sum( (dis,h,n) , carbon_content(n,dis)/eta(n,dis) * G_L(n,dis,h)$(map_n_tech(n,dis)) ) =L= co2_cap * 1000000
 ;
+
 * ---------------------------------------------------------------------------- *
 ***** DSM constraints - curtailment *****
 * ---------------------------------------------------------------------------- *
@@ -2619,13 +2619,11 @@ min_flh(n,rsvr) = reservoir_data(n,rsvr,'min_flh') ;
 *n_sets_dhw_p_in(n,bu,ch) = n_sets_dhw_p_out(n,bu,ch) ;
 *n_sets_dhw_e(n,bu,ch) = 2.2 * n_sets_dhw_p_out(n,bu,ch) ;
 
-phi_min_res = data_1dim('phi_min_res') ;
 co2_cap = data_1dim('co2_cap') ;
 phi_pro_self = data_1dim('phi_pro_self') ;
-*ev_quant = data_1dim('ev_quant') ;
 c_infes = data_1dim('c_infes') ;
 
-phi_min_res_exog(n) = data_2dim(n,'phi_min_res_exog') ;
+phi_min_res(n) = data_2dim(n,'phi_min_res') ;
 co2_cap_exog(n) = data_2dim(n,'co2_cap_exog') ;
 phi_pro_load(n) = data_2dim(n,'phi_pro_load') ;
 ev_quant(n) = data_2dim(n,'ev_quant') ;

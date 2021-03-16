@@ -32,15 +32,11 @@ E-Mail: wschill@diw.de
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/CGaete.jpg.574923.jpg
   :width: 150
 
-Blablabla father of DIETERpy :)
-
 **Expertise:** |br|
 + Python / DIETERpy |br|
 + Electric vehicles
 
 E-Mail: cgaete@diw.de
-
-|
 
 *Alexander Roth*
 """"""""""""""""""
@@ -48,11 +44,7 @@ E-Mail: cgaete@diw.de
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/ARoth.jpg.551959.jpg
   :width: 150
 
-Blablabla
-
 E-Mail: aroth@diw.de
-
-|
 
 *Martin Kittel*
 """"""""""""""""""
@@ -60,11 +52,7 @@ E-Mail: aroth@diw.de
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/MKittel.jpg.551922.jpg
   :width: 150
 
-Blablabla
-
 E-Mail: mkittel@diw.de
-
-|
 
 *Fabian Stöckl*
 """"""""""""""""""
@@ -80,8 +68,6 @@ Fabian is a research associate at DIW Berlin. He mainly develops and maintains D
 
 **E-Mail:** fstoeckl@diw.de |br| **Work:** `Google Scholar <https://scholar.google.com/citations?user=aPcI00QAAAAJ&hl=de&oi=sra>`_
 
-|
-
 Past Developers
 ========================
 
@@ -94,5 +80,3 @@ Past Developers
 Alexander was a research associate at DIW Berlin until December 2020 and is, together with Wolf-Peter Schill, one of the fathers of the DIETER model. He made substantial contributions to the initial model development and various model applications.
 
 E-Mail: azerrahn@diw.de
-
-|

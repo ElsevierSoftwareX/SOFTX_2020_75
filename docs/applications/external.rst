@@ -12,13 +12,10 @@ In a report for the Australian Energy Market Operator, CSIRO used a DIETER versi
 
 A DIETER-based analysis of power sector effects of demand-side management in India was developed by PIK researchers:
 
-* ershad, Pietzcker, Ueckerdt & Luderer (2020): Managing power demand from
-air conditioning benefits solar PV in India scenarios for 2040, *Energies* 13 (9), 2223. https://doi.org/10.3390/en13092223
+* ershad, Pietzcker, Ueckerdt & Luderer (2020): Managing power demand from air conditioning benefits solar PV in India scenarios for 2040, *Energies* 13 (9), 2223. https://doi.org/10.3390/en13092223
 
 Methodologcial aspects of modeling long-term storage have been explored by CIRED researchers:
 
-* de Guibert, Shirizadeh & Quirion (2020): Variable time-step: A method for improving
-computational tractability for energy system models with long-term storage, *Energy*
-213, 119024. https://doi.org/10.1016/j.energy.2020.119024
+* de Guibert, Shirizadeh & Quirion (2020): Variable time-step: A method for improving computational tractability for energy system models with long-term storage, *Energy* 213, 119024. https://doi.org/10.1016/j.energy.2020.119024
 
 Together with PIK colleagues, we are further working on coupling a stylized DIETER version with PIK's REMIND model.

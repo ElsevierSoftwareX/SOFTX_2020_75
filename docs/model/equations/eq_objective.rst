@@ -28,7 +28,6 @@ For the following terms, sums are formed as products of a cost parameter and a v
 * the costs related to changing the (aggregate) generation of dispatchable power plants (``G_UP`` and ``G_DO``)
 * the costs attached to curtailment ``CU`` (variable) and ``c_cu`` (parameter) for non-dispatchable technologies ``nondis``.
 
-*Further explanations will be added soon.*
 
 DSM
 ****
@@ -105,12 +104,6 @@ Reserves
     $ontext
     $offtext
     %reserves%$ontext
-
-Endogenous electric vehicles
-****************************
-
-.. code::   
-
     %EV_endogenous%$ontext
     %EV_exogenous%        + sum( (h,map_n_ev(n,ev),reserves_up) , RP_EV_V2G(n,reserves_up,ev,h) * phi_reserves_call(n,reserves_up,h) * c_m_ev(n,ev) )
     %EV_exogenous%        - sum( (h,map_n_ev(n,ev),reserves_do) , RP_EV_V2G(n,reserves_do,ev,h) * phi_reserves_call(n,reserves_do,h) * c_m_ev(n,ev) )
@@ -122,6 +115,7 @@ Endogenous electric vehicles
                 + sum( (h,map_n_dsm(n,dsm_shift),reserves) , RP_DSM_SHIFT(n,reserves,dsm_shift,h) * phi_reserves_call(n,reserves,h) * c_m_dsm_shift(n,dsm_shift) )
     $ontext
     $offtext
+If the reserve module is switched on, variable costs of reserve provision via electricity storage, hydro reservoirs, electric vehicles, and demand-side management are added to the objective function. Respective variable costs of dispatchable generators are not added here, as these are already included in the variable costs shown above; variable renewables are assumed not to incur variable costs for reserve provision.
 
 Prosumage
 *********
@@ -142,6 +136,7 @@ Prosumage
 
     $ontext
     $offtext
+If the prosumage module is switched on, annualized investment costs, annual fixed costs, and variable cost of decentralized solar PV and battery storage plants are added.
 
 NTC
 ***
@@ -149,7 +144,7 @@ NTC
 .. code::   
 
     + sum( map_l(l) , c_i_ntc(l) * NTC(l)*dist(l) )
-
+This term reflects the costs of expanding net transger capacities between model nodes.
 
 Reservoirs
 **********
@@ -160,7 +155,8 @@ Reservoirs
     + sum( map_n_rsvr(n,rsvr) , c_i_rsvr_e(n,rsvr) * N_RSVR_E(n,rsvr) )
     + sum( map_n_rsvr(n,rsvr) , c_i_rsvr_p(n,rsvr) * N_RSVR_P(n,rsvr) )
     + sum( map_n_rsvr(n,rsvr) , c_fix_rsvr(n,rsvr) * N_RSVR_P(n,rsvr) )
-  
+Here, the annualized investment costs, annual fixed costs, and variable costs of hydro reservoirs are added.
+
 Heat
 ****
 
@@ -172,12 +168,13 @@ Heat
 
     $ontext
     $offtext
+If the residential heating module is switched on, this term may be used to penalize the use of fossil fuels in hybrid heating systems, and thus ensure a high share of electricity used in such installations.
 
 Infeasibility
--------------
+*************
 
 .. code::   
 
     + sum( (h,n) , c_infes * G_INFES(n,h) )
-
     ;
+The model also includes an infeasibility variable (also referred to as slack variable) and a respective penalty factor, which may be used to ensure feasible solutions in capacity-contrained settings. Usually, this infeasibility variable is not used.

@@ -34,14 +34,12 @@ Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/CGaete.jpg.574923.jpg
   :width: 150
 
-Carlos is a research associate at DIW Berlin, holds a PhD from The University of Manchester and an Industrial Engineering degree. His research focuses on sustainability assessment of energy systems and finding sustainable pathways for future energy economy by implementing optimization models, life cycle assessment (LCA), and machine learning techniques. He is interested in outreach his work by developing open-source tools using Python.
+Carlos is a research associate at DIW Berlin, holds a PhD from The University of Manchester and an Industrial Engineering degree. His research focuses on the sustainability assessment of energy systems and finding sustainable pathways for future energy economy by implementing optimization models, life cycle assessment (LCA), and machine learning techniques. He is interested in outreach his work by developing open-source tools using Python.
 
 **Expertise:** |br|
-+ Modelling power system models with high renewables |br|
++ Power system models with high renewables |br|
 + e-Mobility `emobpy <https://pypi.org/project/emobpy>`_ |br|
 + Energy storage |br|
-
-
 
 **E-Mail:** cgaete@diw.de |br| **Work:** `Google Scholar <https://scholar.google.com/citations?user=Cay15a0AAAAJ&hl=en&oi=ao>`_
 

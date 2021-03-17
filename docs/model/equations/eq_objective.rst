@@ -73,6 +73,8 @@ Base
     + sum( map_n_sto(n,sto) , c_fix_sto(n,sto)/2*(N_STO_P(n,sto)+N_STO_E(n,sto)) )
     + sum( map_n_sto(n,sto) , c_i_sto_p(n,sto)*N_STO_P(n,sto) )
 
+Here, annualized investment costs and annual fixed costs of all electricity generation and storage technologies are summed up. Annual fixed costs of storage are equally distributed to storage energy and storage power capacity.
+
 DSM
 ***
 
@@ -87,6 +89,7 @@ DSM
 
     $ontext
     $offtext
+If the demand-side management module is switched on, annualized investment costs and annual fixed costs of both load curtailment and load shifting technologies are added to the objective funtion.
 
 Reserves
 ********

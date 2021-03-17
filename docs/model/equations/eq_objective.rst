@@ -3,7 +3,7 @@
 Objective Function
 ==================
 
-The objective function, which value is tried to be minimized by the model, consists of several parts which are explained subsequently.
+The objective function, which is minimized by the model, consists of several cost components which are explained subsequently.
 
 Variable costs
 ------------------
@@ -20,14 +20,12 @@ Base
             + sum( (h,map_n_tech(n,nondis)) , c_cu(n,nondis)*CU(n,nondis,h) )
             + sum( (h,map_n_sto(n,sto)) , c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
         
-The function value ``Z`` is made up of several terms. 
+The function value ``Z``, which reflects overall system costs, is made up of various additive terms. 
 
+For the following terms, sums are formed as products of a cost parameter and a variable and run over every hour `h` as well as all countries `n`. The objective function includes:
 
-
-For the following terms, sums are formed as product of a costs parameter and a variable value and run over every hour `h` as well as all countries `n`. The objective function includes:
-
-* the sum of variable costs of conventional power plants (``sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )``), where ``c_m(n,dis)`` is the variable cost parameter of dispatchable technology ``dis`` in country ``n`` and ``G_L(n,dis,h)`` the generation of that technology in that country in hour ``h``. The function `map_n_tech(n, dis)` makes sure that only those country-plant combinations are summed over that are actually included in model and hence reduces the model size.
-* the costs attached to changing the generation of dispatchable power plants (``G_UP`` and ``G_DO``)
+* the sum of variable costs of conventional power plants (``sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )``), where ``c_m(n,dis)`` is the variable cost parameter of dispatchable technology ``dis`` in country ``n`` and ``G_L(n,dis,h)`` the generation of that technology in that country in hour ``h``. To reduce the model size, the function `map_n_tech(n, dis)` makes sure that only those generation technologies are considered that are actually available in the respective country. Similar mapping functions are used in the following in numerous instances.
+* the costs related to changing the (aggregate) generation of dispatchable power plants (``G_UP`` and ``G_DO``)
 * the costs attached to curtailment ``CU`` (variable) and ``c_cu`` (parameter) for non-dispatchable technologies ``nondis``.
 
 *Further explanations will be added soon.*
@@ -39,12 +37,13 @@ DSM
 
     %DSM%$ontext
 
-        + sum( (h,map_n_dsm(n,dsm_curt)) , c_m_dsm_cu(n,dsm_curt)*DSM_CU(n,dsm_curt,h) )
+        + sum( (h,map_n_dsm(n,dsm_curt)) , c_m_dsm_cu(n,dsm_curt) * DSM_CU(n,dsm_curt,h) )
         + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_UP_DEMAND(n,dsm_shift,h) )
         + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_DO_DEMAND(n,dsm_shift,h) )
 
     $ontext
     $offtext
+In case the demand-side management (DSM) module is switched on, the objective function also includes the variable costs of load curtailment as well as of upward and downward load shifting.
 
 Endogenous electric vehicles
 *****************************
@@ -58,6 +57,7 @@ Endogenous electric vehicles
 
     $ontext
     $offtext
+If the electric vehicle module with endogenous vehicle charging and discharging decisions is switched on, variable costs of discharching electricity from vehicles to the grid are added to the objective function. A penalty for fuel use in plug-in hybrid electric vehicles may also be included, which can minimize the non-electric use of these vehicles.
 
 Investment
 -----------
@@ -73,6 +73,8 @@ Base
     + sum( map_n_sto(n,sto) , c_fix_sto(n,sto)/2*(N_STO_P(n,sto)+N_STO_E(n,sto)) )
     + sum( map_n_sto(n,sto) , c_i_sto_p(n,sto)*N_STO_P(n,sto) )
 
+Here, annualized investment costs and annual fixed costs of all electricity generation and storage technologies are summed up. Annual fixed costs of storage are equally distributed to storage energy and storage power capacity.
+
 DSM
 ***
 
@@ -87,6 +89,7 @@ DSM
 
     $ontext
     $offtext
+If the demand-side management module is switched on, annualized investment costs and annual fixed costs of both load curtailment and load shifting technologies are added to the objective funtion.
 
 Reserves
 ********

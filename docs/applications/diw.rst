@@ -1,5 +1,9 @@
 .. _application-diw:
 
+.. |br| raw:: html
+
+    <br>
+
 =========================
 DIW Berlin researchers
 =========================

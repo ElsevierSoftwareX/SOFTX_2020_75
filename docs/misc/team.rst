@@ -34,7 +34,7 @@ Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/CGaete.jpg.574923.jpg
   :width: 150
 
-Blablabla
+Carlos is a research associate at DIW Berlin and holds a PhD from The University of Manchester and an Industrial Engineering degree. His research and work consist of a sustainability assessment of energy systems and finding sustainable pathways for future energy economy by implementing optimization models, life cycle assessment (LCA), and machine learning techniques. He is interested in outreach his work by developing open-source tools using Python and other tools.
 
 E-Mail: cgaete@diw.de
 

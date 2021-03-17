@@ -1,10 +1,10 @@
 .. _application-external:
 
 =========================
-Model applications by external researchers
+External researchers
 =========================
 
-Recntely, spin-off versions and applications of the DIETER model have been developed without involvement of the initial DIETER team. We expect that our recent DIETERpy improvements will spur more of such activities. We do not systematically track external DIETER-based articles, but are happy to mention these here whenever we get noticed by respective authors.
+Recently, spin-off versions and applications of the DIETER model have been developed without involvement of the initial DIETER team. We expect that our recent DIETERpy improvements will spur more of such activities. We do not systematically track external DIETER-based articles, but are happy to mention these here whenever we get noticed by respective authors.
 
 In a report for the Australian Energy Market Operator, CSIRO used a DIETER version to derive cost projections for various generation technologies:
 

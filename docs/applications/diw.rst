@@ -1,7 +1,7 @@
 .. _application-diw:
 
 =========================
-Model applications by DIW Berlin researchers
+DIW Berlin researchers
 =========================
 
 Applications of the DIETER model have been published in a growing number of peer-reviewed articles. Many of these applications were co-authored by DIW Berlin researchers, as the model was initially developed at DIW.

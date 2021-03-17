@@ -38,11 +38,12 @@ Carlos is a research associate at DIW Berlin, holds a PhD from The University of
 
 **Expertise:** |br|
 + Modelling power system models with high renewables
-+ e-Mobility :ref:`emobpy <https://pypi.org/project/emobpy>`
++ e-Mobility `emobpy <https://pypi.org/project/emobpy>`_
 + Energy storage
 
 
-E-Mail: cgaete@diw.de
+
+**E-Mail:** cgaete@diw.de |br| **Work:** `Google Scholar <https://scholar.google.com/citations?user=Cay15a0AAAAJ&hl=en&oi=ao>`_
 
 |
 

@@ -112,4 +112,4 @@ Alexander was a research associate at DIW Berlin until December 2020 and is, tog
 *Claudia Günther*
 """"""""""""""""""
 
-As a working student and for her master thesis, Claudia developed a model version in a mixed complementarity problem (MCP) format. She used this MCP-version of DIETER to explore the effects of tariff design on prosumage decisions. For this work, which also led to a peer-reviewed article in `Energy Policy <https://doi.org/10.1016/j.enpol.2021.112168>`_, Claudia reeived the GEE price for the best master thesis in 2019.
+As a working student and for her master thesis, Claudia developed a model version in a mixed complementarity problem (MCP) format. She used this MCP-version of DIETER to explore the effects of tariff design on prosumage decisions. For this work, which also led to a peer-reviewed article in `Energy Policy <https://doi.org/10.1016/j.enpol.2021.112168>`_, Claudia received the GEE price for the best master thesis in 2019.

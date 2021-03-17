@@ -56,4 +56,5 @@
    :hidden:
    :maxdepth: 2
 
+   misc/team
    misc/contributing

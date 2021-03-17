@@ -37,9 +37,9 @@ Wolf is Deputy Head of the Department Energy, Transportation, Environment at DIW
 Carlos is a research associate at DIW Berlin, holds a PhD from The University of Manchester and an Industrial Engineering degree. His research focuses on sustainability assessment of energy systems and finding sustainable pathways for future energy economy by implementing optimization models, life cycle assessment (LCA), and machine learning techniques. He is interested in outreach his work by developing open-source tools using Python.
 
 **Expertise:** |br|
-+ Modelling power system models with high renewables
-+ e-Mobility `emobpy <https://pypi.org/project/emobpy>`_
-+ Energy storage
++ Modelling power system models with high renewables |br|
++ e-Mobility `emobpy <https://pypi.org/project/emobpy>`_ |br|
++ Energy storage |br|
 
 
 

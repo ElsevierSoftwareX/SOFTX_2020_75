@@ -17,10 +17,13 @@ Reduced model versions have been used for more general reflections on the econom
 * Schill (2020): Electricity storage and the renewable energy transition. *Joule* 4, 1-6. https://doi.org/10.1016/j.joule.2020.07.022
 * López Prol & Schill (2021): The Economics of Variable Renewables and Electricity Storage. *Annual Review of Resource Economics*, accepted for publication, https://arxiv.org/abs/2012.15371
 
-Other model applications have explored power sector effects of solar prosumage in Germany and Wester Australia:
+Other model applications have explored power sector effects of solar prosumage in Germany and Western Australia:
 
 * Schill, Zerrahn & Kunz (2017): Prosumage of solar electricity: pros, cons, and the system perspective. *Economics of Energy and Environmental Policy* 6(1), 7-31. https://doi.org//10.5547/2160-5890.6.1.wsch
 * Say, Schill & John (2020): Degrees of displacement: The impact of household PV battery prosumage on utility generation and storage. *Applied Energy* 276, 115466. https://doi.org/10.1016/j.apenergy.2020.115466
+
+To analyze the effects of tariff design on prosumage decisions, a model version with a mixed complementarity problem (MCP) instead of a linear optimization problem was developed and applied to Germany:
+
 * Günther, Schill, & Zerrahn (2021): Prosumage of solar electricity: tariff design, capacity investments, and power sector effects. *Energy Policy* 152, 112168. https://doi.org/10.1016/j.enpol.2021.112168
 
 Another model application explored the power sector impacts of electric vehicles in Germany, focussing on reserve provision and vehicle-to-grid:

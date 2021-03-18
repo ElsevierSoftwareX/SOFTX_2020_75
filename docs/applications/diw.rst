@@ -36,15 +36,15 @@ Another model application explored the power sector impacts of electric vehicles
 
 Another paper introduced a module for residential power-to-heat options and an application focussing on the flexibilization of legacy night-time storage heaters, using model version `DIETERgms 1.3.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.0>`_:
 
-* Schill & Zerrahn (2020): Flexible electricity use for heating in markets with renewable energy. *Applied Energy* 266, 114571. `Link <https://>` https://doi.org/10.1016/j.apenergy.2020.114571
+* Schill & Zerrahn (2020): Flexible electricity use for heating in markets with renewable energy. *Applied Energy* 266, 114571. `Link <https://doi.org/10.1016/j.apenergy.2020.114571>`_
 
 A hydrogen module was introduced and applied to explore the trade-off between energy efficiency and temporal flexibility of various green hydrogen supply chains:
 
-* Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and power sector benefits. *arXiv preprint* `Link <https://arxiv.org/abs/2005.03464>`_; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3693305>`_.
+* Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and power sector benefits. *arXiv preprint*. `Link <https://arxiv.org/abs/2005.03464>`_; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3693305>`_.
 
 A reduced model version has also been used to generate data points for estimating the macroeconomic elasticity of substitution between "clean" and "dirty" electricity generation for high shares of renewables not yet observable in empirical data:
 
-* Stöckl & Zerrahn (2020): Substituting Clean for Dirty Energy: A Bottom-Up Analysis. *DIW Discussion Paper* `Link <https://www.diw.de/documents/publikationen/73/diw_01.c.795779.de/dp1885.pdf>`_; model code available on `Zenodo <https://zenodo.org/record/3940514#.YFOj469Kg2w>`_.
+* Stöckl & Zerrahn (2020): Substituting Clean for Dirty Energy: A Bottom-Up Analysis. *DIW Discussion Paper*. `Link <https://www.diw.de/documents/publikationen/73/diw_01.c.795779.de/dp1885.pdf>`_; model code available on `Zenodo <https://zenodo.org/record/3940514#.YFOj469Kg2w>`_.
 
 Some work in progress:
 

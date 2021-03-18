@@ -51,7 +51,7 @@ Carlos is a research associate at DIW Berlin, holds a PhD from The University of
 .. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/ARoth.jpg.551959.jpg
   :width: 150
 
-Alex is a research associate and PhD candidate at DIW Berlin.
+Alex is a research associate and PhD candidate at DIW Berlin. He works currently on a multi-country version of DIETERpy and the interaction effects of electricity storages.
 
 **DIETER Expertise:** |br|
 + Multi-country applications |br|

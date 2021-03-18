@@ -23,16 +23,16 @@ Reduced model versions have been used for more general reflections on the econom
 
 Other model applications have explored power sector effects of solar prosumage in Germany and Western Australia:
 
-* Schill, Zerrahn & Kunz (2017): Prosumage of solar electricity: pros, cons, and the system perspective. *Economics of Energy and Environmental Policy* 6(1), 7-31. https://doi.org//10.5547/2160-5890.6.1.wsch; model version `DIETERgms 1.2.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.2.0>`_
+* Schill, Zerrahn & Kunz (2017): Prosumage of solar electricity: pros, cons, and the system perspective. *Economics of Energy and Environmental Policy* 6(1), 7-31. https://doi.org//10.5547/2160-5890.6.1.wsch; model version `DIETERgms 1.2.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.2.0>`_.
 * Say, Schill & John (2020): Degrees of displacement: The impact of household PV battery prosumage on utility generation and storage. *Applied Energy* 276, 115466. https://doi.org/10.1016/j.apenergy.2020.115466; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3693286>`_.
 
 To analyze the effects of tariff design on prosumage decisions, a model version with a mixed complementarity problem (MCP) instead of a linear optimization problem was developed and applied to Germany:
 
 * Günther, Schill, & Zerrahn (2021): Prosumage of solar electricity: tariff design, capacity investments, and power sector effects. *Energy Policy* 152, 112168. https://doi.org/10.1016/j.enpol.2021.112168; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3345783>`_.
 
-Another model application, using a version now referred to as `DIETERgms 1.1.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.1.0>`_, explored the power sector impacts of electric vehicles in Germany, focussing on reserve provision and vehicle-to-grid:
+Another model application explored the power sector impacts of electric vehicles in Germany, focussing on reserve provision and vehicle-to-grid:
 
-* Schill, Niemeyer, Zerrahn & Diekmann (2016): Bereitstellung von Regelleistung durch Elektrofahrzeuge: Modellrechnungen für Deutschland im Jahr 2035. *Zeitschrift für Energiewirtschaft* 40 (2), 73-87. http://dx.doi.org/10.1007/s12398-016-0174-7
+* Schill, Niemeyer, Zerrahn & Diekmann (2016): Bereitstellung von Regelleistung durch Elektrofahrzeuge: Modellrechnungen für Deutschland im Jahr 2035. *Zeitschrift für Energiewirtschaft* 40 (2), 73-87. http://dx.doi.org/10.1007/s12398-016-0174-7; model version `DIETERgms 1.1.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.1.0>`_.
 
 Another paper introduced a module for residential power-to-heat options and an application focussing on the flexibilization of legacy night-time storage heaters, using model version `DIETERgms 1.3.0 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.0>`_:
 
@@ -41,3 +41,10 @@ Another paper introduced a module for residential power-to-heat options and an a
 A hydrogen module was introduced and applied to explore the trade-off between energy efficiency and temporal flexibility of various green hydrogen supply chains:
 
 * Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and power sector benefits. *arXiv preprint* https://arxiv.org/abs/2005.03464; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3693305>`_.
+
+Some work in progress:
+
+* A contribution to an open-source model compariosn on the effects of cheaper stationary batteries, using the model version `DIETERgms 1.3.1 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.1>`_
+* A contribution to the FlexMex model comparison exercise, using model the version `DIETERgms 1.3.2 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.2>`_
+* An evaluation of the power sector implications of different types of low-carbon freight traffic
+* A detailed anaysis of the trade-off between additional demand and additional flexibility potential related to battery-electric vehicles

@@ -42,6 +42,10 @@ A hydrogen module was introduced and applied to explore the trade-off between en
 
 * Stöckl, Schill & Zerrahn (2020): Green hydrogen: optimal supply chains and power sector benefits. *arXiv preprint* https://arxiv.org/abs/2005.03464; model code available on `Zenodo <https://doi.org/10.5281/zenodo.3693305>`_.
 
+A reduced model version has also been used to generate data points for estimating the macroeconomic elasticity of substitution between "clean" and "dirty" electricity generation for high shares of renewables not yet observable in empirical data:
+
+* Stöckl & Zerrahn (2020): Substituting Clean for Dirty Energy: A Bottom-Up Analysis. *DIW Discussion Paper* https://www.diw.de/documents/publikationen/73/diw_01.c.795779.de/dp1885.pdf; model code available on `Zenodo <https://zenodo.org/record/3940514#.YFOj469Kg2w>`_.
+
 Some work in progress:
 
 * A contribution to an open-source model compariosn on the effects of cheaper stationary batteries, using the model version `DIETERgms 1.3.1 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.1>`_

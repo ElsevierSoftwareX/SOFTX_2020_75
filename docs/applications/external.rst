@@ -12,7 +12,7 @@ In a report for the Australian Energy Market Operator, CSIRO used a DIETER versi
 
 A DIETER-based analysis of power sector effects of demand-side management in India was developed by PIK researchers:
 
-* ershad, Pietzcker, Ueckerdt & Luderer (2020): Managing power demand from air conditioning benefits solar PV in India scenarios for 2040, *Energies* 13 (9), 2223. https://doi.org/10.3390/en13092223
+* Ershad, Pietzcker, Ueckerdt & Luderer (2020): Managing power demand from air conditioning benefits solar PV in India scenarios for 2040, *Energies* 13 (9), 2223. https://doi.org/10.3390/en13092223
 
 Methodologcial aspects of modeling long-term storage have been explored by CIRED researchers:
 

@@ -36,7 +36,6 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",
-    "sphinxcontrib.yt",
 ]
 
 napoleon_google_docstring = True

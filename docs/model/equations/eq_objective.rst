@@ -14,11 +14,11 @@ Base
 .. code::
 
     Z = E =
-                sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )
-            + sum( (h,map_n_tech(n,dis))$(ord(h)>1) , c_up(n,dis)*G_UP(n,dis,h) )
-            + sum( (h,map_n_tech(n,dis)) , c_do(n,dis)*G_DO(n,dis,h) )
-            + sum( (h,map_n_tech(n,nondis)) , c_cu(n,nondis)*CU(n,nondis,h) )
-            + sum( (h,map_n_sto(n,sto)) , c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
+              sum( (h,map_n_tech(n,dis)) ,            c_m(n,dis)     * G_L(n,dis,h) )
+            + sum( (h,map_n_tech(n,dis))$(ord(h)>1) , c_up(n,dis)    * G_UP(n,dis,h) )
+            + sum( (h,map_n_tech(n,dis)) ,            c_do(n,dis)    * G_DO(n,dis,h) )
+            + sum( (h,map_n_tech(n,nondis)) ,         c_cu(n,nondis) * CU(n,nondis,h) )
+            + sum( (h,map_n_sto(n,sto)) ,             c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
         
 The function value ``Z``, which reflects overall system costs, is made up of various additive terms. 
 
@@ -28,7 +28,6 @@ For the following terms, sums are formed as products of a cost parameter and a v
 * the costs related to changing the (aggregate) generation of dispatchable power plants (``G_UP`` and ``G_DO``)
 * the costs attached to curtailment ``CU`` (variable) and ``c_cu`` (parameter) for non-dispatchable technologies ``nondis``.
 
-
 DSM
 ****
 
@@ -36,12 +35,13 @@ DSM
 
     %DSM%$ontext
 
-        + sum( (h,map_n_dsm(n,dsm_curt)) , c_m_dsm_cu(n,dsm_curt) * DSM_CU(n,dsm_curt,h) )
-        + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_UP_DEMAND(n,dsm_shift,h) )
-        + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_DO_DEMAND(n,dsm_shift,h) )
+    + sum( (h,map_n_dsm(n,dsm_curt)) , c_m_dsm_cu(n,dsm_curt) * DSM_CU(n,dsm_curt,h) )
+    + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_UP_DEMAND(n,dsm_shift,h) )
+    + sum( (h,map_n_dsm(n,dsm_shift)) , c_m_dsm_shift(n,dsm_shift) * DSM_DO_DEMAND(n,dsm_shift,h) )
 
     $ontext
     $offtext
+
 In case the demand-side management (DSM) module is switched on, the objective function also includes the variable costs of load curtailment as well as of upward and downward load shifting.
 
 Endogenous electric vehicles
@@ -51,11 +51,12 @@ Endogenous electric vehicles
 
     %EV_endogenous%$ontext
 
-        + sum( (h,map_n_ev(n,ev)) , c_m_ev(n,ev) * EV_DISCHARGE(n,ev,h) )
-        + sum( (h,map_n_ev(n,ev)) , pen_phevfuel(n,ev) * EV_PHEVFUEL(n,ev,h) )
+    + sum( (h,map_n_ev(n,ev)) , c_m_ev(n,ev) * EV_DISCHARGE(n,ev,h) )
+    + sum( (h,map_n_ev(n,ev)) , pen_phevfuel(n,ev) * EV_PHEVFUEL(n,ev,h) )
 
     $ontext
     $offtext
+
 If the electric vehicle module with endogenous vehicle charging and discharging decisions is switched on, variable costs of discharching electricity from vehicles to the grid are added to the objective function. A penalty for fuel use in plug-in hybrid electric vehicles may also be included, which can minimize the non-electric use of these vehicles.
 
 Investment
@@ -81,14 +82,15 @@ DSM
 
     %DSM%$ontext
 
-        + sum( map_n_dsm(n,dsm_curt) , c_i_dsm_cu(n,dsm_curt)*N_DSM_CU(n,dsm_curt) )
-        + sum( map_n_dsm(n,dsm_curt) , c_fix_dsm_cu(n,dsm_curt)*N_DSM_CU(n,dsm_curt) )
-        + sum( map_n_dsm(n,dsm_shift) , c_i_dsm_shift(n,dsm_shift)*N_DSM_SHIFT(n,dsm_shift) )
-        + sum( map_n_dsm(n,dsm_shift) , c_fix_dsm_shift(n,dsm_shift)*N_DSM_SHIFT(n,dsm_shift) )
+    + sum( map_n_dsm(n,dsm_curt) , c_i_dsm_cu(n,dsm_curt)*N_DSM_CU(n,dsm_curt) )
+    + sum( map_n_dsm(n,dsm_curt) , c_fix_dsm_cu(n,dsm_curt)*N_DSM_CU(n,dsm_curt) )
+    + sum( map_n_dsm(n,dsm_shift) , c_i_dsm_shift(n,dsm_shift)*N_DSM_SHIFT(n,dsm_shift) )
+    + sum( map_n_dsm(n,dsm_shift) , c_fix_dsm_shift(n,dsm_shift)*N_DSM_SHIFT(n,dsm_shift) )
 
     $ontext
     $offtext
-If the demand-side management module is switched on, annualized investment costs and annual fixed costs of both load curtailment and load shifting technologies are added to the objective funtion.
+
+If the demand-side management module is switched on, annualized investment costs and annual fixed costs of both load curtailment and load shifting technologies are added to the objective function.
 
 Reserves
 ********
@@ -96,10 +98,10 @@ Reserves
 
     %reserves%$ontext
 
-        + sum( (h,map_n_sto(n,sto),reserves_up) , phi_reserves_call(n,reserves_up,h) * c_m_sto(n,sto) * (RP_STO_OUT(n,reserves_up,sto,h) - RP_STO_IN(n,reserves_up,sto,h)) )
-        - sum( (h,map_n_sto(n,sto),reserves_do) , phi_reserves_call(n,reserves_do,h) * c_m_sto(n,sto) * (RP_STO_OUT(n,reserves_do,sto,h) - RP_STO_IN(n,reserves_do,sto,h)) )
-        + sum( (h,map_n_rsvr(n,rsvr),reserves_up) , RP_RSVR(n,reserves_up,rsvr,h) * phi_reserves_call(n,reserves_up,h) * c_m_rsvr(n,rsvr) )
-        - sum( (h,map_n_rsvr(n,rsvr),reserves_do) , RP_RSVR(n,reserves_do,rsvr,h) * phi_reserves_call(n,reserves_do,h) * c_m_rsvr(n,rsvr) )
+    + sum( (h,map_n_sto(n,sto),reserves_up) , phi_reserves_call(n,reserves_up,h) * c_m_sto(n,sto) * (RP_STO_OUT(n,reserves_up,sto,h) - RP_STO_IN(n,reserves_up,sto,h)))
+    - sum( (h,map_n_sto(n,sto),reserves_do) , phi_reserves_call(n,reserves_do,h) * c_m_sto(n,sto) * (RP_STO_OUT(n,reserves_do,sto,h) - RP_STO_IN(n,reserves_do,sto,h)))
+    + sum( (h,map_n_rsvr(n,rsvr),reserves_up) , RP_RSVR(n,reserves_up,rsvr,h) * phi_reserves_call(n,reserves_up,h) * c_m_rsvr(n,rsvr) )
+    - sum( (h,map_n_rsvr(n,rsvr),reserves_do) , RP_RSVR(n,reserves_do,rsvr,h) * phi_reserves_call(n,reserves_do,h) * c_m_rsvr(n,rsvr) )
 
     $ontext
     $offtext
@@ -111,10 +113,13 @@ Reserves
     $offtext
     %DSM%$ontext
     %reserves%$ontext
-                + sum( (h,map_n_dsm(n,dsm_curt),reserves_up) , RP_DSM_CU(n,reserves_up,dsm_curt,h) * phi_reserves_call(n,reserves_up,h) * c_m_dsm_cu(n,dsm_curt) )
-                + sum( (h,map_n_dsm(n,dsm_shift),reserves) , RP_DSM_SHIFT(n,reserves,dsm_shift,h) * phi_reserves_call(n,reserves,h) * c_m_dsm_shift(n,dsm_shift) )
+
+    + sum( (h,map_n_dsm(n,dsm_curt),reserves_up) , RP_DSM_CU(n,reserves_up,dsm_curt,h) * phi_reserves_call(n,reserves_up,h) * c_m_dsm_cu(n,dsm_curt) )
+    + sum( (h,map_n_dsm(n,dsm_shift),reserves) , RP_DSM_SHIFT(n,reserves,dsm_shift,h) * phi_reserves_call(n,reserves,h) * c_m_dsm_shift(n,dsm_shift) )
+    
     $ontext
     $offtext
+
 If the reserve module is switched on, variable costs of reserve provision via electricity storage, hydro reservoirs, electric vehicles, and demand-side management are added to the objective function. Respective variable costs of dispatchable generators are not added here, as these are already included in the variable costs shown above; variable renewables are assumed not to incur variable costs for reserve provision.
 
 Prosumage
@@ -124,18 +129,17 @@ Prosumage
 
     %prosumage%$ontext
 
-        + sum( map_n_res_pro(n,res) , c_i(n,res)*N_RES_PRO(n,res) )
-        + sum( map_n_res_pro(n,res) , c_fix(n,res)*N_RES_PRO(n,res) )
-
-        + sum( map_n_sto_pro(n,sto) , c_i_sto_e(n,sto)*N_STO_E_PRO(n,sto) )
-        + sum( map_n_sto_pro(n,sto) , c_fix_sto(n,sto)/2*(N_STO_P_PRO(n,sto) + N_STO_E_PRO(n,sto)) )
-        + sum( map_n_sto_pro(n,sto) , c_i_sto_p(n,sto)*N_STO_P_PRO(n,sto) )
-
-        + sum( (h,map_n_sto_pro(n,sto)) , c_m_sto(n,sto) * ( STO_OUT_PRO2PRO(n,sto,h) + STO_OUT_M2PRO(n,sto,h) + STO_OUT_PRO2M(n,sto,h) + STO_OUT_M2M(n,sto,h) 
-        + sum( res , STO_IN_PRO2PRO(n,res,sto,h) + STO_IN_PRO2M(n,res,sto,h)) + STO_OUT_PRO2M(n,sto,h) + STO_OUT_M2M(n,sto,h) ) )
+    + sum( map_n_res_pro(n,res) , c_i(n,res)*N_RES_PRO(n,res) )
+    + sum( map_n_res_pro(n,res) , c_fix(n,res)*N_RES_PRO(n,res) )
+    + sum( map_n_sto_pro(n,sto) , c_i_sto_e(n,sto)*N_STO_E_PRO(n,sto) )
+    + sum( map_n_sto_pro(n,sto) , c_fix_sto(n,sto)/2*(N_STO_P_PRO(n,sto) + N_STO_E_PRO(n,sto)) )
+    + sum( map_n_sto_pro(n,sto) , c_i_sto_p(n,sto)*N_STO_P_PRO(n,sto) )
+    + sum( (h,map_n_sto_pro(n,sto)) , c_m_sto(n,sto) * ( STO_OUT_PRO2PRO(n,sto,h) + STO_OUT_M2PRO(n,sto,h) + STO_OUT_PRO2M(n,sto,h) + STO_OUT_M2M(n,sto,h) 
+    + sum( res , STO_IN_PRO2PRO(n,res,sto,h) + STO_IN_PRO2M(n,res,sto,h)) + STO_OUT_PRO2M(n,sto,h) + STO_OUT_M2M(n,sto,h) ) )
 
     $ontext
     $offtext
+
 If the prosumage module is switched on, annualized investment costs, annual fixed costs, and variable cost of decentralized solar PV and battery storage plants are added.
 
 NTC
@@ -144,7 +148,8 @@ NTC
 .. code::   
 
     + sum( map_l(l) , c_i_ntc(l) * NTC(l)*dist(l) )
-This term reflects the costs of expanding net transger capacities between model nodes.
+  
+This term reflects the costs of expanding net transfer capacities between model nodes.
 
 Reservoirs
 **********
@@ -155,6 +160,7 @@ Reservoirs
     + sum( map_n_rsvr(n,rsvr) , c_i_rsvr_e(n,rsvr) * N_RSVR_E(n,rsvr) )
     + sum( map_n_rsvr(n,rsvr) , c_i_rsvr_p(n,rsvr) * N_RSVR_P(n,rsvr) )
     + sum( map_n_rsvr(n,rsvr) , c_fix_rsvr(n,rsvr) * N_RSVR_P(n,rsvr) )
+
 Here, the annualized investment costs, annual fixed costs, and variable costs of hydro reservoirs are added.
 
 Heat
@@ -164,10 +170,11 @@ Heat
 
     %heat%$ontext
 
-        + sum( (h,n,bu,hfo) , pen_heat_fuel(n,bu,hfo) * H_STO_IN_FOSSIL(n,bu,hfo,h))
+    + sum( (h,n,bu,hfo) , pen_heat_fuel(n,bu,hfo) * H_STO_IN_FOSSIL(n,bu,hfo,h))
 
     $ontext
     $offtext
+
 If the residential heating module is switched on, this term may be used to penalize the use of fossil fuels in hybrid heating systems, and thus ensure a high share of electricity used in such installations.
 
 Infeasibility
@@ -177,4 +184,5 @@ Infeasibility
 
     + sum( (h,n) , c_infes * G_INFES(n,h) )
     ;
-The model also includes an infeasibility variable (also referred to as slack variable) and a respective penalty factor, which may be used to ensure feasible solutions in capacity-contrained settings. Usually, this infeasibility variable is not used.
+
+The model also includes an infeasibility variable (also referred to as slack variable) and a respective penalty factor, which may be used to ensure feasible solutions in capacity-constrained settings. Usually, this infeasibility variable is not used.

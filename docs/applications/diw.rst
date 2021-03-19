@@ -46,9 +46,9 @@ A reduced model version has also been used to generate data points for estimatin
 
 * Stöckl & Zerrahn (2020): Substituting Clean for Dirty Energy: A Bottom-Up Analysis. *DIW Discussion Paper*. `Paper <https://www.diw.de/documents/publikationen/73/diw_01.c.795779.de/dp1885.pdf>`_; model code available on `Zenodo <https://zenodo.org/record/3940514#.YFOj469Kg2w>`_.
 
-Some work in progress:
+Work in progress (selected):
 
-* A contribution to an open-source model compariosn on the effects of cheaper stationary batteries, using the model version `DIETERgms 1.3.1 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.1>`_
+* A contribution to an open-source model comparison on the effects of cheaper stationary batteries, using the model version `DIETERgms 1.3.1 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.1>`_
 * A contribution to the FlexMex model comparison exercise, using model the version `DIETERgms 1.3.2 <https://gitlab.com/diw-evu/dieter_public/dietergms/-/tree/1.3.2>`_
 * An evaluation of the power sector implications of different types of low-carbon freight traffic
-* A detailed anaysis of the trade-off between additional demand and additional flexibility potential related to battery-electric vehicles
+* A detailed analysis of the trade-off between additional demand and additional flexibility potential related to battery-electric vehicles

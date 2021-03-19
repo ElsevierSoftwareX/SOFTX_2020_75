@@ -14,7 +14,7 @@ A DIETER-based analysis of power sector effects of demand-side management in Ind
 
 * Ershad, Pietzcker, Ueckerdt & Luderer (2020): Managing power demand from air conditioning benefits solar PV in India scenarios for 2040, *Energies* 13 (9), 2223. https://doi.org/10.3390/en13092223
 
-Methodologcial aspects of modeling long-term storage have been explored by CIRED researchers:
+Methodological aspects of modeling long-term storage have been explored by CIRED researchers:
 
 * de Guibert, Shirizadeh & Quirion (2020): Variable time-step: A method for improving computational tractability for energy system models with long-term storage, *Energy* 213, 119024. https://doi.org/10.1016/j.energy.2020.119024
 

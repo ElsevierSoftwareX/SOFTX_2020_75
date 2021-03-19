@@ -8,7 +8,7 @@ The graphical user interface (GUI) contains three sections: settings, optimizati
 
     $ dieterpy web
 
-Streamlit is the Python library used to run a local server that opens a web browser. As indicated in the :ref:`Program section <prog_options>`, to run the GUI, the command line instruction has to be located in the main project folder where the file manage.py is hosted.
+Streamlit is the Python library used to run a local server that opens a web browser. As indicated in the :ref:`CLI <prog_options>`, to run the GUI, the command line instruction has to be located in the main project folder where the file manage.py is hosted.
 
 We can use the GUI to configure our project, run optimization and visulaize the results. Other option is executing the optimization by using the command line function :ref:`here <prog_options>` and the result can be seen using the GUI.
 

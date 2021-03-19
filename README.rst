@@ -25,8 +25,8 @@ DIETERpy is a Python-based tool that enables an easy pre- and post-processing of
 
 .. raw:: html
 
-   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-       <iframe src="https://www.youtube.com/embed/n7L0i5Dc5fM" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+   <div style="position: relative; padding-bottom: 15px; overflow: hidden; max-width: 100%; height: auto;">
+       <iframe src="https://www.youtube.com/embed/n7L0i5Dc5fM" frameborder="0" allowfullscreen style="display: block; margin: 0 auto;" width= "560" height= "315"></iframe>
    </div>
 
 

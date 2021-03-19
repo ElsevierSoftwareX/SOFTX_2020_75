@@ -14,11 +14,11 @@ Base
 .. code::
 
     Z = E =
-                sum( (h,map_n_tech(n,dis)) , c_m(n,dis)*G_L(n,dis,h) )
-            + sum( (h,map_n_tech(n,dis))$(ord(h)>1) , c_up(n,dis)*G_UP(n,dis,h) )
-            + sum( (h,map_n_tech(n,dis)) , c_do(n,dis)*G_DO(n,dis,h) )
-            + sum( (h,map_n_tech(n,nondis)) , c_cu(n,nondis)*CU(n,nondis,h) )
-            + sum( (h,map_n_sto(n,sto)) , c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
+              sum( (h,map_n_tech(n,dis)) ,            c_m(n,dis)     * G_L(n,dis,h) )
+            + sum( (h,map_n_tech(n,dis))$(ord(h)>1) , c_up(n,dis)    * G_UP(n,dis,h) )
+            + sum( (h,map_n_tech(n,dis)) ,            c_do(n,dis)    * G_DO(n,dis,h) )
+            + sum( (h,map_n_tech(n,nondis)) ,         c_cu(n,nondis) * CU(n,nondis,h) )
+            + sum( (h,map_n_sto(n,sto)) ,             c_m_sto(n,sto) * ( STO_OUT(n,sto,h) + STO_IN(n,sto,h) ) )
         
 The function value ``Z``, which reflects overall system costs, is made up of various additive terms. 
 

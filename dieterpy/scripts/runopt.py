@@ -376,7 +376,7 @@ def main():
         print("REPORTING FILES")
         print("::::::::::::::::::::::::::::::::::::::")
         paths = [rundc["PKL_path"] for rundc in BASE["RUNS"]]
-        Data = CollectScenariosPerSymbol(paths=paths)
+        Data = CollectScenariosPerSymbol(paths=paths, cores=convert_cores)
         Data.collectinfo()
         Data.join_all_symbols("v", False, False)
         Data.join_scens_by_symbol("con1a_bal", "m", False, False)

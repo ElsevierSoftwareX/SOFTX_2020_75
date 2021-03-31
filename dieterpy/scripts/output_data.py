@@ -134,7 +134,7 @@ def gams_gdxdiff(gams_dir=None, maingdx=None, scengdx=None, newfile=None, base=N
 
     ws = GamsWorkspace(
         system_directory=gams_dir,
-        debug=DebugLevel.KeepFiles,
+        # debug=DebugLevel.KeepFiles,
         working_directory=tmp_path_unique,
     )
     jobs = ws.add_job_from_string(

@@ -68,7 +68,8 @@ def open_file(path):
 
 
 class CollectScenariosPerSymbol:
-    def __init__(self, paths=None, rng=None):
+    def __init__(self, paths=None, rng=None, cores = 0):
+        self.cores = cores
         self.fixed = ["scenario", "loop", "scen_desc", "path"]
         if rng is None and paths is None:
             self.pkls = glob.glob("project_files/data_output/*/*.pkl.gz")
@@ -84,7 +85,12 @@ class CollectScenariosPerSymbol:
         inpdc = {}
         for i, v in enumerate(self.pkls):
             inpdc[i] = v
-        outpdc = parallelize(self.from_pkl_remove_df, inpdc)
+        if self.cores == 0:
+            nr_workers = min(len(inpdc), cpu_count())
+        else:
+            nr_workers = min(len(inpdc), self.cores)
+
+        outpdc = parallelize(function=self.from_pkl_remove_df, inputdict=inpdc, nr_workers = nr_workers)
         for ix in sorted(list(outpdc.keys())):
             self.config.append(outpdc[ix])
 
@@ -107,7 +113,7 @@ class CollectScenariosPerSymbol:
     def scen_load(self, path, symbol):
         with gzip.open(path) as pk:
             dc = pickle.load(pk)
-        symbdc = dc[symbol]
+            symbdc = dc[symbol]
         return symbdc
 
     def collectinfo(self, symbols=[]):
@@ -251,7 +257,7 @@ class CollectScenariosPerSymbol:
         else:
             return df[["id", "symbol", *dims, val_col]].copy()
 
-    def concatenation(self, symbol, flag, loopinclude, result_col, symblist):
+    def concatenation(self, symbol, flag, loopinclude, result_col, symblist, queue):
         savefile = False
 
         symbdict = self.data[flag][symbol]
@@ -312,10 +318,27 @@ class CollectScenariosPerSymbol:
                 )
             else:
                 print(f"   {symbol} does not have data in any scenarios provided")
-        return symbdict, savefile
+
+        queue.put((symbdict, savefile))
+        return None
+
+    def symbol_dataframe_ready(self, scen, scenload_file_func, add_scencols_func, ts_func, shortscennames, loopitems, loopinclude, val_col, symbol):
+        symb_scendict = scenload_file_func(scen["path"], symbol)
+        dframe = add_scencols_func(
+            scen,
+            symbol,
+            symb_scendict,
+            shortscennames,
+            loopitems,
+            val_col,
+            loopinclude,
+        )
+        if "h" in scen[symbol]["dims"]:
+            dframe = ts_func(dframe)
+        return dframe
 
     def join_scens_by_symbol(
-        self, symbol, result_col="v", loopinclude=False, warningshow=True
+        self, symbol, result_col="v", loopinclude=False, warningshow=True,
     ):
         """
         result_col: marginal or val
@@ -330,49 +353,55 @@ class CollectScenariosPerSymbol:
             raise Exception(
                 f"result_col is {result_col}, it must be one of the following: {list(self.convertiontable.keys())}"
             )
+        sceninfo_dict = dict()
+        for indx, scen in enumerate(self.data):
+            if symbol in scen.keys():
+                sceninfo_dict[indx] = scen
+        if self.cores == 0:
+            nr_workers = min(len(sceninfo_dict), cpu_count())
+        else:
+            nr_workers = min(len(sceninfo_dict), self.cores)
 
-        symblist = list()
-        modifiers = dict()
+        outputdict = parallelize(function = self.symbol_dataframe_ready,
+                                    inputdict = sceninfo_dict,
+                                    nr_workers = nr_workers,
+                                    scenload_file_func = self.scen_load, 
+                                    add_scencols_func = self.add_scencols, 
+                                    ts_func = self.ts, 
+                                    shortscennames = self.shortscennames, 
+                                    loopitems = self.loopitems, 
+                                    loopinclude = loopinclude, 
+                                    val_col = val_col, 
+                                    symbol = symbol)
+        symblist = [v for v in outputdict.values()]
+
         flag = -1
+        modifiers = dict()
         for ix, scen in enumerate(self.data):
             if symbol in scen.keys():
-                paths = {0: scen["path"]}
-                outputdict = parallelize(self.scen_load, paths, 1, symbol=symbol)
-                symb_scendict = outputdict[0]
-
-                dframe = self.add_scencols(
-                    scen,
-                    symbol,
-                    symb_scendict,
-                    self.shortscennames,
-                    self.loopitems,
-                    val_col,
-                    loopinclude,
-                )
-                flag = ix
-                if "h" in scen[symbol]["dims"]:
-                    dframe = self.ts(dframe)
-                symblist.append(dframe)
                 modifiers[self.shortscennames[scen["scenario"]]] = self.get_modifiers(
                     scen, self.loopitems
                 )
-
+                flag = ix
             else:
                 print(f'   Symbol "{symbol}" is not in {scen["scenario"]}')
+        
         print("   Starting concatenation of dataframes")
 
         if flag > -1:
-            dcin = {0: symbol}
-            dcout = parallelize(
-                self.concatenation,
-                dcin,
-                1,
-                flag=flag,
-                loopinclude=loopinclude,
-                result_col=result_col,
-                symblist=symblist,
+            Q = Queue()
+            P = Process(
+                target = self.concatenation,
+                args = (symbol,
+                        flag,
+                        loopinclude,
+                        result_col,
+                        symblist,
+                        Q,
+                        )
             )
-            symbdict, savefile = dcout[0]
+            P.start()
+            symbdict, savefile = Q.get()
             symbdict["scen"] = self.shortscennames
             symbdict["loop"] = list(self.loopitems.keys())
             symbdict["modifiers"] = modifiers

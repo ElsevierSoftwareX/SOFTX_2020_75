@@ -79,7 +79,8 @@ def scen_solve(scen_run, base, run, block):
     os.makedirs(tmp_path_unique, exist_ok=True)
 
     ws = GamsWorkspace(
-        debug=DebugLevel.KeepFiles, working_directory=tmp_path_unique
+        # debug=DebugLevel.KeepFiles, 
+        working_directory=tmp_path_unique
     )  # system_directory=gams_dir
 
     print("working_directory:", ws.working_directory)
@@ -297,7 +298,8 @@ def guss_parallel(result, queue, queue_lock, print_lock, symbs, base, block):
     os.makedirs(tmp_path_unique, exist_ok=True)
 
     ws = GamsWorkspace(
-        debug=DebugLevel.KeepFiles, working_directory=tmp_path_unique
+        # debug=DebugLevel.KeepFiles, 
+        working_directory=tmp_path_unique
     )  # system_directory=gams_dir
 
     print("working_directory:", ws.working_directory)
@@ -505,7 +507,8 @@ def guss_solve(queue, symbs, base, block):
     os.makedirs(tmp_path_unique, exist_ok=True)
 
     ws = GamsWorkspace(
-        debug=DebugLevel.KeepFiles, working_directory=tmp_path_unique
+        # debug=DebugLevel.KeepFiles, 
+        working_directory=tmp_path_unique
     )  # system_directory=gams_dir
     print("working_directory:", ws.working_directory)
     cp = ws.add_checkpoint(cp_file)

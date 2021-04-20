@@ -212,7 +212,12 @@ def main():
                 'Warning: Pickle files contain symbols listed in /project_files/settings/reporting_symbols.csv\nYou can add more symbols to the list and then call "GDXpostprocessing" from Python IDE or "gdxconvert" as dieterpy argument in the terminal or prompt'
             )
 
-            Data = CollectScenariosPerSymbol()
+            if args.cores:
+                core = int(args.cores)
+            else:
+                core = 0
+
+            Data = CollectScenariosPerSymbol(cores = core)
             Data.collectinfo()
             Data.join_all_symbols("v", False)
             try:

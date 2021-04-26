@@ -19,12 +19,12 @@ for dirpath, dirnames, filenames in os.walk("dieterpy"):
 
 setup(
     name="dieterpy",
-    version="0.3.1",
+    version="0.3.2",
     packages=packages,
     author="Carlos Gaete-Morales",
     author_email="cdgaete@gmail.com",
     install_requires=[
-        "exceltogdx",
+        "exceltogdx>=0.0.3",
         "numpy == 1.19.5",
         "xlrd == 1.2.0",
         "pandas== 1.0.0",

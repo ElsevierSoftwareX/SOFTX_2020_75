@@ -938,7 +938,7 @@ def getTopographydata(path: str, project_vars: dict) -> pd.DataFrame:
         usecols="M:AZ",
         index_col=0,
         header=0,
-        skiprows=1,
+        skiprows=2,
     )
     return dataframe
 

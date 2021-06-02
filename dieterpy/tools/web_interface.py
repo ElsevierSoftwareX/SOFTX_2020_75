@@ -971,9 +971,7 @@ def get_results(state):
     # create G_TECH from G_L, G_RES, RSVR_OUT, G_INFES -> RSVR_OUT convert dim to tech, G_INFES added new dim tech
     symbols["G_TECH"] = symbols["G_L"].concat(symbols["G_RES"])
     symbols["RSVR_OUTtech"] = symbols["RSVR_OUT"] * 1
-    symbols["RSVR_OUTtech"].df = symbols["RSVR_OUTtech"].df.rename(
-        columns={"rsvr": "tech"}
-    )
+    symbols["RSVR_OUTtech"].df = symbols["RSVR_OUTtech"].df.rename(columns={"rsvr": "tech"})
     symbols["RSVR_OUTtech"].dims = symbols["G_TECH"].get("dims")
     symbols["G_TECH"] = symbols["G_TECH"].concat(symbols["RSVR_OUTtech"])
     symbols["G_INFEStech"] = symbols["G_INFES"] * 1

@@ -32,6 +32,7 @@ setup(
         "psutil",
         "six>=1.11.0",
         "python-dateutil==2.6.1",
+        "mgzip",
     ],
     include_package_data=True,
     entry_points={"console_scripts": ["dieterpy = dieterpy.__main__:main",],},

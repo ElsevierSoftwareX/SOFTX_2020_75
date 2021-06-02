@@ -6,11 +6,14 @@
 
 """
 import re
+import sys
 import glob
 import os
 import copy
+import time
 
 import gzip
+import mgzip
 import pickle
 import numpy as np
 import pandas as pd
@@ -30,6 +33,7 @@ def parallel_func(dc, queue=None, queue_lock=None, function=None, kargs={}):
         queue_lock.release()
         obj = function(item, **kargs)
         dc[key] = obj
+        # sys.exit()
     return None
 
 
@@ -56,12 +60,17 @@ def parallelize(function=None, inputdict=None, nr_workers=1, **kargs):
                 )
             processes[i].start()
         for i in range(nr_workers):
+            # print('   ', processes[i], processes[i].is_alive())
             processes[i].join()
+            # print('   ', processes[i], processes[i].is_alive())
         outputdict = dict(dc)
     return outputdict
 
 
 def open_file(path):
+
+    # use parallel proc to open file
+    # with mgzip.open(path, thread=cpu_count()) as pk:
     with gzip.open(path) as pk:
         dc = pickle.load(pk)
     return dc
@@ -102,6 +111,10 @@ class CollectScenariosPerSymbol:
         }
 
     def from_pkl_remove_df(self, path):
+
+        ## use parallel proc to open file
+        # with mgzip.open(path, thread=cpu_count()) as pk:
+
         with gzip.open(path) as pk:
             dc = pickle.load(pk)
         for key in list(dc.keys()):
@@ -111,6 +124,8 @@ class CollectScenariosPerSymbol:
         return dc
 
     def scen_load(self, path, symbol):
+
+        # with mgzip.open(path, thread=cpu_count()) as pk:
         with gzip.open(path) as pk:
             dc = pickle.load(pk)
             symbdc = dc[symbol]
@@ -257,7 +272,7 @@ class CollectScenariosPerSymbol:
         else:
             return df[["id", "symbol", *dims, val_col]].copy()
 
-    def concatenation(self, symbol, flag, loopinclude, result_col, symblist, queue):
+    def concatenation(self, symbol, flag, loopinclude, result_col, symblist):
         savefile = False
 
         symbdict = self.data[flag][symbol]
@@ -319,8 +334,8 @@ class CollectScenariosPerSymbol:
             else:
                 print(f"   {symbol} does not have data in any scenarios provided")
 
-        queue.put((symbdict, savefile))
-        return None
+        # queue.put((symbdict, savefile))
+        return (symbdict, savefile)
 
     def symbol_dataframe_ready(self, scen, scenload_file_func, add_scencols_func, ts_func, shortscennames, loopitems, loopinclude, val_col, symbol):
         symb_scendict = scenload_file_func(scen["path"], symbol)
@@ -345,6 +360,7 @@ class CollectScenariosPerSymbol:
         self.data
         symbol
         """
+        tmi = time.time()
         print(f"{symbol}.{result_col} --> Starting...")
         print(f"   Loading pkl files of scenario data")
         if result_col in self.convertiontable.keys():
@@ -357,22 +373,37 @@ class CollectScenariosPerSymbol:
         for indx, scen in enumerate(self.data):
             if symbol in scen.keys():
                 sceninfo_dict[indx] = scen
-        if self.cores == 0:
-            nr_workers = min(len(sceninfo_dict), cpu_count())
-        else:
-            nr_workers = min(len(sceninfo_dict), self.cores)
+        # if self.cores == 0:
+        #     nr_workers = min(len(sceninfo_dict), cpu_count())
+        # else:
+        #     nr_workers = min(len(sceninfo_dict), self.cores)
 
-        outputdict = parallelize(function = self.symbol_dataframe_ready,
-                                    inputdict = sceninfo_dict,
-                                    nr_workers = nr_workers,
-                                    scenload_file_func = self.scen_load, 
-                                    add_scencols_func = self.add_scencols, 
-                                    ts_func = self.ts, 
-                                    shortscennames = self.shortscennames, 
-                                    loopitems = self.loopitems, 
-                                    loopinclude = loopinclude, 
-                                    val_col = val_col, 
+        # outputdict = parallelize(function = self.symbol_dataframe_ready,
+        #                         inputdict = sceninfo_dict,
+        #                         nr_workers = nr_workers,
+        #                         scenload_file_func = self.scen_load, 
+        #                         add_scencols_func = self.add_scencols, 
+        #                         ts_func = self.ts, 
+        #                         shortscennames = self.shortscennames, 
+        #                         loopitems = self.loopitems, 
+        #                         loopinclude = loopinclude, 
+        #                         val_col = val_col, 
+        #                         symbol = symbol)
+
+        outputdict = {}
+        for idx, scenario in sceninfo_dict.items():
+
+            symbdf = self.symbol_dataframe_ready(scen = scenario,
+                                    scenload_file_func = self.scen_load,
+                                    add_scencols_func = self.add_scencols,
+                                    ts_func = self.ts,
+                                    shortscennames = self.shortscennames,
+                                    loopitems = self.loopitems,
+                                    loopinclude = loopinclude,
+                                    val_col = val_col,
                                     symbol = symbol)
+            outputdict[idx] = symbdf
+
         symblist = [v for v in outputdict.values()]
 
         flag = -1
@@ -385,23 +416,11 @@ class CollectScenariosPerSymbol:
                 flag = ix
             else:
                 print(f'   Symbol "{symbol}" is not in {scen["scenario"]}')
-        
-        print("   Starting concatenation of dataframes")
+        tmm = time.time()
+        print(f"   Starting concatenation of dataframes. (Loading time {round(tmm-tmi)} s)")
 
         if flag > -1:
-            Q = Queue()
-            P = Process(
-                target = self.concatenation,
-                args = (symbol,
-                        flag,
-                        loopinclude,
-                        result_col,
-                        symblist,
-                        Q,
-                        )
-            )
-            P.start()
-            symbdict, savefile = Q.get()
+            symbdict, savefile = self.concatenation(symbol, flag, loopinclude, result_col, symblist)
             symbdict["scen"] = self.shortscennames
             symbdict["loop"] = list(self.loopitems.keys())
             symbdict["modifiers"] = modifiers
@@ -417,8 +436,11 @@ class CollectScenariosPerSymbol:
             if symbol not in self.pathsbook.keys():
                 self.pathsbook[symbol] = {}
             self.pathsbook[symbol][result_col] = dest_path
-            print("   Saving file...")
+            tmc = time.time()
+            print(f"   Saving file... (Concat time {round(tmc-tmm)} s)")
             self.to_pickle(dest_path, symbdict)
+            print(f"   Final file size {round(os.path.getsize(dest_path)/10**6, 2)} mb. Saving time {round(time.time() - tmc)} s")
+        print()
 
         if warningshow:
             print(
@@ -435,11 +457,29 @@ class CollectScenariosPerSymbol:
             )
 
     def to_pickle(self, path, obj):
+
+        pickleobj = pickle.dumps(obj, protocol=min(3, pickle.HIGHEST_PROTOCOL))
+
         if path.endswith(".pkl.gz"):
             folder = os.path.dirname(path)
             os.makedirs(folder, exist_ok=True)
-            with gzip.open(path, "wb") as datei:
-                pickle.dump(obj, datei)
+
+            # use parallel proc to open file
+            # define block size per cpu
+            cpu_nr = max(cpu_count() - 1, 1)
+            filesize = len(pickleobj)
+            size_per_cpu = int(filesize/cpu_nr)
+            if size_per_cpu > 3*10**6: # 3mb
+                size_selected = 3*10**6
+            elif size_per_cpu < 1*10**5: # 100kb
+                size_selected = 1*10**5
+            else:
+                size_selected = size_per_cpu
+            print(f'   Uncompressed file {round(filesize/10**6, 2)} mb. Chunk {round(size_selected/10**3, 1)} kb.')
+
+            # with gzip.open(path, "wb") as datei:
+            with mgzip.open(path, "wb", thread=0, blocksize=size_selected) as datei:
+                datei.write(pickleobj)
             print(f"   File saved: {path}")
         else:
             print(f'   File {path} not saved. It does not have ".pkl.gz" extension')
@@ -684,6 +724,31 @@ class Symbol(object):
         for k, v in self.get("modifiers").items():
             dfm[k] = dfm["id"].map(v)
         return dfm
+
+    def dfmdr(self, dim='h', nan = False, aggfunc='sum'):
+        '''
+        dfmdr stands for dataframe with modifiers and dimension reduction
+        dim are the list of dimension to be Reduced with sum(), default 'h'
+        nan convert numeric columns, nan to -1 when value is True
+        '''
+        new_dims = list(set(self.get("dims")).symmetric_difference(set([dim])))
+        dfmdr = (
+            self.df.set_index(self.get("preferred_index") + self.get("dims"))
+            .drop("symbol", axis=1)
+            .sort_index()
+        )
+        if dim in self.get("dims"):
+            dfmdr = dfmdr.groupby(self.get("preferred_index") + new_dims).agg({'value':aggfunc}).reset_index()
+        else:
+            dfmdr = dfmdr.reset_index()
+            
+        for k, v in self.get("modifiers").items():
+            dfmdr[k] = dfmdr["id"].map(v)
+        dfmdr.insert(1, "symbol", self.get("name"))
+        if nan:
+            numeric_columns = dfmdr.select_dtypes(include=['number']).columns
+            dfmdr[numeric_columns] = dfmdr[numeric_columns].fillna(-1)
+        return dfmdr
 
     def __setattr__(self, name, value):
         if name == "df":
@@ -1072,14 +1137,14 @@ class Symbol(object):
                 "The second term is not known, must be a int, float or a Symbol object"
             )
 
-    def dimreduc(self, dim):
+    def dimreduc(self, dim, aggfunc='sum'):
         new_dims = list(set(self.get("dims")).symmetric_difference(set([dim])))
         new_df = (
             self.df.set_index(self.get("preferred_index") + self.get("dims"))
             .drop("symbol", axis=1)
             .sort_index()
         )
-        new_df = new_df.groupby(self.get("preferred_index") + new_dims).sum()
+        new_df = new_df.groupby(self.get("preferred_index") + new_dims).agg({'value':aggfunc})
         new_object = Symbol(
             f"({self.get('name')}).dimreduc({dim})",
             "v",
@@ -1131,3 +1196,32 @@ class Symbol(object):
             flag = True
         if flag:
             raise Exception("dims or/and unit are not equal")
+
+def storagecycling(storage_in: Symbol, storage_out: Symbol) -> Symbol:
+    '''
+    Symbol whose dataframe in the column 'value' has three possible options 0,1,2.
+    Where 2 indicates storage cycling. This function gives a 1 if the flow occurs, 
+    otherwise, is 0 for each symbol (input and output flow). The both symbols are added,
+    if at certain hour input and output flows have 1, the result will be 2.
+    
+    Args:
+        storage_in (Symbol): Symbol storage input flow
+        storage_out (Symbol): Symbol storage output flow
+        
+    Return:
+        sto
+    '''
+    stoin = storage_in/storage_in
+    stoin.df['value'] = stoin.df['value'].fillna(0)
+    stoout = storage_out/storage_out
+    stoout.df['value'] = stoout.df['value'].fillna(0)
+    sto = stoout + stoin
+    sto.df['value'] = sto.df['value'].fillna(0)
+    unique = sto.df['value'].unique().tolist()
+    print(unique)
+    if 2.0 in unique:
+        print('Storage cycling: True, as 2 in "value" column')
+    else:
+        print('Storage cycling: False, as 2 is not present in "value" column')
+    print('Use .df to get the dataframe')
+    return sto

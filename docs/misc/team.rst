@@ -78,22 +78,6 @@ Martin is a research associate and PhD candidate at DIW Berlin. He mainly develo
 
 |
 
-*Fabian Stöckl*
-""""""""""""""""""
-
-.. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/FStoeckl.jpg.546586.jpg
-  :width: 150
-
-Fabian is a research associate at DIW Berlin. He mainly develops and maintains our hydrogen module, including the Hydrogen-for-Mobility, the Power-to-Gas, and the Power-to-Liquid branches. In his current work, Fabian investigates the role of hydrogen as an electricity storage for high shares of renewables.
-
-**Expertise:** |br|
-+ Hydrogen |br|
-+ P2X
-
-**E-Mail:** fstoeckl@diw.de |br| **Work:** `Google Scholar <https://scholar.google.com/citations?user=aPcI00QAAAAJ&hl=de&oi=sra>`_
-
-|
-
 Past Developers
 ========================
 
@@ -106,6 +90,22 @@ Past Developers
 Alexander was a research associate at DIW Berlin until December 2020 and is, together with Wolf-Peter Schill, one of the fathers of the DIETER model. He made substantial contributions to the initial model development and various model applications.
 
 **E-Mail:** azerrahn@diw.de |br| **Work:** `Google Scholar <https://scholar.google.at/citations?user=cPPu_1QAAAAJ&hl=de>`_
+
+|
+
+*Fabian Stöckl*
+""""""""""""""""""
+
+.. image:: https://www.diw.de/sixcms/media.php/37/thumbnails/FStoeckl.jpg.546586.jpg
+  :width: 150
+
+Fabian was a research associate at DIW Berlin until May 2021. He mainly developed and maintained our hydrogen module, including the Hydrogen-for-Mobility, the Power-to-Gas, and the Power-to-Liquid branches.
+
+**Expertise:** |br|
++ Hydrogen |br|
++ P2X
+
+**E-Mail:** fstoeckl@diw.de |br| **Work:** `Google Scholar <https://scholar.google.com/citations?user=aPcI00QAAAAJ&hl=de&oi=sra>`_
 
 |
 
